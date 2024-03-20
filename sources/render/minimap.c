@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:17:46 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/20 23:18:47 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/20 23:40:44 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	draw_minimap()
 		while (map[i][j])
 		{
 			if (map[i][j] == '1')
-				render_square(game()->pixel, MAP_POS + (i * offset), MAP_POS + (j
+				render_square(&game()->pixel, MAP_POS + (j * offset), MAP_POS + (i
 						* offset), 20, RED);
 			else if (map[i][j] == '0')
-				render_square(game()->pixel, MAP_POS + (i * offset), MAP_POS + (j
+				render_square(&game()->pixel, MAP_POS + (j * offset), MAP_POS + (i
 						* offset), 20, GREEN);
 			j++;
 		}

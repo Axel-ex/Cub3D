@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/20 23:24:40 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/20 23:31:07 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_game
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
-	t_data	*pixel;
+	t_data	pixel;
 	//textures
 	//player
 }	t_game;

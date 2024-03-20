@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:30:10 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/20 23:29:27 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/20 23:39:28 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	main(int argc, char *argv[])
 	(void)argv;
 
 	init_game();
-	render_square(game()->pixel, 250, 400, 50, create_trgb(0, 155, 0, 150));
-	// draw_minimap();
+	// render_square(&game()->pixel, 50, 50, 100, create_trgb(0, 155, 0, 150));
+	draw_minimap();
 	// test();
 	mlx_loop(game()->mlx);
 	exit_game();
