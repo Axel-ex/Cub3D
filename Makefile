@@ -3,15 +3,10 @@ SRCS_DIR    = sources
 OBJ_DIR     = bin
 LIBFT_DIR   = Libft
 LIBFT       = libft.a
-MLX_DIR     = mlx
 MLX         = libmlx.a
-
 SRCS        = $(wildcard $(SRCS_DIR)/*.c) $(wildcard $(SRCS_DIR)/**/*.c)
 OBJS        = $(patsubst $(SRCS_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
-
 CCFLAGS     = -Wall -Wextra -Werror -g -I includes
-MLXFLAGS    = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
-
 INC         = includes
 OS			= mac
 
@@ -27,9 +22,12 @@ endif
 
 #TODO: check on VM linux compilation
 ifeq ($(OS), linux)
-	$(MLX_DIR) := mlx_linux
-	$(CCFLAGS) += -I/usr/include -Imlx_linux -O3
-	$(MLXFLAGS) := -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
+	MLX_DIR = mlx_linux
+	MLXFLAGS = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
+	CCFLAGS += -I/usr/include -I$(MLX_DIR) -O3
+else
+	MLX_DIR = mlx
+	MLXFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 endif
 
 $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJ_DIR)
