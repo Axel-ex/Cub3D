@@ -6,52 +6,33 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:43:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/20 23:35:59 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/21 08:39:55 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	render_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
-	
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+
+	dst = img->addr + (y * img->line_length + x * (img->bbp / 8));
 	*(unsigned int *)dst = color;
 }
 
-void	render_pixel(t_data *img, int x, int y, int color)
-{
-    char    *pixel;
-    int		i;
-
-    i = img->bits_per_pixel - 8;
-    pixel = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-    while (i >= 0)
-    {
-        /* big endian, MSB is the leftmost bit */
-        if (img->endian != 0)
-            *pixel++ = (color >> i) & 0xFF;
-        /* little endian, LSB is the leftmost bit */
-        else
-            *pixel++ = (color >> (img->bits_per_pixel - 8 - i)) & 0xFF;
-        i -= 8;
-    }
-}
-
-void	render_square(t_data *img, int x, int y, int width, int color)
+void	render_square(t_img *img, t_square square)
 {
 	int	i;
 	int	j;
 
-	i = y;
-	if ((x + width > SCREEN_W || x < 0) && (y + width > SCREEN_H || y < 0))
+	i = square.y;
+	if ((square.x + square.width > SCREEN_W || square.x < 0) && (square.y + square.width > SCREEN_H || square.y < 0))
 		return ;
-	while (i < y + width)
+	while (i < square.y + square.width)
 	{
-		j = x;
-		while (j < x + width)
-			my_mlx_pixel_put(img, j++, i, color);
+		j = square.x;
+		while (j < square.x + square.width)
+			render_pixel(img, j++, i, square.color);
 		i++;
 	}
 	mlx_put_image_to_window(game()->mlx, game()->mlx_win, img->img, 0, 0);

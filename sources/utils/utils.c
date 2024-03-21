@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 16:46:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/21 08:45:14 by Axel             ###   ########.fr       */
+/*   Created: 2024/03/21 08:50:10 by Axel              #+#    #+#             */
+/*   Updated: 2024/03/21 08:51:55 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void	exit_game(void)
+bool	is_player(char c)
 {
-	mlx_destroy_image(game()->mlx, game()->screen_buff.img);
-	mlx_destroy_window(game()->mlx, game()->mlx);
+	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
 }

@@ -75,7 +75,7 @@ void	draw_square(t_test *test, int x, int y, int width, int color)
 	}
 }
 
-void	draw_minimap(t_test *test)
+void	render_minimap(t_test *test)
 {
 	int	i;
 	int	j;
@@ -134,7 +134,7 @@ int	main(void)
 	test.img->addr = mlx_get_data_addr(test.img->img,
 			&test.img->bits_per_pixel, &test.img->line_length, &test.img->endian);
 	draw_square(&test, 50, 50, 50, RED);
-	draw_minimap(&test);
+	render_minimap(&test);
 	test_map();
 	mlx_loop(test.mlx);
 	free(test.img);

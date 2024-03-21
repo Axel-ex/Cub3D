@@ -6,81 +6,136 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/20 23:31:07 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/21 10:12:20 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <stdlib.h>
-# include <stdio.h>
 # include "libft.h"
 # include "mlx.h"
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
 
-#define SCREEN_W	600
-#define SCREEN_H	600
-#define MAP_POS		50
+# define SCREEN_W	600
+# define SCREEN_H	600
+# define MAP_POS	50
 
-/**
- * @brief 
- * 
- * takes int between 0 and 255 and creates trgb color by bitshifting and bitwise | op 
- * see below for exemple.
- *
- * @return color code
- */
-int	create_trgb(int t, int r, int g, int b);
+# define RED	0x00FF0000
+# define GREEN	0x0000FF00
+# define BLUE	0x000000FF
 
-#define RED		create_trgb(0, 255, 0, 0)
-#define GREEN	create_trgb(0, 0, 255, 0)
-#define BLUE	create_trgb(0, 0, 0, 255)
-
-typedef struct s_data
+typedef struct s_img
 {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
+	int		bbp;
 	int		line_length;
 	int		endian;
-}			t_data;
+}			t_img;
 
 typedef struct s_player
 {
-	//sprites
-	//positon
-}	t_player;
+	// sprites
+	// positon
+}			t_player;
 
 typedef struct s_game
 {
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
-	t_data	pixel;
-	//textures
-	//player
-}	t_game;
+	t_img	screen_buff;
+	// textures
+	// player
+}			t_game;
+
+typedef struct s_square
+{
+	int		x;
+	int		y;
+	int		width;
+	int		color;
+}			t_square;
 
 /**
  * @brief Return a static instance of the game struct.
- * 
+ *
  * @return t_game *
  */
-t_game *game();
+t_game		*game(void);
 
-//INIT_EXIT
-void	init_game();
-void	exit_game();
 
-//RENDER
-//shapes.c
-void	render_pixel(t_data *data, int x, int y, int color);
-void	render_square(t_data *img, int x, int y, int width, int color);
+// =============================================================================
+// INIT_EXIT
+// =============================================================================
+// == INIT.C ============================================
+/**
+ * @brief Initialize the game structure. gets mlx instance, window pointer,
+	screen
+ * buffer.
+ */
+void		init_game(void);
 
-//color.c
-int	create_trgb(int t, int r, int g, int b);
+// == EXIT.C ============================================
+/**
+ * @brief destroy the game structure. destroy window pointer and screen buffer
+ */
+void		exit_game(void);
 
-//minimap.c
-void	draw_minimap();
+
+// =============================================================================
+// RENDER
+// =============================================================================
+// == SHAPES.C ============================================
+/**
+ * @brief Write a single pixel to the img buffer at position [x,y].
+ *
+ * @param img
+ * @param x
+ * @param y
+ * @param color
+ */
+void		render_pixel(t_img *img, int x, int y, int color);
+
+/**
+ * @brief Write a square to the img buffer. the [x,y] position of the square
+ * correspond to its upper left corner.
+ *
+ * @param img
+ * @param square
+ */
+void		render_square(t_img *img, t_square square);
+
+// == COLORS.C ============================================
+/**
+ * @brief Combines the RGB color values into a single integer representation.
+ *
+ * This function takes the individual color values (red, green,
+	blue) as arguments
+ * and combines them into a single integer representation.
+ * The color values should be in the range of 0 to 255 (1 byte).
+ *
+ * @param r The red color value.
+ * @param g The green color value.
+ * @param b The blue color value.
+ * @return An integer representation of the combined RGB color values.
+ */
+int			create_trgb(int t, int r, int g, int b);
+
+// == MINIMAP.C ============================================
+/**
+ * @brief renders minimap on the screen buffer.
+ */
+void		render_minimap(void);
+
+
+// =============================================================================
+// UTILS
+// =============================================================================
+// == UTILS.C ============================================
+bool		is_player(char c);
 
 #endif

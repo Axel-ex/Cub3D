@@ -25,6 +25,13 @@ ifeq ($(MODE), debug)
     FLAGS += -fsanitize=address
 endif
 
+#TODO: check on VM linux compilation
+ifeq ($(OS), linux)
+	$(MLX_DIR) := mlx_linux
+	$(CCFLAGS) += -I/usr/include -Imlx_linux -O3
+	$(MLXFLAGS) := -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
+endif
+
 $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJ_DIR)
 	@cc $(CCFLAGS) -c $< -o $@
 	@echo "[$(CYAN)compiling$(RESET)]:\t $<"
@@ -39,6 +46,7 @@ $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)/
 	@mkdir $(OBJ_DIR)/render
 	@mkdir $(OBJ_DIR)/init_exit
+	@mkdir $(OBJ_DIR)/utils
 
 $(LIBFT_DIR)/$(LIBFT):
 	@echo "[$(CYAN)compiling$(RESET)]:\t $@"
