@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/21 10:12:20 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/21 16:16:35 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define RED	0x00FF0000
 # define GREEN	0x0000FF00
 # define BLUE	0x000000FF
+# define CYAN	0x0000FFFF
+
 
 typedef struct s_img
 {
@@ -71,11 +73,10 @@ t_game		*game(void);
 // =============================================================================
 // INIT_EXIT
 // =============================================================================
-// == INIT.C ============================================
+// INIT.C ============================================
 /**
  * @brief Initialize the game structure. gets mlx instance, window pointer,
-	screen
- * buffer.
+ * screen buffer.
  */
 void		init_game(void);
 
@@ -89,7 +90,7 @@ void		exit_game(void);
 // =============================================================================
 // RENDER
 // =============================================================================
-// == SHAPES.C ============================================
+// SHAPES.C ============================================
 /**
  * @brief Write a single pixel to the img buffer at position [x,y].
  *
@@ -109,13 +110,12 @@ void		render_pixel(t_img *img, int x, int y, int color);
  */
 void		render_square(t_img *img, t_square square);
 
-// == COLORS.C ============================================
+// COLORS.C ============================================
 /**
  * @brief Combines the RGB color values into a single integer representation.
  *
  * This function takes the individual color values (red, green,
-	blue) as arguments
- * and combines them into a single integer representation.
+ * blue) as arguments and combines them into a single integer representation.
  * The color values should be in the range of 0 to 255 (1 byte).
  *
  * @param r The red color value.
@@ -125,7 +125,7 @@ void		render_square(t_img *img, t_square square);
  */
 int			create_trgb(int t, int r, int g, int b);
 
-// == MINIMAP.C ============================================
+// MINIMAP.C ============================================
 /**
  * @brief renders minimap on the screen buffer.
  */
@@ -137,5 +137,7 @@ void		render_minimap(void);
 // =============================================================================
 // == UTILS.C ============================================
 bool		is_player(char c);
+bool		is_floor(char c);
+bool		is_wall(char c);
 
 #endif

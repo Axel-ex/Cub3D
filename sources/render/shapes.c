@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:43:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/21 08:39:55 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/21 12:03:27 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,4 @@ void	render_square(t_img *img, t_square square)
 			render_pixel(img, j++, i, square.color);
 		i++;
 	}
-	mlx_put_image_to_window(game()->mlx, game()->mlx_win, img->img, 0, 0);
 }

@@ -6,7 +6,7 @@ LIBFT       = libft.a
 MLX         = libmlx.a
 SRCS        = $(wildcard $(SRCS_DIR)/*.c) $(wildcard $(SRCS_DIR)/**/*.c)
 OBJS        = $(patsubst $(SRCS_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
-CCFLAGS     = -Wall -Wextra -Werror -g -I includes
+CCFLAGS     = -Wall -Wextra -Werror -g -I includes -std=c99
 INC         = includes
 OS			= mac
 
