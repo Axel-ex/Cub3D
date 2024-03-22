@@ -23,8 +23,7 @@ endif
 #TODO: check on VM linux compilation
 ifeq ($(OS), linux)
 	MLX_DIR = mlx_linux
-	MLXFLAGS = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
-	CCFLAGS += -I/usr/include -I$(MLX_DIR) -O3
+	MLXFLAGS = -L ./mlx_linux -lm -lmlx -Ilmlx -lXext -lX11
 else
 	MLX_DIR = mlx
 	MLXFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
@@ -38,7 +37,7 @@ all: $(NAME)
 	@echo "[$(GREEN)DONE$(RESET)]:\t\t $(GREEN)$(NAME)$(RESET)"
 
 $(NAME): $(OBJS) $(LIBFT_DIR)/$(LIBFT) $(MLX_DIR)/$(MLX)
-	cc $(CCFLAGS) -I $(INC) $(OBJS) $(MLX_DIR)/$(MLX) $(LIBFT_DIR)/$(LIBFT) $(MLXFLAGS) -o $(NAME)
+	cc $(CCFLAGS) $(MLXFLAGS) -I $(INC) $(OBJS) $(LIBFT_DIR)/$(LIBFT) -o $(NAME)
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)/
