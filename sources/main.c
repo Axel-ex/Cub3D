@@ -23,7 +23,6 @@ int	main(int argc, char *argv[])
 {
 	(void)argc;
 	(void)argv;
-	
 	init_game();
 	render_minimap();
 	mlx_loop(game()->mlx);
