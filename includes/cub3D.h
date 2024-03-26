@@ -6,60 +6,19 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/26 10:00:23 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/26 13:54:09 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <stdbool.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include "cub3D_utils.h"
 # include "libft.h"
 # include "mlx.h"
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-# define SCREEN_W	600
-# define SCREEN_H	600
-# define MAP_POS	50
-
-# define RED	0x00FF0000
-# define GREEN	0x0000FF00
-# define BLUE	0x000000FF
-# define CYAN	0x0000FFFF
-
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bbp;
-	int		line_length;
-	int		endian;
-}			t_img;
-
-typedef struct s_player
-{
-	// sprites
-	// positon
-}			t_player;
-
-typedef struct s_game
-{
-	void	*mlx;
-	void	*mlx_win;
-	char	**map;
-	t_img	screen_buff;
-	// textures
-	// player
-}			t_game;
-
-typedef struct s_square
-{
-	int		x;
-	int		y;
-	int		width;
-	int		color;
-}			t_square;
 
 /**
  * @brief Return a static instance of the game struct.
@@ -79,16 +38,23 @@ t_game		*game(void);
  */
 void		init_game(void);
 
-// == EXIT.C ============================================
+// EXIT.C ============================================
 /**
  * @brief destroy the game structure. destroy window pointer and screen buffer
  */
 void		exit_game(void);
 
+/**
+ * @brief quit the game. The function is hooked to the mlx_loop and called upon
+ * closing the window.
+ */
+int			quit_window(void);
 
 // =============================================================================
 // RENDER
 // =============================================================================
+int			render_frame();
+
 // SHAPES.C ============================================
 /**
  * @brief Write a single pixel to the img buffer at position [x,y].
@@ -130,13 +96,19 @@ int			create_trgb(int t, int r, int g, int b);
  */
 void		render_minimap(void);
 
+// =============================================================================
+// EVENTS
+// =============================================================================
+// EVENTS.C ============================================
+int			key_listener(int keycode);
 
 // =============================================================================
 // UTILS
 // =============================================================================
-// == UTILS.C ============================================
+// UTILS.C ============================================
 bool		is_player(char c);
 bool		is_floor(char c);
 bool		is_wall(char c);
+void		print_map(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:30:10 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/26 09:52:03 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/26 11:51:05 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	main(int argc, char *argv[])
 	(void)argv;
 	
 	init_game();
-	render_minimap();
 	mlx_loop(game()->mlx);
-	exit_game();
 	return (EXIT_SUCCESS);
 }

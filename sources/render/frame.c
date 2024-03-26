@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   frame.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 16:46:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/26 11:04:55 by Axel             ###   ########.fr       */
+/*   Created: 2024/03/26 11:49:34 by Axel              #+#    #+#             */
+/*   Updated: 2024/03/26 13:59:16 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 #include <stdlib.h>
 
-void	exit_game(void)
+int	render_frame()
 {
-	mlx_destroy_image(game()->mlx, game()->screen_buff.img);
-	mlx_destroy_window(game()->mlx, game()->mlx_win);
-	exit(EXIT_SUCCESS);
-}
-
-int	quit_window(void)
-{
-	exit_game();
+	render_minimap();
+	mlx_put_image_to_window(game()->mlx, game()->mlx_win, game()->screen_buff.img, 0, 0);
 	return (EXIT_SUCCESS);
 }

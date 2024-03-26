@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 08:50:10 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/21 11:57:26 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/26 12:39:00 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 bool	is_player(char c)
 {
-	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
+	return (c == 'N' || c == 'S' || c == 'W' || c == 'E'
+			|| c == PLAYER);
 }
 
 bool	is_floor(char c)
 {
-	return (c == '0');
+	return (c == FLOOR);
 }
 
 bool	is_wall(char c)
 {
-	return (c == '1');
+	return (c == WALL);
 }

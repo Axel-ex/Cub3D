@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 16:46:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/26 11:04:55 by Axel             ###   ########.fr       */
+/*   Created: 2024/03/26 12:44:09 by Axel              #+#    #+#             */
+/*   Updated: 2024/03/26 12:46:51 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-#include <stdlib.h>
 
-void	exit_game(void)
+void	print_map(void)
 {
-	mlx_destroy_image(game()->mlx, game()->screen_buff.img);
-	mlx_destroy_window(game()->mlx, game()->mlx_win);
-	exit(EXIT_SUCCESS);
-}
+	char	**map;
+	int		i;
+	int		j;
 
-int	quit_window(void)
-{
-	exit_game();
-	return (EXIT_SUCCESS);
+	map = game()->map;
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			printf("%c", map[i][j]);
+		}
+		printf("\n");
+	}
+	
 }

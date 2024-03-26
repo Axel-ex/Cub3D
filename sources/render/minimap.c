@@ -6,17 +6,12 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:17:46 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/22 15:15:59 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:03:45 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-char	*map[5] = {"111111111111", "100000000N01", "100000000001",
-		"111111111111", NULL};
-
-
-//TODO: check why sometimes a random square is rendered
 void	render_minimap(void)
 {
 	int	i;
@@ -26,23 +21,21 @@ void	render_minimap(void)
 	offset = 20;
 	i = 0;
 	j = 0;
-	while (map[i])
+	while (game()->map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (game()->map[i][j])
 		{
-			if (is_wall(map[i][j]))
+			if (is_wall(game()->map[i][j]))
 				render_square(&game()->screen_buff, (t_square){MAP_POS + (j
-						* offset), MAP_POS + (i * offset), 20, create_trgb(200, 255, 0, 0)});
-			else if (is_floor(map[i][j]))
+						* offset), MAP_POS + (i * offset), 20, BLUE});
+			else if (is_floor(game()->map[i][j]))
 				render_square(&game()->screen_buff, (t_square){MAP_POS + (j
 						* offset), MAP_POS + (i * offset), 20, CYAN});
-			else if (is_player(map[i][j]))
+			else if (is_player(game()->map[i][j]))
 				render_square(&game()->screen_buff, (t_square){MAP_POS + (j
 						* offset), MAP_POS + (i * offset), 20, RED});
 			j++;
-			mlx_put_image_to_window(game()->mlx, game()->mlx_win, game()->screen_buff.img, 0, 0);
-
 		}
 		i++;
 	}
