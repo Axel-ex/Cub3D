@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/26 13:58:48 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/26 15:05:41 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define BLUE	0x000000FF
 # define CYAN	0x0000FFFF
 
+# define MALLOC_ERROR 1
 # if LINUX
 #  define KEY_UP	65362
 #  define KEY_LEFT	65361

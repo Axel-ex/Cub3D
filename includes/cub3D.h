@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/26 13:54:09 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/26 17:52:01 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_game		*game(void);
  * @brief Initialize the game structure. gets mlx instance, window pointer,
  * screen buffer.
  */
-void		init_game(void);
+int		init_game(void);
 
 // EXIT.C ============================================
 /**

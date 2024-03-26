@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:30:10 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/26 11:51:05 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/26 15:08:12 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ t_game	*game(void)
 
 int	main(int argc, char *argv[])
 {
+	int	error;
 	(void)argc;
 	(void)argv;
 	
-	init_game();
+	error = init_game();
+	if (error != EXIT_SUCCESS)
+		return (error);
 	mlx_loop(game()->mlx);
 	return (EXIT_SUCCESS);
 }
