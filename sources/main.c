@@ -6,11 +6,12 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:30:10 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/26 15:08:12 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 09:12:38 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+#include <stdlib.h>
 
 t_game	*game(void)
 {
@@ -21,13 +22,12 @@ t_game	*game(void)
 
 int	main(int argc, char *argv[])
 {
-	int	error;
 	(void)argc;
 	(void)argv;
 	
-	error = init_game();
-	if (error != EXIT_SUCCESS)
-		return (error);
+	if (argc < 2)
+		exit_error(USAGE, EXIT_FAILURE);
+	init_game();
 	mlx_loop(game()->mlx);
 	return (EXIT_SUCCESS);
 }

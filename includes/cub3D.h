@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/26 17:52:01 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 09:01:27 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,15 @@ t_game		*game(void);
  * @brief Initialize the game structure. gets mlx instance, window pointer,
  * screen buffer.
  */
-int		init_game(void);
+void		init_game(void);
 
 // EXIT.C ============================================
 /**
  * @brief destroy the game structure. destroy window pointer and screen buffer
  */
-void		exit_game(void);
+void		exit_game(int exit_status);
+
+void	exit_error(char *err_msg, int exit_status);
 
 /**
  * @brief quit the game. The function is hooked to the mlx_loop and called upon

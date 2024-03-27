@@ -6,11 +6,12 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/26 18:07:40 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 09:05:11 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+#include <stdlib.h>
 
 bool validate_position(void)
 {
@@ -57,6 +58,6 @@ int	key_listener(int keycode)
 	else if (keycode == KEY_LEFT)
 		move_player((t_point){-1, 0});
 	else if (keycode == ESC)
-		exit_game();
+		exit_game(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }

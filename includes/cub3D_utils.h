@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/26 15:05:41 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 09:16:19 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@
 # define BLUE	0x000000FF
 # define CYAN	0x0000FFFF
 
+# define ANSIRED	"\033[38;5;196m"
+# define RESET		"\033[0m"
+# define USAGE		"Usage: ./cub3D <file.cub>\n"
 # define MALLOC_ERROR 1
+
 # if LINUX
 #  define KEY_UP	65362
 #  define KEY_LEFT	65361

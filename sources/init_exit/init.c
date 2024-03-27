@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/26 18:15:27 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 09:04:30 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ void	copy_map(char **map, int size)
 	game()->map[size] = NULL;
 }
 
-int	init_game(void)
+void	init_game(void)
 {
 	ft_bzero(game(), sizeof(t_game));
 	game()->mlx = mlx_init();
 	if (!game()->mlx)
-		return (MALLOC_ERROR);
+		exit_error("mlx init", MALLOC_ERROR);
 	game()->map = (char **)malloc(sizeof(char *) * 5);
 	if (!game()->map)
-		return (MALLOC_ERROR);
+		exit_error("map init", MALLOC_ERROR);
 	copy_map(map, 5);
 	game()->mlx_win = mlx_new_window(game()->mlx, SCREEN_W, SCREEN_H, "cub3D");
 	game()->screen_buff.img = mlx_new_image(game()->mlx, SCREEN_H, SCREEN_W);
@@ -65,7 +65,5 @@ int	init_game(void)
 			&game()->screen_buff.bbp, &game()->screen_buff.line_length,
 			&game()->screen_buff.endian);
 	set_hooks();
-	//parse_map
 	set_player_pos();
-	return (EXIT_SUCCESS);
 }
