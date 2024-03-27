@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 14:33:28 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 16:00:13 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	init_mlx(void)
 			&game()->screen_buff.bbp, &game()->screen_buff.line_length,
 			&game()->screen_buff.endian);
 	mlx_hook(game()->mlx_win, ON_DESTROY, DESTROY_MASK, quit_window, NULL);
-	mlx_hook(game()->mlx_win, ON_KEYPRESS, KEYPRESS_MASK, key_listener, game());
+	mlx_hook(game()->mlx_win, ON_KEYPRESS, KEYPRESS_MASK, key_listener, NULL);
 	mlx_loop_hook(game()->mlx, render_frame, NULL);
 }
 
