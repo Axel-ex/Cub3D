@@ -13,6 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "cub3D_utils.h"
 # include "libft.h"
 # include "mlx.h"
 # include <stdbool.h>
@@ -80,20 +81,20 @@ typedef struct s_square
  *
  * @return t_game *
  */
-t_game		*game(void);
-
+t_game	*game(void);
 
 // =============================================================================
-// INIT_EXIT
+//                               INIT_EXIT
 // =============================================================================
-// INIT.C ============================================
+//
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ INIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief Initialize the game structure. gets mlx instance, window pointer,
  * screen buffer.
  */
-void		init_game(void);
+void	init_game(void);
 
-// == EXIT.C ============================================
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ EXIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief destroy the game structure. destroy window pointer and screen buffer
  */
@@ -117,15 +118,33 @@ void		free_array(char **arr);
 void		render_pixel(t_img *img, int x, int y, int color);
 
 /**
- * @brief Write a square to the img buffer. the [x,y] position of the square
- * correspond to its upper left corner.
+ * @brief prints the error message and exit the game returning the exit_status
  *
- * @param img
- * @param square
+ * @param err_msg
+ * @param exit_status
  */
-void		render_square(t_img *img, t_square square);
+void	exit_error(char *err_msg, int exit_status);
 
-// COLORS.C ============================================
+/**
+ * @brief quit the game. The function is hooked to the mlx_loop and called upon
+ * closing the window.
+ */
+int		quit_window(void);
+
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ FREE.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+/**
+ * @brief frees the map.
+ */
+void	free_map(void);
+
+// =============================================================================
+//                                 RENDER
+// =============================================================================
+//
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ FRAME.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+int		render_frame(void);
+
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ BASIC_RENDERING.C \_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief Combines the RGB color values into a single integer representation.
  *
@@ -138,14 +157,38 @@ void		render_square(t_img *img, t_square square);
  * @param b The blue color value.
  * @return An integer representation of the combined RGB color values.
  */
-int			create_trgb(int t, int r, int g, int b);
+int		create_trgb(int t, int r, int g, int b);
 
-// MINIMAP.C ============================================
+/**
+ * @brief Write a single pixel to the img buffer at position [x,y].
+ *
+ * @param img
+ * @param x
+ * @param y
+ * @param color
+ */
+void	render_pixel(t_img *img, int x, int y, int color);
+
+/**
+ * @brief Write a square to the img buffer. the [x,y] position of the square
+ * correspond to its upper left corner.
+ *
+ * @param img
+ * @param square
+ */
+void	render_square(t_img *img, t_square square);
+
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MINIMAP.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief renders minimap on the screen buffer.
  */
-void		render_minimap(void);
+void	render_minimap(void);
 
+// =============================================================================
+// EVENTS
+// =============================================================================
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ EVENTS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+int		key_listener(int keycode);
 
 // =============================================================================
 // UTILS

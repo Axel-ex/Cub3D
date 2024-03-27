@@ -20,11 +20,10 @@ ifeq ($(MODE), debug)
     FLAGS += -fsanitize=address
 endif
 
-#TODO: check on VM linux compilation
 ifeq ($(OS), linux)
 	MLX_DIR = mlx_linux
 	MLXFLAGS = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
-	CCFLAGS += -I/usr/include -I$(MLX_DIR) -O3
+	CCFLAGS += -I/usr/include -I$(MLX_DIR) -O3 -D LINUX
 else
 	MLX_DIR = mlx
 	MLXFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
@@ -42,8 +41,9 @@ $(NAME): $(OBJS) $(LIBFT_DIR)/$(LIBFT) $(MLX_DIR)/$(MLX)
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)/
-	@mkdir $(OBJ_DIR)/render
 	@mkdir $(OBJ_DIR)/init_exit
+	@mkdir $(OBJ_DIR)/events
+	@mkdir $(OBJ_DIR)/render
 	@mkdir $(OBJ_DIR)/utils
 	@mkdir $(OBJ_DIR)/parser
 

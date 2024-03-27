@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+#include <stdlib.h>
 
 void	free_array(char **arr)
 {
@@ -24,8 +25,31 @@ void	free_array(char **arr)
 
 void	exit_game(void)
 {
-	mlx_destroy_image(game()->mlx, game()->screen_buff.img);
-	mlx_destroy_window(game()->mlx, game()->mlx);
+	printf("%sError%s: ", ANSIRED, RESET);
+	printf("%s", err_msg);
+	exit_game(exit_status);
+}
+
+void	exit_game(int exit_status)
+{
+	if (game()->screen_buff.img)
+		mlx_destroy_image(game()->mlx, game()->screen_buff.img);
+	if (game()->mlx_win)
+		mlx_destroy_window(game()->mlx, game()->mlx_win);
+	if (game()->mlx)
+	{
+		// mlx_destroy_display(game()->mlx);
+		free(game()->mlx);
+	}
+	if (game()->map)
+		free_map();
+	exit(exit_status);
+}
+
+int	quit_window(void)
+{
+	exit_game(EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
 
 

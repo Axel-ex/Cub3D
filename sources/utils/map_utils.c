@@ -14,17 +14,17 @@
 
 bool	is_player(char c)
 {
-	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
+	return (c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == PLAYER);
 }
 
 bool	is_floor(char c)
 {
-	return (c == '0');
+	return (c == FLOOR);
 }
 
 bool	is_wall(char c)
 {
-	return (c == '1');
+	return (c == WALL);
 }
 
 bool	ft_is_digit(char *str)
