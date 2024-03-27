@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/21 08:29:55 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 18:07:34 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,13 @@ void	init_game(void)
 	game()->screen_buff.addr = mlx_get_data_addr(game()->screen_buff.img,
 			&game()->screen_buff.bbp, &game()->screen_buff.line_length,
 			&game()->screen_buff.endian);
+	game()->map = malloc(sizeof(t_map));
+	game()->map->arr= NULL;
+	game()->map->no = NULL;
+	game()->map->so = NULL;
+	game()->map->we = NULL;
+	game()->map->ea = NULL;
+	game()->map->c = NULL;
+	game()->map->f = NULL;
 }
+

@@ -45,6 +45,7 @@ $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)/render
 	@mkdir $(OBJ_DIR)/init_exit
 	@mkdir $(OBJ_DIR)/utils
+	@mkdir $(OBJ_DIR)/parser
 
 $(LIBFT_DIR)/$(LIBFT):
 	@echo "[$(CYAN)compiling$(RESET)]:\t $@"

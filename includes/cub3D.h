@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/21 16:16:35 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 17:19:34 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
 
 # define SCREEN_W	600
 # define SCREEN_H	600
@@ -44,11 +45,23 @@ typedef struct s_player
 	// positon
 }			t_player;
 
+typedef struct s_map
+{
+	char	**arr;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*c;
+	char	*f;
+}			t_map;
+
 typedef struct s_game
 {
+	t_map	*map;
 	void	*mlx;
 	void	*mlx_win;
-	char	**map;
+	//char	**map;
 	t_img	screen_buff;
 	// textures
 	// player
@@ -85,6 +98,8 @@ void		init_game(void);
  * @brief destroy the game structure. destroy window pointer and screen buffer
  */
 void		exit_game(void);
+void		free_array(char **arr);
+
 
 
 // =============================================================================
@@ -139,5 +154,18 @@ void		render_minimap(void);
 bool		is_player(char c);
 bool		is_floor(char c);
 bool		is_wall(char c);
+bool		ft_is_digit(char *str);
+
+
+
+
+// =============================================================================
+// PARSER
+// =============================================================================
+// == MAP_CHECK.C ============================================
+int			check_file(char *str, char *ext);
+bool		map_validation(char *file);
+
+
 
 #endif
