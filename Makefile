@@ -23,7 +23,7 @@ endif
 ifeq ($(OS), linux)
 	MLX_DIR = mlx_linux
 	MLXFLAGS = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
-	CCFLAGS += -I/usr/include -I$(MLX_DIR) -O3 -D LINUX=1
+	CCFLAGS += -I/usr/include -I$(MLX_DIR) -O3 -D LINUX
 else
 	MLX_DIR = mlx
 	MLXFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit

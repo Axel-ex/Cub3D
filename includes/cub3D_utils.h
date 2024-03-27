@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 09:58:34 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 14:00:11 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define USAGE "Usage: ./cub3D <file.cub>\n"
 # define MALLOC_ERROR 1
 
-# if LINUX
+# ifdef LINUX
 #  define KEY_UP 65362
 #  define KEY_LEFT 65361
 #  define KEY_RIGHT 65363
