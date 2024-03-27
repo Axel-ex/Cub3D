@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/03/27 23:32:12 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 23:50:25 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	check_color(char *str)
 }
 
 //Store the paths of the textures and the RGB values in our struct
-static void	identify_elements(char *str)
+static void	parse_elements(char *str)
 {
 	if (str[0] == 'N' && str[1] == 'O')
 		game()->map->no = ft_substr(str, 3, (ft_strlen(str) - 4));
@@ -78,7 +78,7 @@ static void	identify_elements(char *str)
 	else if (str[0] == 'F' && str[1] == ' ')
 		game()->map->f = ft_substr(str, 2, (ft_strlen(str) - 3));
 	// else if (is_map(str))
-	// 	read_map();
+	// 	parse_map();
 }
 
 
@@ -108,7 +108,7 @@ void	parse_file(char	*file)
 	line = get_next_line(fd);
 	while (line)
 	{
-		identify_elements(line);
+		parse_elements(line);
 		free(line);
 		line = get_next_line(fd);
 	}
