@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:46:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 16:39:00 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/03/27 22:22:53 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ void	free_array(char **arr)
 	free(arr);
 }
 
-void	exit_game(void)
+void	exit_error(char *err_msg, char *var)
 {
 	printf("%sError%s: ", ANSIRED, RESET);
+	if (var)
+		printf("%s: ", var);
 	printf("%s", err_msg);
-	exit_game(exit_status);
+	exit_game(EXIT_FAILURE);
 }
 
 void	exit_game(int exit_status)

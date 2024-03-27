@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:34:25 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 09:35:00 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 19:10:08 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	free_map(void)
 {
-	int	i;
-
-	i = -1;
-	while (game()->map[++i])
-		free(game()->map[i]);
-	free(game()->map);
+	// int	i;
+	//
+	// i = -1;
+	// while (game()->map[++i])
+	// 	free(game()->map[i]);
+	// free(game()->map);
 }

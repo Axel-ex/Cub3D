@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 14:00:11 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 22:18:13 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@
 
 # define ANSIRED "\033[38;5;196m"
 # define RESET "\033[0m"
-# define USAGE "Usage: ./cub3D <file.cub>\n"
+
+# define USAGE			"Usage: ./cub3D <file.cub>\n"
+# define INV_MAP		"Invalid map"
+# define FILE_NT_FOUND	"File not found"
+# define INV_FILE_NAME	"Invalid file name"
+
 # define MALLOC_ERROR 1
 
 # ifdef LINUX
@@ -62,6 +67,17 @@ typedef struct s_img
 	int			endian;
 }				t_img;
 
+typedef struct s_map
+{
+	char	**arr;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*c;
+	char	*f;
+}			t_map;
+
 typedef struct s_player
 {
 	t_point		pos;
@@ -72,7 +88,7 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*mlx_win;
-	char		**map;
+	t_map		*map;
 	t_img		screen_buff;
 	t_player	player;
 }				t_game;

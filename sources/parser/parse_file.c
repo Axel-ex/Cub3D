@@ -6,11 +6,12 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/03/27 17:45:53 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/03/27 22:24:03 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+#include <stdlib.h>
 
 //file extension checker
 int	check_file(char *str, char *ext)
@@ -20,23 +21,16 @@ int	check_file(char *str, char *ext)
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("\033[1;31mError\033[0m\n", STDERR_FILENO);
 		close(fd);
-		return (1);
+		exit_error(FILE_NT_FOUND, str);
 	}
 	str = ft_strrchr(str, '.');
 	if (!str)
-	{
-		ft_putstr_fd("\033[1;31mError\033[0m\n", STDERR_FILENO);
-		return (1);
-	}
+		exit_error(INV_FILE_NAME, str);
 	if (ft_strncmp(str, ext, 4) != 0)
-	{
-		ft_putstr_fd("\033[1;31mError\033[0m\n", STDERR_FILENO);
-		return (1);
-	}
+		exit_error(INV_FILE_NAME, str);
 	close(fd);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 //Split the string by the ',' and check if it is a valid value
@@ -79,7 +73,7 @@ static void	identify_elements(char *str)
 	else if (str[0] == 'C' && str[1] == ' ')
 		game()->map->c = ft_substr(str, 2, (ft_strlen(str) - 3));
 	else if (str[0] == 'F' && str[1] == ' ')
-		game()->map->f = ft_substr(str, 2, (ft_strlen(str) - 3));		
+		game()->map->f = ft_substr(str, 2, (ft_strlen(str) - 3));
 }
 
 
@@ -98,14 +92,14 @@ static bool	check_elements()
 	return (true);
 }
 
-bool	map_validation(char *file)
+void	parse_file(char	*file)
 {
-	char *line;
+	char	*line;
 	int		fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (false);
+		exit_error(FILE_NT_FOUND, file);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -114,6 +108,5 @@ bool	map_validation(char *file)
 		line = get_next_line(fd);
 	}
 	if (!check_elements())
-		return (false);
-	return (true);
+		exit_error("File contains invalid texture", NULL);
 }

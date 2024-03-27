@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 17:19:34 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/03/27 22:23:15 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,52 +30,6 @@
 # define BLUE	0x000000FF
 # define CYAN	0x0000FFFF
 
-
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bbp;
-	int		line_length;
-	int		endian;
-}			t_img;
-
-typedef struct s_player
-{
-	// sprites
-	// positon
-}			t_player;
-
-typedef struct s_map
-{
-	char	**arr;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char	*c;
-	char	*f;
-}			t_map;
-
-typedef struct s_game
-{
-	t_map	*map;
-	void	*mlx;
-	void	*mlx_win;
-	//char	**map;
-	t_img	screen_buff;
-	// textures
-	// player
-}			t_game;
-
-typedef struct s_square
-{
-	int		x;
-	int		y;
-	int		width;
-	int		color;
-}			t_square;
-
 /**
  * @brief Return a static instance of the game struct.
  *
@@ -98,7 +52,7 @@ void	init_game(void);
 /**
  * @brief destroy the game structure. destroy window pointer and screen buffer
  */
-void		exit_game(void);
+void		exit_game(int exit_status);
 void		free_array(char **arr);
 
 
@@ -123,7 +77,7 @@ void		render_pixel(t_img *img, int x, int y, int color);
  * @param err_msg
  * @param exit_status
  */
-void	exit_error(char *err_msg, int exit_status);
+void	exit_error(char *err_msg, char *var);
 
 /**
  * @brief quit the game. The function is hooked to the mlx_loop and called upon
@@ -207,8 +161,7 @@ bool		ft_is_digit(char *str);
 // =============================================================================
 // == MAP_CHECK.C ============================================
 int			check_file(char *str, char *ext);
-bool		map_validation(char *file);
-
+void		parse_file(char	*file);
 
 
 #endif
