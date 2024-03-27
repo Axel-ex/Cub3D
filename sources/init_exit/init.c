@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 14:29:18 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 14:33:28 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	init_game(void)
 {
 	ft_bzero(game(), sizeof(t_game));
 	//PARSE FILE
+	//the following snippet is provisory, we will eventually have a parsing logic
 	game()->map = (char **)malloc(sizeof(char *) * 5);
 	if (!game()->map)
 		exit_error("map init", MALLOC_ERROR);
