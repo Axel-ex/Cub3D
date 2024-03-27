@@ -6,12 +6,15 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/03/27 23:25:36 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 23:32:12 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-#include <stdlib.h>
+
+//NOTE: I refactored the code using the exit_error(). It's handier since we 
+//don't have to deal with return value, the function simply exit with the
+//appropriated message (define in cub3D_utils.h)
 
 //file extension checker
 void	check_file(char *str)
@@ -27,11 +30,11 @@ void	check_file(char *str)
 	}
 	substr = ft_strrchr(str, '.');
 	if (!substr)
-		exit_error(INV_EXT, str);
+		exit_error(INVALID_EXT, str);
 	if (!ft_strncmp(substr, ".xmp", 4) || !ft_strncmp(substr, ".png", 4))
 		return;
 	close(fd);
-	exit_error(INV_EXT, str);
+	exit_error(INVALID_EXT, str);
 }
 
 //Split the string by the ',' and check if it is a valid value
@@ -44,7 +47,7 @@ static void	check_color(char *str)
 	if (!color || !color[0] || !color[1] || !color[2] || color[3])
 	{
 		free_array(color);
-		exit_error(INV_COLOR, str);
+		exit_error(INVALID_COLOR, str);
 	}
 	i = 0;
 	while (color[i++])
@@ -53,7 +56,7 @@ static void	check_color(char *str)
 				|| ft_strlen(color[i]) > 3)
 		{
 			free_array(color);
-			exit_error(INV_COLOR, str);
+			exit_error(INVALID_COLOR, str);
 		}
 	}
 	free_array(color);
@@ -93,6 +96,7 @@ static void	check_elements()
 	check_color(game()->map->f);
 }
 
+//NOTE: Renamed the function 
 void	parse_file(char	*file)
 {
 	char	*line;
