@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 22:18:13 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 22:51:43 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@
 
 # define USAGE			"Usage: ./cub3D <file.cub>\n"
 # define INV_MAP		"Invalid map"
+# define INV_EXT		"Invalid extension"
+# define INV_COLOR		"Invalid color code"
 # define FILE_NT_FOUND	"File not found"
-# define INV_FILE_NAME	"Invalid file name"
+# define MISS_TEXTURE	"Missing texture"
 
 # define MALLOC_ERROR 1
 

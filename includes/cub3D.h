@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 22:23:15 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 23:22:09 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ void		free_array(char **arr);
 void		render_pixel(t_img *img, int x, int y, int color);
 
 /**
- * @brief prints the error message and exit the game returning the exit_status
+ * @brief prints the error message and the variable passed as arguments.
  *
  * @param err_msg
- * @param exit_status
+ * @param var
  */
 void	exit_error(char *err_msg, char *var);
 
@@ -147,20 +147,23 @@ int		key_listener(int keycode);
 // =============================================================================
 // UTILS
 // =============================================================================
-// == UTILS.C ============================================
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MAP_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 bool		is_player(char c);
 bool		is_floor(char c);
 bool		is_wall(char c);
 bool		ft_is_digit(char *str);
 
 
-
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MATRIX_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+int			get_matrix_len(char **matrix);
+void		free_matrix(char **matrix);
+void		matrix_append(char ***matrix_ptr, char *to_append);
 
 // =============================================================================
 // PARSER
 // =============================================================================
 // == MAP_CHECK.C ============================================
-int			check_file(char *str, char *ext);
+void		check_file(char *str);
 void		parse_file(char	*file);
 
 

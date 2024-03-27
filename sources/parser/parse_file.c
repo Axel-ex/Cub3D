@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/03/27 22:24:03 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 23:25:36 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include <stdlib.h>
 
 //file extension checker
-int	check_file(char *str, char *ext)
+void	check_file(char *str)
 {
 	int		fd;
+	char	*substr;
 
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
@@ -24,17 +25,17 @@ int	check_file(char *str, char *ext)
 		close(fd);
 		exit_error(FILE_NT_FOUND, str);
 	}
-	str = ft_strrchr(str, '.');
-	if (!str)
-		exit_error(INV_FILE_NAME, str);
-	if (ft_strncmp(str, ext, 4) != 0)
-		exit_error(INV_FILE_NAME, str);
+	substr = ft_strrchr(str, '.');
+	if (!substr)
+		exit_error(INV_EXT, str);
+	if (!ft_strncmp(substr, ".xmp", 4) || !ft_strncmp(substr, ".png", 4))
+		return;
 	close(fd);
-	return (EXIT_SUCCESS);
+	exit_error(INV_EXT, str);
 }
 
 //Split the string by the ',' and check if it is a valid value
-static bool	check_color(char *str)
+static void	check_color(char *str)
 {
 	char **color;
 	int	i;
@@ -43,7 +44,7 @@ static bool	check_color(char *str)
 	if (!color || !color[0] || !color[1] || !color[2] || color[3])
 	{
 		free_array(color);
-		return (false);
+		exit_error(INV_COLOR, str);
 	}
 	i = 0;
 	while (color[i++])
@@ -52,11 +53,10 @@ static bool	check_color(char *str)
 				|| ft_strlen(color[i]) > 3)
 		{
 			free_array(color);
-			return (false);
+			exit_error(INV_COLOR, str);
 		}
 	}
 	free_array(color);
-	return (true);
 }
 
 //Store the paths of the textures and the RGB values in our struct
@@ -74,22 +74,23 @@ static void	identify_elements(char *str)
 		game()->map->c = ft_substr(str, 2, (ft_strlen(str) - 3));
 	else if (str[0] == 'F' && str[1] == ' ')
 		game()->map->f = ft_substr(str, 2, (ft_strlen(str) - 3));
+	// else if (is_map(str))
+	// 	read_map();
 }
 
 
 //Check if the textures end with .xpm or .png and if the RGB values of C and F are valid
-static bool	check_elements()
+static void	check_elements()
 {
 	if (!game()->map->no || !game()->map->so || !game()->map->we 
 		|| !game()->map->ea || !game()->map->c || !game()->map->f)
-		return (false);
-	if (check_file(game()->map->no, ".xpm") || check_file(game()->map->no, ".png") 
-		|| check_file(game()->map->so, ".xpm") || check_file(game()->map->so, ".png")
-		|| check_file(game()->map->we, ".xpm") || check_file(game()->map->we, ".png")
-		|| check_file(game()->map->ea, ".xpm") || check_file(game()->map->ea, ".png")
-		|| !check_color(game()->map->c) || !check_color(game()->map->f))
-		return (false);
-	return (true);
+		exit_error(MISS_TEXTURE, NULL);
+	check_file(game()->map->no);
+	check_file(game()->map->so);
+	check_file(game()->map->we);
+	check_file(game()->map->ea);
+	check_color(game()->map->c);
+	check_color(game()->map->f);
 }
 
 void	parse_file(char	*file)
@@ -107,6 +108,5 @@ void	parse_file(char	*file)
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (!check_elements())
-		exit_error("File contains invalid texture", NULL);
+	check_elements();
 }
