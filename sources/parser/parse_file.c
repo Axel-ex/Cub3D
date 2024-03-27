@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/03/27 23:50:25 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 23:54:54 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,20 @@ static void	check_color(char *str)
 	free_array(color);
 }
 
+//Check if the textures end with .xpm or .png and if the RGB values of C and F are valid
+static void	check_elements()
+{
+	if (!game()->map->no || !game()->map->so || !game()->map->we 
+		|| !game()->map->ea || !game()->map->c || !game()->map->f)
+		exit_error(MISS_TEXTURE, NULL);
+	check_file(game()->map->no);
+	check_file(game()->map->so);
+	check_file(game()->map->we);
+	check_file(game()->map->ea);
+	check_color(game()->map->c);
+	check_color(game()->map->f);
+}
+
 //Store the paths of the textures and the RGB values in our struct
 static void	parse_elements(char *str)
 {
@@ -79,21 +93,6 @@ static void	parse_elements(char *str)
 		game()->map->f = ft_substr(str, 2, (ft_strlen(str) - 3));
 	// else if (is_map(str))
 	// 	parse_map();
-}
-
-
-//Check if the textures end with .xpm or .png and if the RGB values of C and F are valid
-static void	check_elements()
-{
-	if (!game()->map->no || !game()->map->so || !game()->map->we 
-		|| !game()->map->ea || !game()->map->c || !game()->map->f)
-		exit_error(MISS_TEXTURE, NULL);
-	check_file(game()->map->no);
-	check_file(game()->map->so);
-	check_file(game()->map->we);
-	check_file(game()->map->ea);
-	check_color(game()->map->c);
-	check_color(game()->map->f);
 }
 
 //NOTE: Renamed the function 
