@@ -6,14 +6,14 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 09:04:30 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 09:52:30 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-char	*map[5] = {"111111111111", "100000000N01", "100000000001",
-		"111111111111", NULL};
+char		*map[5] = {"111111111111", "100000000N01", "100000000001",
+			"111111111111", NULL};
 
 static void	set_hooks(void)
 {
@@ -27,6 +27,8 @@ static void	set_player_pos(void)
 	int	i;
 	int	j;
 
+	game()->player.pos = (t_point){0, 0};
+	game()->player.next_pos = (t_point){0, 0};
 	i = -1;
 	while (game()->map[++i])
 	{
@@ -46,7 +48,7 @@ void	copy_map(char **map, int size)
 	i = -1;
 	while (++i < size - 1)
 		game()->map[i] = ft_strdup(map[i]);
-	game()->map[size] = NULL;
+	game()->map[size - 1] = NULL;
 }
 
 void	init_game(void)

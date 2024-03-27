@@ -14,8 +14,7 @@
 
 bool	is_player(char c)
 {
-	return (c == 'N' || c == 'S' || c == 'W' || c == 'E'
-			|| c == PLAYER);
+	return (c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == PLAYER);
 }
 
 bool	is_floor(char c)

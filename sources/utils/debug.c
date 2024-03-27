@@ -29,5 +29,4 @@ void	print_map(void)
 		}
 		printf("\n");
 	}
-	
 }

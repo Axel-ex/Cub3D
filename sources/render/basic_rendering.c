@@ -1,16 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shapes.c                                           :+:      :+:    :+:   */
+/*   basic_rendering.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:43:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/21 12:03:27 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 09:48:21 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
 
 void	render_pixel(t_img *img, int x, int y, int color)
 {
@@ -26,7 +31,8 @@ void	render_square(t_img *img, t_square square)
 	int	j;
 
 	i = square.y;
-	if ((square.x + square.width > SCREEN_W || square.x < 0) && (square.y + square.width > SCREEN_H || square.y < 0))
+	if ((square.x + square.width > SCREEN_W || square.x < 0) && (square.y
+			+ square.width > SCREEN_H || square.y < 0))
 		return ;
 	while (i < square.y + square.width)
 	{

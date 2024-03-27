@@ -16,6 +16,7 @@
 int	render_frame(void)
 {
 	render_minimap();
-	mlx_put_image_to_window(game()->mlx, game()->mlx_win, game()->screen_buff.img, 0, 0);
+	mlx_put_image_to_window(game()->mlx, game()->mlx_win,
+		game()->screen_buff.img, 0, 0);
 	return (EXIT_SUCCESS);
 }

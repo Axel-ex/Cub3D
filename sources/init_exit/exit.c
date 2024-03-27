@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:46:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 09:15:03 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/27 09:36:30 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,6 @@ void	exit_error(char *err_msg, int exit_status)
 	printf("%sError%s: ", ANSIRED, RESET);
 	printf("%s", err_msg);
 	exit_game(exit_status);
-}
-
-void	free_map()
-{
-	int	i;
-
-	i = -1;
-	while (game()->map[++i])
-		free(game()->map[i]);
-	free(game()->map);
 }
 
 void	exit_game(int exit_status)

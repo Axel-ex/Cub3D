@@ -13,20 +13,20 @@
 #include "../../includes/cub3D.h"
 #include <stdlib.h>
 
-bool validate_position(void)
+bool	validate_position(void)
 {
 	t_player	p;
 
 	p = game()->player;
-	if ((p.next_pos.x < 0 || p.next_pos.x > SCREEN_W)
-		|| p.next_pos.y < 0 || p.next_pos.y > SCREEN_H )
+	if ((p.next_pos.x < 0 || p.next_pos.x > SCREEN_W) || p.next_pos.y < 0
+		|| p.next_pos.y > SCREEN_H)
 		return (false);
 	if (is_wall(game()->map[p.next_pos.y][p.next_pos.x]))
 		return (false);
 	return (true);
 }
 
-void update_position(void)
+void	update_position(void)
 {
 	t_player	*p;
 
@@ -36,10 +36,10 @@ void update_position(void)
 	p->pos = p->next_pos;
 }
 
-void	move_player(t_point	delta_position)
+void	move_player(t_point delta_position)
 {
 	t_player	*p;
-	
+
 	p = &game()->player;
 	p->next_pos.x = p->pos.x + delta_position.x;
 	p->next_pos.y = p->pos.y + delta_position.y;
