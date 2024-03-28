@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 09:05:50 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 09:45:29 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ t_game	*game(void);
 // =============================================================================
 //                               INIT_EXIT
 // =============================================================================
-//
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ INIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief Initialize the game structure. allocate memory for the data contained 
  * in the file to parse.
  */
 void	init_game(void);
-
 
 /**
  * @brief init mlx instance and window, set the hook and start the loop
@@ -50,21 +48,6 @@ void	start_game(void);
  * @brief destroy the game structure. destroy window pointer and screen buffer
  */
 void		exit_game(int exit_status);
-
-
-// =============================================================================
-// RENDER
-// =============================================================================
-// SHAPES.C ============================================
-/**
- * @brief Write a single pixel to the img buffer at position [x,y].
- *
- * @param img
- * @param x
- * @param y
- * @param color
- */
-void		render_pixel(t_img *img, int x, int y, int color);
 
 /**
  * @brief prints the error message and the variable passed as arguments.
