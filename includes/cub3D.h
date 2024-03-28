@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 09:45:29 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 11:16:03 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,12 +133,12 @@ bool		ft_is_digit(char *str);
 bool		is_map_row(char *line);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MATRIX_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-int			get_matrix_len(char **matrix);
+size_t		get_matrix_len(char **matrix);
 void		free_matrix(char **matrix);
 void		matrix_append(char ***matrix_ptr, char *to_append);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ DEBUG.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-void		print_map(void);
+void	print_map(int i_pos, int j_pos);
 
 // =============================================================================
 //                                  PARSER
@@ -148,7 +148,8 @@ void		check_file(char *str);
 void		parse_file(char	*file);
 
 
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ CHECKS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ CHECK_MAP.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+void		check_map(char	**map);
 //TODO: divide parse_file into checks.c
 
 #endif

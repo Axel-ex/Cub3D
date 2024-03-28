@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/03/28 09:13:50 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 11:35:39 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,5 @@ void	parse_file(char	*file)
 		line = get_next_line(fd);
 	}
 	check_elements();
+	check_map(game()->map->arr);
 }

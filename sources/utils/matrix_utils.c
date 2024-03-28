@@ -6,15 +6,15 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:28:58 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 22:33:35 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 11:37:50 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-int	get_matrix_len(char **matrix)
+size_t	get_matrix_len(char **matrix)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (matrix[i])
@@ -45,10 +45,10 @@ void	matrix_append(char ***matrix_ptr, char *to_append)
 	i = 0;
 	while (matrix[i])
 	{
-		new_matrix[i] = ft_strdup(matrix[i]);
+		new_matrix[i] = ft_strtrim(matrix[i], "\n");
 		i++;
 	}
-	new_matrix[i++] = ft_strdup(to_append);
+	new_matrix[i++] = ft_strtrim(to_append, "\n");
 	new_matrix[i] = NULL;
 	free_matrix(matrix);
 	*matrix_ptr = new_matrix;
