@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 23:50:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 12:35:10 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 12:44:26 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static bool has_invalid_char(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		if (is_wall(str[i]) || is_player(str[i]) || is_floor(str[i]))
+		if (is_wall(str[i]) || is_player(str[i]) || is_floor(str[i])
+			|| str[i] == ' ')
 			continue ;
 		else
 			return (true);
