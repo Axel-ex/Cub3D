@@ -6,22 +6,11 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:46:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 22:22:53 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 09:20:25 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-#include <stdlib.h>
-
-void	free_array(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-		free(arr[i++]);
-	free(arr);
-}
 
 void	exit_error(char *err_msg, char *var)
 {
@@ -53,5 +42,3 @@ int	quit_window(void)
 	exit_game(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }
-
-

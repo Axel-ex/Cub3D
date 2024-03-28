@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 07:59:24 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 09:05:50 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define SCREEN_W	600
-# define SCREEN_H	600
-# define MAP_POS	50
-
-# define RED	0x00FF0000
-# define GREEN	0x0000FF00
-# define BLUE	0x000000FF
-# define CYAN	0x0000FFFF
-
 /**
  * @brief Return a static instance of the game struct.
  *
@@ -43,18 +34,22 @@ t_game	*game(void);
 //
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ INIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
- * @brief Initialize the game structure. gets mlx instance, window pointer,
- * screen buffer.
+ * @brief Initialize the game structure. allocate memory for the data contained 
+ * in the file to parse.
  */
 void	init_game(void);
+
+
+/**
+ * @brief init mlx instance and window, set the hook and start the loop
+ */
+void	start_game(void);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ EXIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief destroy the game structure. destroy window pointer and screen buffer
  */
 void		exit_game(int exit_status);
-void		free_array(char **arr);
-
 
 
 // =============================================================================
@@ -154,12 +149,13 @@ bool		is_wall(char c);
 bool		ft_is_digit(char *str);
 bool		is_map_row(char *line);
 
-
-
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MATRIX_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 int			get_matrix_len(char **matrix);
 void		free_matrix(char **matrix);
 void		matrix_append(char ***matrix_ptr, char *to_append);
+
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ DEBUG.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+void		print_map(void);
 
 // =============================================================================
 //                                  PARSER

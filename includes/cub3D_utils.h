@@ -6,24 +6,25 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 07:46:28 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 08:35:06 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_UTILS_H
 # define CUB3D_UTILS_H
 
-# define SCREEN_W 600
-# define SCREEN_H 600
-# define MAP_POS 50
+# define SCREEN_W	600
+# define SCREEN_H	600
+# define MAP_POS	50
+# define OFFSET		10
 
-# define RED 0x00FF0000
-# define GREEN 0x0000FF00
-# define BLUE 0x000000FF
-# define CYAN 0x0000FFFF
+# define RED	0x00FF0000
+# define GREEN	0x0000FF00
+# define BLUE	0x000000FF
+# define CYAN	0x0000FFFF
 
-# define ANSIRED "\033[38;5;196m"
-# define RESET "\033[0m"
+# define ANSIRED	"\033[38;5;196m"
+# define RESET		"\033[0m"
 
 # define USAGE			"Usage: ./cub3D <file.cub>\n"
 # define ALLOC_ERROR	"Bad allocation"
@@ -32,8 +33,6 @@
 # define INVALID_COLOR	"Invalid color code"
 # define FILE_NT_FOUND	"File not found"
 # define MISS_TEXTURE	"Missing texture"
-
-# define MALLOC_ERROR 1
 
 # ifdef LINUX
 #  define KEY_UP 65362

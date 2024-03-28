@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/03/28 08:15:14 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 09:13:50 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	check_file(char *str)
 	substr = ft_strrchr(str, '.');
 	if (!substr)
 		exit_error(INVALID_EXT, str);
-	if (!ft_strncmp(substr, ".xmp", 4) || !ft_strncmp(substr, ".png", 4))
-		return;
+	if (!ft_strncmp(substr, ".xpm", 4) || !ft_strncmp(substr, ".png", 4))
+		return ;
 	close(fd);
 	exit_error(INVALID_EXT, str);
 }
@@ -46,7 +46,7 @@ static void	check_color(char *str)
 	color = ft_split(str, ',');
 	if (!color || !color[0] || !color[1] || !color[2] || color[3])
 	{
-		free_array(color);
+		free_matrix(color);
 		exit_error(INVALID_COLOR, str);
 	}
 	i = -1;
@@ -55,11 +55,11 @@ static void	check_color(char *str)
 		if (!ft_is_digit(color[i]) || ft_atoi(color[i]) < 0 || ft_atoi(color[i]) > 255
 				|| ft_strlen(color[i]) > 3)
 		{
-			free_array(color);
+			free_matrix(color);
 			exit_error(INVALID_COLOR, str);
 		}
 	}
-	free_array(color);
+	free_matrix(color);
 }
 
 //Check if the textures end with .xpm or .png and if the RGB values of C and F are valid

@@ -6,27 +6,19 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:44:09 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 19:12:42 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 08:58:37 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-// void	print_map(void)
-// {
-// 	char	**map;
-// 	int		i;
-// 	int		j;
-//
-// 	map = game()->map;
-// 	i = -1;
-// 	while (map[++i])
-// 	{
-// 		j = -1;
-// 		while (map[i][++j])
-// 		{
-// 			printf("%c", map[i][j]);
-// 		}
-// 		printf("\n");
-// 	}
-// }
+void	print_map(void)
+{
+	char	**map;
+	int		i;
+
+	map = game()->map->arr;
+	i = -1;
+	while (map[++i])
+		printf("%s", map[i]);
+}

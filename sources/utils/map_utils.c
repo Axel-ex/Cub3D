@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 08:50:10 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 08:17:28 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 08:57:15 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ bool	is_map_row(char *line)
 		return (false);
 	while (line[++i])
 	{
-		if (ft_isdigit(line[i]) || line[i] == ' ' || line[i] == '\n')
+		if (ft_isdigit(line[i]) || line[i] == ' ' || line[i] == '\n'
+			|| is_player(line[i]))
 			continue ;
 		else
 			return (false);

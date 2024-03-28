@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 07:48:43 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 08:55:56 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,30 @@ void	init_mlx(void)
 			&game()->screen_buff.endian);
 }
 
+void	set_player_pos(void)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while(game()->map->arr[++i])
+	{
+		j = -1;
+		while (game()->map->arr[i][++j])
+		{
+			if (is_player(game()->map->arr[i][j]))
+				game()->player.pos = (t_point){j, i};
+		}
+	}
+}
+
 void	start_game(void)
-{}
+{
+	init_mlx();
+	mlx_hook(game()->mlx_win, ON_KEYPRESS, KEYPRESS_MASK, key_listener, NULL);
+	mlx_hook(game()->mlx_win, ON_DESTROY, DESTROY_MASK, quit_window, NULL);
+	mlx_loop_hook(game()->mlx, render_frame, NULL);
+	set_player_pos();
+	print_map();
+	mlx_loop(game()->mlx);
+}
