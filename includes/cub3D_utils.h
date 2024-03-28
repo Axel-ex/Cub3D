@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 12:26:29 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 12:47:44 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 
 # define INVALID_MAP	"Invalid map"
 # define INVALID_WALLS	"Not surrounded by walls"
-# define NL_IN_MAP		"Map contains new line"
+# define EMPTY_LINE		"Map contains empty line"
 # define INVALID_CHAR	"Map contains invalid char"
 
 # ifdef LINUX

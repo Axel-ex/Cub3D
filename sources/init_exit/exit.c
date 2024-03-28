@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:46:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 10:24:22 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 12:57:10 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 void	exit_error(char *err_msg, char *var)
 {
-	printf("%sError%s: ", ANSIRED, RESET);
+	ft_putstr_fd(ANSIRED, STDERR_FILENO);
+	ft_putstr_fd("Error: ", STDERR_FILENO);
+	ft_putstr_fd(RESET, STDERR_FILENO);
 	if (var)
-		printf("%s: ", var);
-	printf("%s", err_msg);
+	{
+		ft_putstr_fd(var, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+	}
+	ft_putstr_fd(err_msg, STDERR_FILENO);
 	exit_game(EXIT_FAILURE);
 }
 
@@ -29,7 +34,7 @@ void	exit_game(int exit_status)
 		mlx_destroy_window(game()->mlx, game()->mlx_win);
 	if (game()->mlx)
 	{
-		// mlx_destroy_display(game()->mlx);
+		mlx_destroy_display(game()->mlx);
 		free(game()->mlx);
 	}
 	if (game()->map)

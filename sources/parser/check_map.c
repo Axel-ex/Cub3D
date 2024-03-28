@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 23:50:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 12:44:26 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 12:56:04 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ void	check_map(char	**map)
 	while (map[++i])
 	{
 		if (map[i][0] == '\0')
-			exit_error(NL_IN_MAP, INVALID_MAP);
+			exit_error(EMPTY_LINE, INVALID_MAP);
 		if (!is_closed_map(map, i))
 			exit_error(INVALID_WALLS, INVALID_MAP);
 		if (has_invalid_char(map[i]))
-			exit_error(INVALID_CHAR, INVALID_MAP);
+			exit_error(INVALID_CHAR, ft_itoa(i));
 	}
 }
