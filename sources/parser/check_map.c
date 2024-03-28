@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 23:50:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 13:00:28 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 13:46:38 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool	only_ones(char *str)
 	i = -1;
 	while(str[++i])
 	{
-		if (str[i] != '1' && i != ft_strlen(str) - 1)
+		if (str[i] != '1')
 			return (false);
 	}
 	return (true);
@@ -43,7 +43,7 @@ static bool	is_closed_map(char **map, size_t i)
 	if (only_ones(curr_row) && (i == 0 || i == get_matrix_len(map) - 1))
 		return (true);
 	j = -1;
-	while (curr_row[++j] && curr_row[j] != '\n')
+	while (curr_row[++j])
 	{
 		if (top_row && ft_strlen(curr_row) > ft_strlen(top_row)
 			&& j > ft_strlen(top_row) - 1 && curr_row[j] != '1')

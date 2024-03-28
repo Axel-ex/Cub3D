@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:46:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 12:57:10 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 13:46:53 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	exit_game(int exit_status)
 		mlx_destroy_window(game()->mlx, game()->mlx_win);
 	if (game()->mlx)
 	{
-		mlx_destroy_display(game()->mlx);
+		// mlx_destroy_display(game()->mlx);
 		free(game()->mlx);
 	}
 	if (game()->map)
