@@ -6,13 +6,13 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:44:09 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 11:38:34 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 12:36:18 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void	print_map(int i_pos, int j_pos)
+void	print_map(t_point err_pos)
 {
 	char	**map;
 	int		i;
@@ -25,7 +25,7 @@ void	print_map(int i_pos, int j_pos)
 		j = -1;
 		while (map[i][++j])
 		{
-			if (i == i_pos && j == j_pos)
+			if (i == err_pos.x && j == err_pos.y)
 				printf("%s%c%s", ANSIRED, map[i][j], RESET);
 			else
 				printf("%c", map[i][j]);

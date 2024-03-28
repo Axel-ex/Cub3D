@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 11:16:03 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 12:37:45 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,12 @@ void		free_matrix(char **matrix);
 void		matrix_append(char ***matrix_ptr, char *to_append);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ DEBUG.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-void	print_map(int i_pos, int j_pos);
+/**
+ * @brief prints the map highlighting in red the position passed as arg.
+ *
+ * @param err_pos position at which error occured.
+ */
+void	print_map(t_point err_pos);
 
 // =============================================================================
 //                                  PARSER

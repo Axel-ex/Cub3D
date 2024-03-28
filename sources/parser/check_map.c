@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 23:50:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 12:26:54 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 12:35:10 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ static bool	is_closed_map(char **map, size_t i)
 		if (top_row && ft_strlen(curr_row) > ft_strlen(top_row)
 			&& j > ft_strlen(top_row) - 1 && curr_row[j] != '1')
 		{
-			print_map(i, j);
+			print_map((t_point){i, j});
 			return (false);
 		}
 		if (bott_row && ft_strlen(curr_row) > ft_strlen(bott_row)
 			&& j > ft_strlen(bott_row) - 1 && curr_row[j] != '1')
 		{
-			print_map(i, j);
+			print_map((t_point){i, j});
 			return (false);
 		}
 	}

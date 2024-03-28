@@ -1,4 +1,6 @@
 cub3D
 bin/
 Libft/obj/
+*/*.a
+*/*.o
 .DS_Strore/
