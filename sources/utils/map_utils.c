@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 08:50:10 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 17:18:34 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/03/28 08:17:28 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,27 @@ bool	ft_is_digit(char *str)
 {
 	int	i;
 	
-	i = 0;
-	while(str[i++])
+	i = -1;
+	while(str[++i])
 	{
 		if (!ft_isdigit(str[i]))
+			return (false);
+	}
+	return (true);
+}
+
+bool	is_map_row(char *line)
+{
+	int	i;
+
+	i = -1;
+	if (line[0] == '\n')
+		return (false);
+	while (line[++i])
+	{
+		if (ft_isdigit(line[i]) || line[i] == ' ' || line[i] == '\n')
+			continue ;
+		else
 			return (false);
 	}
 	return (true);

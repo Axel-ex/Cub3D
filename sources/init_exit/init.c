@@ -6,13 +6,29 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 22:25:41 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 07:48:43 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
 void	init_game(void)
+{
+	game()->map = ft_calloc(sizeof(t_map), 1);
+	if (!game()->map)
+		exit_error(ALLOC_ERROR, "map");
+	game()->map->arr= ft_calloc(sizeof(char *), 1);
+	if (!game()->map->arr)
+		exit_error(ALLOC_ERROR, "map array");
+	game()->map->no = NULL;
+	game()->map->so = NULL;
+	game()->map->we = NULL;
+	game()->map->ea = NULL;
+	game()->map->c = NULL;
+	game()->map->f = NULL;
+}
+
+void	init_mlx(void)
 {
 	game()->mlx = mlx_init();
 	if (!game()->mlx)
@@ -24,13 +40,7 @@ void	init_game(void)
 	game()->screen_buff.addr = mlx_get_data_addr(game()->screen_buff.img,
 			&game()->screen_buff.bbp, &game()->screen_buff.line_length,
 			&game()->screen_buff.endian);
-	game()->map = malloc(sizeof(t_map));
-	game()->map->arr= NULL;
-	game()->map->no = NULL;
-	game()->map->so = NULL;
-	game()->map->we = NULL;
-	game()->map->ea = NULL;
-	game()->map->c = NULL;
-	game()->map->f = NULL;
 }
 
+void	start_game(void)
+{}

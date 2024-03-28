@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/03/27 23:54:54 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 08:15:14 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	check_color(char *str)
 		free_array(color);
 		exit_error(INVALID_COLOR, str);
 	}
-	i = 0;
-	while (color[i++])
+	i = -1;
+	while (color[++i])
 	{
 		if (!ft_is_digit(color[i]) || ft_atoi(color[i]) < 0 || ft_atoi(color[i]) > 255
 				|| ft_strlen(color[i]) > 3)
@@ -91,8 +91,8 @@ static void	parse_elements(char *str)
 		game()->map->c = ft_substr(str, 2, (ft_strlen(str) - 3));
 	else if (str[0] == 'F' && str[1] == ' ')
 		game()->map->f = ft_substr(str, 2, (ft_strlen(str) - 3));
-	// else if (is_map(str))
-	// 	parse_map();
+	else if (is_map_row(str))
+		matrix_append(&game()->map->arr, str);
 }
 
 //NOTE: Renamed the function 

@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 23:57:02 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 07:59:24 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,8 @@ bool		is_player(char c);
 bool		is_floor(char c);
 bool		is_wall(char c);
 bool		ft_is_digit(char *str);
+bool		is_map_row(char *line);
+
 
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MATRIX_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -166,6 +168,8 @@ void		matrix_append(char ***matrix_ptr, char *to_append);
 void		check_file(char *str);
 void		parse_file(char	*file);
 
+
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ CHECKS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 //TODO: divide parse_file into checks.c
 
 #endif

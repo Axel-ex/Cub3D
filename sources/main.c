@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:30:10 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/27 22:24:15 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 07:51:01 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ int	main(int argc, char *argv[])
 {
 	if (argc != 2)
 		exit_error(USAGE, NULL);
-	//TODO: init strcuture
 	init_game();
 	parse_file(argv[1]);
 	//check_map();
 	//start_game();
-	//TODO: start game
 	return (EXIT_SUCCESS);
 }
