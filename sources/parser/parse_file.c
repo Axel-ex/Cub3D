@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/03/28 09:13:50 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 11:54:22 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	parse_elements(char *str)
 		game()->map->c = ft_substr(str, 2, (ft_strlen(str) - 3));
 	else if (str[0] == 'F' && str[1] == ' ')
 		game()->map->f = ft_substr(str, 2, (ft_strlen(str) - 3));
-	else if (is_map_row(str))
+	else if (is_map_row(str) || (str[0] == '\n' && game()->map->arr[0]))
 		matrix_append(&game()->map->arr, str);
 }
 
@@ -112,4 +112,5 @@ void	parse_file(char	*file)
 		line = get_next_line(fd);
 	}
 	check_elements();
+	check_map(game()->map->arr);
 }

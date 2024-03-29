@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 08:35:06 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 12:47:44 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,15 @@
 
 # define USAGE			"Usage: ./cub3D <file.cub>\n"
 # define ALLOC_ERROR	"Bad allocation"
-# define INVALID_MAP	"Invalid map"
 # define INVALID_EXT	"Invalid extension"
 # define INVALID_COLOR	"Invalid color code"
 # define FILE_NT_FOUND	"File not found"
 # define MISS_TEXTURE	"Missing texture"
+
+# define INVALID_MAP	"Invalid map"
+# define INVALID_WALLS	"Not surrounded by walls"
+# define EMPTY_LINE		"Map contains empty line"
+# define INVALID_CHAR	"Map contains invalid char"
 
 # ifdef LINUX
 #  define KEY_UP 65362

@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 08:55:56 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/28 13:50:28 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,5 @@ void	start_game(void)
 	mlx_hook(game()->mlx_win, ON_DESTROY, DESTROY_MASK, quit_window, NULL);
 	mlx_loop_hook(game()->mlx, render_frame, NULL);
 	set_player_pos();
-	print_map();
 	mlx_loop(game()->mlx);
 }
