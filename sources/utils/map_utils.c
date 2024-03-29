@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 08:50:10 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 12:05:13 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/29 16:16:27 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ bool	ft_is_digit(char *str)
 {
 	int	i;
 	
-	i = -1;
-	while(str[++i])
+	i = 0;
+	while(str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			return (false);
+		
+				return (false);
+		i++;
 	}
 	return (true);
 }
