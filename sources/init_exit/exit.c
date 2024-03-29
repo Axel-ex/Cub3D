@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:46:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 13:48:03 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:21:25 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	exit_error(char *err_msg, char *var)
 		ft_putstr_fd(": ", STDERR_FILENO);
 	}
 	ft_putstr_fd(err_msg, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 	exit_game(EXIT_FAILURE);
 }
 

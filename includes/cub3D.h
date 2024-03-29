@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 12:37:45 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/29 16:37:35 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,11 @@ bool		is_floor(char c);
 bool		is_wall(char c);
 bool		ft_is_digit(char *str);
 bool		is_map_row(char *line);
+char		*ft_strstr(char *str, char *to_find);
+bool		ft_isspace(char c);
+char		*trim_elements(char *str, char **chars);
+
+
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MATRIX_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 size_t		get_matrix_len(char **matrix);
@@ -149,7 +154,7 @@ void	print_map(t_point err_pos);
 //                                  PARSER
 // =============================================================================
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ PARSE_FILE.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-void		check_file(char *str);
+void		check_file(char *str, char *ext, char *alt);
 void		parse_file(char	*file);
 
 
