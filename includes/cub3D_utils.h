@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 12:47:44 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/30 16:10:19 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # define SCREEN_W	600
 # define SCREEN_H	600
 # define MAP_POS	50
-# define OFFSET		10
+# define TILE_SIZE	10
+# define S_ROTATION	5
 
 # define RED	0x00FF0000
 # define GREEN	0x0000FF00
@@ -44,25 +45,57 @@
 #  define KEY_RIGHT 65363
 #  define KEY_DOWN 65364
 #  define ESC 65307
-
+#  define KEY_A 97
+#  define KEY_S 115
+#  define KEY_D 100
+#  define KEY_W 119
 # else
 #  define KEY_UP 126
 #  define KEY_LEFT 123
 #  define KEY_RIGHT 124
 #  define KEY_DOWN 125
+#  define KEY_A 0
+#  define KEY_S 1
+#  define KEY_D 2
+#  define KEY_W 13
 #  define ESC 53
-
 # endif
 
 # define WALL '1'
 # define FLOOR '0'
 # define PLAYER 'P'
 
+typedef enum e_keys
+{
+	ON_KEYPRESS = 2,
+	ON_DESTROY = 17,
+}				t_keys;
+
+typedef enum e_mask
+{
+	KEYPRESS_MASK = (1L << 0),
+	DESTROY_MASK = (1L << 17),
+}				t_mask;
+
+typedef enum e_rotation
+{
+	RIGHT,
+	LEFT,
+}	t_rotation;
+
 typedef struct s_point
+{
+	double			x;
+	double			y;
+}				t_point;
+
+typedef struct s_square
 {
 	int			x;
 	int			y;
-}				t_point;
+	int			width;
+	int			color;
+}				t_square;
 
 typedef struct s_img
 {
@@ -84,11 +117,26 @@ typedef struct s_map
 	char	*f;
 }			t_map;
 
+/**
+* @struct t_player
+*
+* @map_pos	int position ont 2D map.
+* @dir		direction vector
+* @camera	camera plane
+*
+*/
 typedef struct s_player
 {
 	t_point		pos;
-	t_point		next_pos;
+	t_point		dir;
+	t_point		camera;
 }				t_player;
+
+typedef struct s_ray
+{
+	t_point		pos;
+	t_point		dir;
+}	t_ray;
 
 typedef struct s_game
 {
@@ -98,25 +146,5 @@ typedef struct s_game
 	t_img		screen_buff;
 	t_player	player;
 }				t_game;
-
-typedef struct s_square
-{
-	int			x;
-	int			y;
-	int			width;
-	int			color;
-}				t_square;
-
-typedef enum e_keys
-{
-	ON_KEYPRESS = 2,
-	ON_DESTROY = 17,
-}				t_keys;
-
-typedef enum e_mask
-{
-	KEYPRESS_MASK = (1L << 0),
-	DESTROY_MASK = (1L << 17),
-}				t_mask;
 
 #endif

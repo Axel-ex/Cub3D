@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:44:09 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 12:36:18 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/30 15:47:24 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,17 @@ void	print_map(t_point err_pos)
 		}
 		printf("\n");
 	}
+	printf("\n");
+}
+
+void	print_player_pos(void)
+{
+	t_player	p;
+
+	p = game()->player;
+	printf("Position on map: {%lf, %lf}\n", p.pos.x, p.pos.y);
+	printf("position on screen: {%lf, %lf\n}", to_screen_pos(p.pos).x,
+		to_screen_pos(p.pos).y);
+	printf("Direction: {%lf, %lf}\n", p.dir.x, p.dir.y);
 	printf("\n");
 }

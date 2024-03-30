@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/03/29 16:42:53 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/03/30 15:50:32 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	check_elements()
 static void	parse_elements(char *str)
 {
 	
-	char *chars[] = {"NO", "SO", "WE", "EA", "F", "C", '\0'};
+	char *chars[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
 	str = trim_elements(str, chars);
 	if (str[0] == 'N' && str[1] == 'O')
 		game()->map->no = ft_substr(str, 3, (ft_strlen(str) - 4));

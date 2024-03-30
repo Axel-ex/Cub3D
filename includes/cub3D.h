@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/29 16:37:35 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/03/30 16:20:06 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <math.h>
 
 /**
  * @brief Return a static instance of the game struct.
@@ -31,11 +32,12 @@ t_game	*game(void);
 // =============================================================================
 //                               INIT_EXIT
 // =============================================================================
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ INIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ INIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief Initialize the game structure. allocate memory for the data contained 
  * in the file to parse.
  */
+
 void	init_game(void);
 
 /**
@@ -43,7 +45,10 @@ void	init_game(void);
  */
 void	start_game(void);
 
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ EXIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ INIT_PLAYER.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+void	init_player(void);
+
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ EXIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief destroy the game structure. destroy window pointer and screen buffer
  */
@@ -63,7 +68,7 @@ void	exit_error(char *err_msg, char *var);
  */
 int		quit_window(void);
 
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ FREE.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ FREE.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief frees the map.
  */
@@ -72,11 +77,10 @@ void	free_map(void);
 // =============================================================================
 //                                 RENDER
 // =============================================================================
-//
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ FRAME.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ FRAME.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 int		render_frame(void);
 
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ BASIC_RENDERING.C \_/=\_/=\_/=\_/=\_/=\_
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ BASIC_RENDERING.C \_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief Combines the RGB color values into a single integer representation.
  *
@@ -110,11 +114,24 @@ void	render_pixel(t_img *img, int x, int y, int color);
  */
 void	render_square(t_img *img, t_square square);
 
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MINIMAP.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+/**
+ * @brief Write a line to the img buffer.
+ *
+ * @param start 
+ * @param dir 
+ * @param length 
+ * @param color 
+ */
+void	render_line(t_point start, t_point dir, int length, int color);
+
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MINIMAP.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief renders minimap on the screen buffer.
  */
 void	render_minimap(void);
+
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ RAYCASTING.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+void	raycaster(void);
 
 // =============================================================================
 //                                  EVENTS
@@ -150,6 +167,35 @@ void		matrix_append(char ***matrix_ptr, char *to_append);
  */
 void	print_map(t_point err_pos);
 
+/**
+ * @brief print player direction, position on the map and on the screen.
+ */
+void	print_player_pos(void);
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ POSITION_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+/**
+ * @brief converts the pos on the map to real pos on screen.
+ *
+ * @param pos 
+ * @return 
+ */
+t_point	to_screen_pos(t_point pos);
+
+/**
+ * @brief converts the pos on screen to the corresponding one in the map.
+ *
+ * @param pos 
+ * @return 
+ */
+t_point	to_map_pos(t_point pos);
+
+/**
+ * @brief reverse a direction vector / returns opposit of a point
+ *
+ * @param dir 
+ * @return 
+ */
+t_point	reverse_dir(t_point dir);
+
 // =============================================================================
 //                                  PARSER
 // =============================================================================
@@ -159,7 +205,12 @@ void		parse_file(char	*file);
 
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ CHECK_MAP.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+/**
+ * @brief performs check on maps. check if the map is closed by walls, if it has
+ * invalid chars, and it has empty lines.
+ *
+ * @param map 
+ */
 void		check_map(char	**map);
-//TODO: divide parse_file into checks.c
 
 #endif
