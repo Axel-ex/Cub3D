@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/03/29 16:42:53 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:32:35 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	check_file(char *str, char *ext, char *alt)
 static void	check_color(char *str)
 {
 	char **color;
+	char *trimmed;
 	int	i;
 
 	color = ft_split(str, ',');
@@ -52,13 +53,15 @@ static void	check_color(char *str)
 	i = -1;
 	while (color[++i])
 	{
-		color[i] = ft_strtrim(color[i], " \t\n\r\v\f");
-		if (!ft_is_digit(color[i]) || ft_atoi(color[i]) < 0 || ft_atoi(color[i]) > 255
-				|| ft_strlen(color[i]) > 3)
+		trimmed = ft_strtrim(color[i], " \t\n\r\v\f");
+		if (!ft_is_digit(trimmed) || ft_atoi(trimmed) < 0 || ft_atoi(trimmed) > 255
+				|| ft_strlen(trimmed) > 3)
 		{
 			free_matrix(color);
+			free(trimmed);
 			exit_error(INVALID_COLOR, str);
 		}
+		free(trimmed);
 	}
 	free_matrix(color);
 }
@@ -81,7 +84,7 @@ static void	check_elements()
 static void	parse_elements(char *str)
 {
 	
-	char *chars[] = {"NO", "SO", "WE", "EA", "F", "C", '\0'};
+	char *chars[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
 	str = trim_elements(str, chars);
 	if (str[0] == 'N' && str[1] == 'O')
 		game()->map->no = ft_substr(str, 3, (ft_strlen(str) - 4));
