@@ -41,7 +41,9 @@ void	check_file(char *str, char *ext, char *alt)
 static void	check_color(char *str)
 {
 	char **color;
+	char *trimmed;
 	int	i;
+	char *trimmed;
 
 	color = ft_split(str, ',');
 	if (!color || !color[0] || !color[1] || !color[2] || color[3])
@@ -52,13 +54,16 @@ static void	check_color(char *str)
 	i = -1;
 	while (color[++i])
 	{
-		color[i] = ft_strtrim(color[i], " \t\n\r\v\f");
-		if (!ft_is_digit(color[i]) || ft_atoi(color[i]) < 0 || ft_atoi(color[i]) > 255
-				|| ft_strlen(color[i]) > 3)
+		trimmed = ft_strtrim(color[i], " \t\n\r\v\f");
+		if (!ft_is_digit(trimmed) || ft_atoi(trimmed) < 0 || ft_atoi(trimmed) > 255
+				|| ft_strlen(trimmed) > 3)
 		{
 			free_matrix(color);
+			free(trimmed);
 			exit_error(INVALID_COLOR, str);
+			free(trimmed);
 		}
+		free(trimmed);
 	}
 	free_matrix(color);
 }
@@ -84,19 +89,20 @@ static void	parse_elements(char *str)
 	char *chars[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
 	str = trim_elements(str, chars);
 	if (str[0] == 'N' && str[1] == 'O')
-		game()->map->no = ft_substr(str, 3, (ft_strlen(str) - 4));
+		game()->map->no = cleaner(&str[2]);
 	else if (str[0] == 'S' && str[1] == 'O')
-		game()->map->so = ft_substr(str, 3, (ft_strlen(str) - 4));
+		game()->map->so = cleaner(&str[2]);
 	else if (str[0] == 'W' && str[1] == 'E')
-		game()->map->we = ft_substr(str, 3, (ft_strlen(str) - 4));
+		game()->map->we = cleaner(&str[2]);
 	else if (str[0] == 'E' && str[1] == 'A')
-		game()->map->ea = ft_substr(str, 3, (ft_strlen(str) - 4));
+		game()->map->ea = cleaner(&str[2]);
 	else if (str[0] == 'C' && str[1] == ' ')
-		game()->map->c = ft_substr(str, 2, (ft_strlen(str) - 3));
+		game()->map->c = cleaner(&str[1]);
 	else if (str[0] == 'F' && str[1] == ' ')
-		game()->map->f = ft_substr(str, 2, (ft_strlen(str) - 3));
+		game()->map->f = cleaner(&str[1]);
 	else if (is_map_row(str) || (str[0] == '\n' && game()->map->arr[0]))
 		matrix_append(&game()->map->arr, str);
+	order_check(str);
 }
 
 //NOTE: Renamed the function 
