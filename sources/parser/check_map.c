@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 23:50:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 13:46:38 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/01 16:07:11 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,15 @@ static bool	is_closed_map(char **map, size_t i)
 	char	*bott_row;
 	size_t	j;
 	
+	// if (!map)
+	// return (true);
 	curr_row = map[i];
-	top_row = map[i -1];
+	top_row = map[i - 1];
 	bott_row = map[i + 1];
 	if (only_ones(curr_row) && (i == 0 || i == get_matrix_len(map) - 1))
 		return (true);
 	j = -1;
+	//put this in a separated function
 	while (curr_row[++j])
 	{
 		if (top_row && ft_strlen(curr_row) > ft_strlen(top_row)

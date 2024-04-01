@@ -43,6 +43,7 @@ static void	check_color(char *str)
 	char **color;
 	char *trimmed;
 	int	i;
+	char *trimmed;
 
 	color = ft_split(str, ',');
 	if (!color || !color[0] || !color[1] || !color[2] || color[3])
@@ -60,6 +61,7 @@ static void	check_color(char *str)
 			free_matrix(color);
 			free(trimmed);
 			exit_error(INVALID_COLOR, str);
+			free(trimmed);
 		}
 		free(trimmed);
 	}
@@ -83,23 +85,23 @@ static void	check_elements()
 //Store the paths of the textures and the RGB values in our struct
 static void	parse_elements(char *str)
 {
-	
 	char *chars[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
 	str = trim_elements(str, chars);
 	if (str[0] == 'N' && str[1] == 'O')
-		game()->map->no = ft_substr(str, 3, (ft_strlen(str) - 4));
+		game()->map->no = cleaner(&str[2]);
 	else if (str[0] == 'S' && str[1] == 'O')
-		game()->map->so = ft_substr(str, 3, (ft_strlen(str) - 4));
+		game()->map->so = cleaner(&str[2]);
 	else if (str[0] == 'W' && str[1] == 'E')
-		game()->map->we = ft_substr(str, 3, (ft_strlen(str) - 4));
+		game()->map->we = cleaner(&str[2]);
 	else if (str[0] == 'E' && str[1] == 'A')
-		game()->map->ea = ft_substr(str, 3, (ft_strlen(str) - 4));
+		game()->map->ea = cleaner(&str[2]);
 	else if (str[0] == 'C' && str[1] == ' ')
-		game()->map->c = ft_substr(str, 2, (ft_strlen(str) - 3));
+		game()->map->c = cleaner(&str[1]);
 	else if (str[0] == 'F' && str[1] == ' ')
-		game()->map->f = ft_substr(str, 2, (ft_strlen(str) - 3));
+		game()->map->f = cleaner(&str[1]);
 	else if (is_map_row(str) || (str[0] == '\n' && game()->map->arr[0]))
 		matrix_append(&game()->map->arr, str);
+	order_check(str);
 }
 
 //NOTE: Renamed the function 
