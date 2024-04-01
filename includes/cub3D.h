@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/29 16:37:35 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:51:39 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ bool		is_map_row(char *line);
 char		*ft_strstr(char *str, char *to_find);
 bool		ft_isspace(char c);
 char		*trim_elements(char *str, char **chars);
+char 		*cleaner(char *str);
+void		order_check(char *str);
 
 
 

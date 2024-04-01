@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_utils.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 12:47:44 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/01 14:37:03 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define INVALID_WALLS	"Not surrounded by walls"
 # define EMPTY_LINE		"Map contains empty line"
 # define INVALID_CHAR	"Map contains invalid char"
+# define MAP_FIRST		"Map at the beginning of file"
 
 # ifdef LINUX
 #  define KEY_UP 65362
