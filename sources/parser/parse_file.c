@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/01 15:37:16 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:32:35 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	check_file(char *str, char *ext, char *alt)
 static void	check_color(char *str)
 {
 	char **color;
+	char *trimmed;
 	int	i;
 	char *trimmed;
 
@@ -58,6 +59,7 @@ static void	check_color(char *str)
 				|| ft_strlen(trimmed) > 3)
 		{
 			free_matrix(color);
+			free(trimmed);
 			exit_error(INVALID_COLOR, str);
 			free(trimmed);
 		}
@@ -83,7 +85,7 @@ static void	check_elements()
 //Store the paths of the textures and the RGB values in our struct
 static void	parse_elements(char *str)
 {
-	char *chars[] = {"NO", "SO", "WE", "EA", "F", "C", '\0'};
+	char *chars[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
 	str = trim_elements(str, chars);
 	if (str[0] == 'N' && str[1] == 'O')
 		game()->map->no = cleaner(&str[2]);
