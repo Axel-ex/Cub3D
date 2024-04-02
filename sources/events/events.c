@@ -6,17 +6,17 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/30 15:47:11 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 11:29:51 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static bool	validate_position(t_point curr, t_point delta_pos)
+static bool	validate_position(t_pos curr, t_pos delta_pos)
 {
-	t_point	next_pos;
+	t_pos	next_pos;
 
-	next_pos = (t_point){curr.x + delta_pos.x, curr.y + delta_pos.y};
+	next_pos = to_map_pos(add_pos(curr, delta_pos));
 	if ((next_pos.x < 0 || next_pos.x > SCREEN_W) || next_pos.y < 0
 		|| next_pos.y > SCREEN_H)
 		return (false);
@@ -25,25 +25,22 @@ static bool	validate_position(t_point curr, t_point delta_pos)
 	return (true);
 }
 
-void	move_player(t_point delta_pos)
+void	move_player(t_pos delta_pos)
 {
-	t_point	curr;
+	t_pos	curr;
 
 	curr = game()->player.pos;
 	if (!validate_position(curr, delta_pos))
 		return ;
-	game()->map->arr[(int)curr.y][(int)curr.x] = FLOOR;
-	game()->map->arr[(int)curr.y + (int)delta_pos.y][(int)curr.x
-		+ (int)delta_pos.x] = PLAYER;
-	game()->player.pos.x += delta_pos.x;
-	game()->player.pos.y += delta_pos.y;
+	game()->player.prev_pos = curr;
+	game()->player.pos = add_pos(curr, delta_pos);
 	print_player_pos();
 }
 
 void	rotate_camera(t_rotation direction)
 {
 	double	angle;
-	t_point	new_dir;
+	t_pos	new_dir;
 
 	angle = S_ROTATION * M_PI / 180.0;
 	if (direction == LEFT)
@@ -58,15 +55,18 @@ void	rotate_camera(t_rotation direction)
 }
 
 int	key_listener(int keycode)
-{
-	if (keycode == KEY_S || keycode == KEY_DOWN)
-		move_player((t_point){0, 1});
-	else if (keycode == KEY_W || keycode == KEY_UP)
-		move_player((t_point){0, -1});
+{	
+	t_player	p;
+
+	p = game()->player;
+	if (keycode == KEY_W || keycode == KEY_UP)
+		move_player(p.dir);
+	else if (keycode == KEY_S || keycode == KEY_DOWN)
+		move_player(reverse_dir(p.dir));
 	else if (keycode == KEY_D)
-		move_player((t_point){1, 0});
+		move_player((t_pos){-p.dir.y, p.dir.x});
 	else if (keycode == KEY_A)
-		move_player((t_point){-1, 0});
+		move_player((t_pos){p.dir.y, -p.dir.x});
 	else if (keycode == KEY_RIGHT)
 		rotate_camera(RIGHT);
 	else if (keycode == KEY_LEFT)

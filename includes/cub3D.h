@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/01 14:51:39 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/02 12:06:15 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,12 @@ void	free_map(void);
 //                                 RENDER
 // =============================================================================
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ FRAME.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+/**
+ * @brief renders on the screen buffer and send it to screen. Minimap, player
+ * and 3D scene will be rendered on screen.
+ *
+ * @return 
+ */
 int		render_frame(void);
 
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ BASIC_RENDERING.C \_/=\_/=\_/=\_/=\_/=\_
@@ -103,7 +109,7 @@ int		create_trgb(int t, int r, int g, int b);
  * @param y
  * @param color
  */
-void	render_pixel(t_img *img, int x, int y, int color);
+void	render_pixel(t_pos	pos, int color);
 
 /**
  * @brief Write a square to the img buffer. the [x,y] position of the square
@@ -112,7 +118,7 @@ void	render_pixel(t_img *img, int x, int y, int color);
  * @param img
  * @param square
  */
-void	render_square(t_img *img, t_square square);
+void	render_square(t_square square);
 
 /**
  * @brief Write a line to the img buffer.
@@ -122,8 +128,7 @@ void	render_square(t_img *img, t_square square);
  * @param length 
  * @param color 
  */
-void	render_line(t_point start, t_point dir, int length, int color);
-
+void	render_line(t_pos start, t_pos dir, int length, int color);
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MINIMAP.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief renders minimap on the screen buffer.
@@ -167,12 +172,13 @@ void		matrix_append(char ***matrix_ptr, char *to_append);
  *
  * @param err_pos position at which error occured.
  */
-void	print_map(t_point err_pos);
+void	print_map(t_pos err_pos);
 
 /**
  * @brief print player direction, position on the map and on the screen.
  */
 void	print_player_pos(void);
+
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ POSITION_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief converts the pos on the map to real pos on screen.
@@ -180,23 +186,46 @@ void	print_player_pos(void);
  * @param pos 
  * @return 
  */
-t_point	to_screen_pos(t_point pos);
+t_pos	to_screen_pos(t_pos pos);
 
 /**
  * @brief converts the pos on screen to the corresponding one in the map.
  *
- * @param pos 
- * @return 
+ * @param pos	position to convert.
+ * @return		converted position.
  */
-t_point	to_map_pos(t_point pos);
+t_pos	to_map_pos(t_pos pos);
 
 /**
- * @brief reverse a direction vector / returns opposit of a point
+ * @brief reverse a direction vector / returns opposite of a point.
  *
  * @param dir 
  * @return 
  */
-t_point	reverse_dir(t_point dir);
+t_pos	reverse_dir(t_pos dir);
+
+/**
+ * @brief add two positions and return the result.
+ *
+ * @param p1
+ * @param p2
+ * @return
+ */
+t_pos	add_pos(t_pos p1, t_pos p2);
+
+
+/**
+ * @brief Centers a given position on the screen by offsetting it.This function
+ * aims to adjust the position to ensure that the center of an object aligns with
+ * the specified position.
+ *
+ * @param pos  The original position to be centered.
+ * @param size The size of the object to be centered, used to compute the offset.
+ * @return     The centered position.
+ */
+
+t_pos center_position(t_pos pos, int size);
+
 
 // =============================================================================
 //                                  PARSER

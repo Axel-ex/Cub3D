@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:44:02 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/30 16:09:01 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 11:16:40 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,5 @@ void	raycaster(void)
 		// perform the algo
 		// calculate th length of the ray
 		// render the vertical stripe of pix on screen
-		// render_ray on minimap
-		render_line(to_screen_pos(ray.pos), ray.dir, 50, RED);
 	}
 }

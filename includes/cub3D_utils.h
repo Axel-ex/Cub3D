@@ -6,18 +6,19 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/01 14:37:03 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/02 11:56:43 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_UTILS_H
 # define CUB3D_UTILS_H
 
-# define SCREEN_W	600
-# define SCREEN_H	600
-# define MAP_POS	50
-# define TILE_SIZE	10
-# define S_ROTATION	5
+# define SCREEN_W		600
+# define SCREEN_H		600
+# define MAP_POS		50
+# define TILE_SIZE		10
+# define PLAYER_SIZE	5
+# define S_ROTATION		5
 
 # define RED	0x00FF0000
 # define GREEN	0x0000FF00
@@ -82,21 +83,28 @@ typedef enum e_rotation
 {
 	RIGHT,
 	LEFT,
+
 }	t_rotation;
 
 typedef struct s_point
 {
 	double			x;
 	double			y;
-}				t_point;
+}				t_pos;
 
 typedef struct s_square
 {
-	int			x;
-	int			y;
+	t_pos		pos;
 	int			width;
 	int			color;
 }				t_square;
+
+typedef struct	s_circle
+{
+	t_pos	pos;
+	int		radius;
+	int		color;
+}	t_circle;
 
 typedef struct s_img
 {
@@ -128,15 +136,16 @@ typedef struct s_map
 */
 typedef struct s_player
 {
-	t_point		pos;
-	t_point		dir;
-	t_point		camera;
+	t_pos		pos;
+	t_pos		prev_pos;
+	t_pos		dir;
+	t_pos		camera;
 }				t_player;
 
 typedef struct s_ray
 {
-	t_point		pos;
-	t_point		dir;
+	t_pos		pos;
+	t_pos		dir;
 }	t_ray;
 
 typedef struct s_game

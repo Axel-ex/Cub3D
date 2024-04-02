@@ -6,17 +6,12 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/03/30 15:50:32 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/01 19:16:26 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-//NOTE: I refactored the code using the exit_error(). It's handier since we 
-//don't have to deal with return value, the function simply exit with the
-//appropriated message (define in cub3D_utils.h)
-
-//file extension checker
 void	check_file(char *str, char *ext, char *alt)
 {
 	int		fd;
@@ -43,7 +38,6 @@ static void	check_color(char *str)
 	char **color;
 	char *trimmed;
 	int	i;
-	char *trimmed;
 
 	color = ft_split(str, ',');
 	if (!color || !color[0] || !color[1] || !color[2] || color[3])

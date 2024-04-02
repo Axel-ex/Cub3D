@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:43:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/30 15:46:35 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 11:34:40 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,41 +17,42 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	render_pixel(t_img *img, int x, int y, int color)
+void	render_pixel(t_pos pos, int color)
 {
 	char	*dst;
+	t_img	img;
 
-	dst = img->addr + (y * img->line_length + x * (img->bbp / 8));
+	img = game()->screen_buff;
+	dst = img.addr + ((int)pos.y * img.line_length + (int)pos.x * (img.bbp / 8));
 	*(unsigned int *)dst = color;
 }
 
-void	render_square(t_img *img, t_square square)
+void	render_square(t_square square)
 {
 	int	i;
 	int	j;
 
-	i = square.y;
-	if ((square.x + square.width > SCREEN_W || square.x < 0) && (square.y
-			+ square.width > SCREEN_H || square.y < 0))
+	i = square.pos.y;
+	if ((square.pos.x + square.width > SCREEN_W || square.pos.x < 0) && (square.pos.y
+			+ square.width > SCREEN_H || square.pos.y < 0))
 		return ;
-	while (i < square.y + square.width)
+	while (i < square.pos.y + square.width)
 	{
-		j = square.x;
-		while (j < square.x + square.width)
-			render_pixel(img, j++, i, square.color);
+		j = square.pos.x;
+		while (j < square.pos.x + square.width)
+			render_pixel((t_pos){j++, i}, square.color);
 		i++;
 	}
 }
 
-void	render_line(t_point start, t_point dir, int length, int color)
+void	render_line(t_pos start, t_pos dir, int length, int color)
 {
 	int	i;
 
 	i = -1;
 	while (++i < length)
 	{
-		render_pixel(&game()->screen_buff, start.x + dir.x, start.y + dir.y,
-			color);
+		render_pixel(add_pos(start, dir), color);
 		start.x += dir.x;
 		start.y += dir.y;
 	}
