@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 17:20:53 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 18:33:34 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define TILE_SIZE		10
 # define PLAYER_SIZE	5
 # define S_ROTATION		5
+# define RENDER_DIST	5
 
 # define RED	0x00FF0000
 # define GREEN	0x0000FF00

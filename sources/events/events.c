@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 17:13:23 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 18:27:57 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	move_player(t_pos delta_pos)
 	game()->player.prev_pos = curr;
 	game()->player.pos = add_pos(curr, delta_pos);
 	game()->player.has_moved = true;
-	print_player_pos();
 }
 
 void	rotate_camera(t_rotation direction)

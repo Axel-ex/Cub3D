@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:44:02 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 17:38:17 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 18:36:15 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	init_ray(t_ray *ray, int curr_x)
 	ray->pos = to_map_pos(p.pos);
 	ray->dir.x = p.dir.x + p.camera.x * x_cam;
 	ray->dir.y = p.dir.y + p.camera.y * x_cam;
-	//NOTE: potential division by 0
 	ray->delta_dist.x = fabs(1 / ray->dir.x);
 	ray->delta_dist.y = fabs(1 / ray->dir.y);
 }
@@ -97,15 +96,32 @@ void	get_line_height(t_ray *ray)
 		ray->end = SCREEN_W -1;
 }
 
+int	shader(double wall_dist, int color)
+{
+    double	attenuation_coef;
+	int		red;
+	int		green;
+	int		blue;
+
+	attenuation_coef = (RENDER_DIST - wall_dist) / RENDER_DIST;
+    red = (int)(attenuation_coef * ((color >> 16) & 0xFF));
+    green = (int)(attenuation_coef * ((color >> 8) & 0xFF));
+    blue = (int)(attenuation_coef * (color & 0xFF));
+	return (create_trgb(0, red, green, blue));
+}
+
 void	render_v_line(t_ray *ray, int x)
 {
 	int	i;
 	int	color;
 	
+	if (ray->wall_dist > RENDER_DIST)
+		return;
 	if (ray->side)
 		color = create_trgb(0, 200, 200, 0);
 	else
 		color = create_trgb(0, 100, 150, 0);
+	color = shader(ray->wall_dist, color);
 	i = ray->start - 1;
 	while (++i < ray->end)
 		render_pixel((t_pos){x, i}, color);
