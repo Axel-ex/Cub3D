@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:44:02 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 18:36:15 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 19:01:34 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,12 @@ static void	perform_dda(t_ray *ray)
 	}
 }
 
-static void	get_wall_dist(t_ray *ray)
+static void	get_line_height(t_ray *ray)
 {
 	if (!ray->side)
 		ray->wall_dist = ray->side_dist.x - ray->delta_dist.x;
 	else
 		ray->wall_dist = ray->side_dist.y - ray->delta_dist.y;
-}
-
-void	get_line_height(t_ray *ray)
-{
 	ray->line_height = (int)(SCREEN_W / ray->wall_dist);
 	ray->start = -ray->line_height / 2 + SCREEN_W / 2;
 	if (ray->start < 0)
@@ -94,37 +90,6 @@ void	get_line_height(t_ray *ray)
 	ray->end = ray->line_height / 2 + SCREEN_W / 2;
 	if (ray->end >= SCREEN_W)
 		ray->end = SCREEN_W -1;
-}
-
-int	shader(double wall_dist, int color)
-{
-    double	attenuation_coef;
-	int		red;
-	int		green;
-	int		blue;
-
-	attenuation_coef = (RENDER_DIST - wall_dist) / RENDER_DIST;
-    red = (int)(attenuation_coef * ((color >> 16) & 0xFF));
-    green = (int)(attenuation_coef * ((color >> 8) & 0xFF));
-    blue = (int)(attenuation_coef * (color & 0xFF));
-	return (create_trgb(0, red, green, blue));
-}
-
-void	render_v_line(t_ray *ray, int x)
-{
-	int	i;
-	int	color;
-	
-	if (ray->wall_dist > RENDER_DIST)
-		return;
-	if (ray->side)
-		color = create_trgb(0, 200, 200, 0);
-	else
-		color = create_trgb(0, 100, 150, 0);
-	color = shader(ray->wall_dist, color);
-	i = ray->start - 1;
-	while (++i < ray->end)
-		render_pixel((t_pos){x, i}, color);
 }
 
 void	raycaster(void)
@@ -138,7 +103,6 @@ void	raycaster(void)
 		init_ray(&ray, x);
 		set_side_dist(&ray);
 		perform_dda(&ray);
-		get_wall_dist(&ray);
 		get_line_height(&ray);
 		render_v_line(&ray, x);
 	}

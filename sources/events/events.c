@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 18:27:57 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 22:27:49 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,17 @@ void	move_player(t_pos delta_pos)
 
 void	rotate_camera(t_rotation direction)
 {
-	double	angle;
-	t_pos	new_dir;
-
+	double		angle;
+	t_player	*p;
+	
+	p = &game()->player;
 	angle = S_ROTATION * M_PI / 180.0;
 	if (direction == LEFT)
 		angle = -angle;
-	new_dir.x = game()->player.dir.x * cos(angle) - game()->player.dir.y
-		* sin(angle);
-	new_dir.y = game()->player.dir.x * sin(angle) + game()->player.dir.y
-		* cos(angle);
-	game()->player.dir = new_dir;
-	game()->player.camera.x = -new_dir.y;
-	game()->player.camera.y = new_dir.x;
+	p->dir.x = p->dir.x * cos(angle) - p->dir.y * sin(angle);
+	p->dir.y = p->dir.x * sin(angle) + p->dir.y * cos(angle);
+	p->camera.x = p->camera.x * cos(angle) - p->camera.y * sin(angle);
+	p->camera.y = p->camera.x * sin(angle) + p->camera.y * cos(angle);
 	game()->player.has_moved = true;
 }
 

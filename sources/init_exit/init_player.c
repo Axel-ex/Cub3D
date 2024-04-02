@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 08:29:00 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 17:30:37 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 20:28:22 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	set_player_pos(void)
 			if (is_player(game()->map->arr[i][j]))
 			{
 				game()->player.pos = to_screen_pos((t_pos){j, i});
-				game()->player.prev_pos = game()->player.pos;
+				game()->player.prev_pos = game()->player.pos ;
 			}
 		}
 	}
