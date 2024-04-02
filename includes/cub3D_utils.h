@@ -6,15 +6,17 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 11:56:43 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 17:20:53 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_UTILS_H
 # define CUB3D_UTILS_H
 
-# define SCREEN_W		600
-# define SCREEN_H		600
+# include <stdbool.h>
+
+# define SCREEN_W		800
+# define SCREEN_H		800
 # define MAP_POS		50
 # define TILE_SIZE		10
 # define PLAYER_SIZE	5
@@ -24,6 +26,7 @@
 # define GREEN	0x0000FF00
 # define BLUE	0x000000FF
 # define CYAN	0x0000FFFF
+# define BLACK	0x00000000
 
 # define ANSIRED	"\033[38;5;196m"
 # define RESET		"\033[0m"
@@ -140,12 +143,21 @@ typedef struct s_player
 	t_pos		prev_pos;
 	t_pos		dir;
 	t_pos		camera;
+	bool		has_moved;
 }				t_player;
 
 typedef struct s_ray
 {
 	t_pos		pos;
 	t_pos		dir;
+	t_pos		step;
+	t_pos		delta_dist;
+	t_pos		side_dist;
+	int			side;
+	double		wall_dist;
+	int			line_height;
+	int			start;
+	int			end;
 }	t_ray;
 
 typedef struct s_game

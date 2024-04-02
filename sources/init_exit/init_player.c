@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 08:29:00 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 11:39:21 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 17:30:37 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,34 +35,35 @@ static void	set_player_pos(void)
 static void	set_player_dir(t_pos pos)
 {
 	if (game()->map->arr[(int)pos.y][(int)pos.x] == 'N')
-		game()->player.dir = (t_pos){0, -0.8};
+		game()->player.dir = (t_pos){0, -1};
 	if (game()->map->arr[(int)pos.y][(int)pos.x] == 'S')
-		game()->player.dir = (t_pos){0, 0.8};
+		game()->player.dir = (t_pos){0, 1};
 	if (game()->map->arr[(int)pos.y][(int)pos.x] == 'W')
-		game()->player.dir = (t_pos){-0.8, 0};
+		game()->player.dir = (t_pos){-1, 0};
 	if (game()->map->arr[(int)pos.y][(int)pos.x] == 'E')
-		game()->player.dir = (t_pos){0.8, 0};
+		game()->player.dir = (t_pos){1, 0};
 }
 
 static void	set_camera_plane(t_pos pos)
 {
 	if (game()->map->arr[(int)pos.y][(int)pos.x] == 'N')
-		game()->player.camera = (t_pos){-0.53, 0};
+		game()->player.camera = (t_pos){-0.66, 0};
 	if (game()->map->arr[(int)pos.y][(int)pos.x] == 'S')
-		game()->player.camera = (t_pos){0.53, 0};
+		game()->player.camera = (t_pos){0.66, 0};
 	if (game()->map->arr[(int)pos.y][(int)pos.x] == 'W')
-		game()->player.camera = (t_pos){0, -0.53};
+		game()->player.camera = (t_pos){0, -.066};
 	if (game()->map->arr[(int)pos.y][(int)pos.x] == 'E')
-		game()->player.camera = (t_pos){0, 0.53};
+		game()->player.camera = (t_pos){0, 0.66};
 }
 
 void	init_player(void)
 {
-	t_pos	pos;
+	t_pos	map_pos;
 
 	set_player_pos();
-	pos = to_map_pos(game()->player.pos);
-	set_player_dir(pos);
-	set_camera_plane(pos);
-	game()->map->arr[(int)pos.y][(int)pos.x] = '0';
+	map_pos = to_map_pos(game()->player.pos);
+	set_player_dir(map_pos);
+	set_camera_plane(map_pos);
+	game()->map->arr[(int)map_pos.y][(int)map_pos.x] = '0';
+	game()->player.has_moved = true;
 }
