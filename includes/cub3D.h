@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 18:53:10 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 23:17:57 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ int		render_frame(void);
 int		shader(double wall_dist, int color);
 
 void	render_v_line(t_ray *ray, int x);
+int	shader_ceiling(int dist, int color);
+int	shader_floor(int dist, int color);
+
+
 
 
 

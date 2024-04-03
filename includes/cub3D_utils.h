@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 18:33:34 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 22:46:36 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define TILE_SIZE		10
 # define PLAYER_SIZE	5
 # define S_ROTATION		5
-# define RENDER_DIST	5
+# define RENDER_DIST	10
 
 # define RED	0x00FF0000
 # define GREEN	0x0000FF00
@@ -128,6 +128,8 @@ typedef struct s_map
 	char	*ea;
 	char	*c;
 	char	*f;
+	int		ceiling_col;
+	int		floor_col;
 }			t_map;
 
 /**

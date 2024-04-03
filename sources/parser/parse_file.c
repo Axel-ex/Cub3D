@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/01 19:16:26 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/02 22:49:45 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,25 @@ static void	parse_elements(char *str)
 	order_check(str);
 }
 
-//NOTE: Renamed the function 
+void	parse_color(char *str, char type)
+{
+	int		red;
+	int		green;
+	int		blue;
+	int		*color;
+	char	**colors;
+
+	if (type == 'c')
+		color = &game()->map->ceiling_col;
+	else
+		color = &game()->map->floor_col;
+	colors = ft_split(str, ',');
+	red = ft_atoi(colors[0]);
+	green = ft_atoi(colors[1]);
+	blue = ft_atoi(colors[2]);
+	*color = create_trgb(0, red, green, blue);
+}
+
 void	parse_file(char	*file)
 {
 	char	*line;
@@ -118,4 +136,6 @@ void	parse_file(char	*file)
 	}
 	check_elements();
 	check_map(game()->map->arr);
+	parse_color(game()->map->c, 'c');
+	parse_color(game()->map->f, 'f');
 }
