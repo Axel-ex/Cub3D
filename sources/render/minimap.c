@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:17:46 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 12:02:26 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/03 10:30:25 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	render_minimap(void)
 				render_square((t_square){to_screen_pos((t_pos){j,i}), TILE_SIZE, BLUE});
 			else if (is_floor(map[i][j]))
 				render_square((t_square){to_screen_pos((t_pos){j,i}), TILE_SIZE, CYAN});
-			mlx_put_image_to_window(game()->mlx, game()->mlx_win, &game()->screen_buff, 0, 0);
 		}
 	}
 	render_player();

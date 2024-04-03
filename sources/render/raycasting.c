@@ -6,14 +6,15 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:44:02 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 19:01:34 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/03 12:35:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
 // The ray start at player pos (minimap coordinate). delta_dist is the distance
-// ray as to travel to move of 1 unit in x or y axis.
+// ray as to travel to move of 1 unit in x or y axis. x_cam is a rotation factor
+// so the ray intersect our camera plane at regular interval.
 static void	init_ray(t_ray *ray, int curr_x)
 {
 	double	x_cam;
@@ -28,7 +29,10 @@ static void	init_ray(t_ray *ray, int curr_x)
 	ray->delta_dist.y = fabs(1 / ray->dir.y);
 }
 
-// side_dist is the initial distance from the pos to the first intersection.
+// side_dist is the initial distance from the pos to the first intersection. its is 
+// calculated as the "real" initial position of the ray (floating point value) minus
+// the position on the map (integer). It is a way to "normalize" the position to the 
+// first edge crossed by our ray.
 static void	set_side_dist(t_ray *ray)
 {
 	if (ray->dir.x > 0)
@@ -53,6 +57,9 @@ static void	set_side_dist(t_ray *ray)
 	}
 }
 
+// dda works by incrementing the side dist with the delta dist( always moving exactly
+// one tile on x or on y) and alternatively choose to move on x or y depending on the 
+// size of side_dist.x or y.
 static void	perform_dda(t_ray *ray)
 {
 	bool	hit;
@@ -77,6 +84,12 @@ static void	perform_dda(t_ray *ray)
 	}
 }
 
+// side variable is used to know which side of the wall was hit to choose
+// the appropriated distance. depending on it, the distance to the wall is calculated
+// as the distance between the camera plane and the object hit.
+// the height is calculated as the ratio between screen width and wall distance: 
+// when the distance is null, the wall is at its closest and fills the screen 
+// (ray->line_height = SCREEN_W)
 static void	get_line_height(t_ray *ray)
 {
 	if (!ray->side)

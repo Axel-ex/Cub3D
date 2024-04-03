@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/02 22:49:45 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/03 14:49:31 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	parse_color(char *str, char type)
 	green = ft_atoi(colors[1]);
 	blue = ft_atoi(colors[2]);
 	*color = create_trgb(0, red, green, blue);
+	free_matrix(colors);
 }
 
 void	parse_file(char	*file)

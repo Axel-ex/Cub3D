@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 22:27:49 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/03 14:21:07 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	rotate_camera(t_rotation direction)
 	t_player	*p;
 	
 	p = &game()->player;
-	angle = S_ROTATION * M_PI / 180.0;
+	angle = S_ROTATION * PI / 180.0;
 	if (direction == LEFT)
 		angle = -angle;
 	p->dir.x = p->dir.x * cos(angle) - p->dir.y * sin(angle);
@@ -70,6 +70,11 @@ int	key_listener(int keycode)
 		rotate_camera(RIGHT);
 	else if (keycode == KEY_LEFT)
 		rotate_camera(LEFT);
+	else if (keycode == KEY_ENTER)
+	{
+		game()->map->render_map = true;
+		game()->player.has_moved = true;
+	}
 	else if (keycode == ESC)
 		exit_game(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/30 15:41:46 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/03 12:39:14 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_game(void)
 	game()->map->ea = NULL;
 	game()->map->c = NULL;
 	game()->map->f = NULL;
+	game()->map->render_map = false;
 }
 
 static void	init_mlx(void)

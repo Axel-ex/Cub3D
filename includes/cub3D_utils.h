@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 22:46:36 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/03 13:32:37 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define PLAYER_SIZE	5
 # define S_ROTATION		5
 # define RENDER_DIST	10
+# define PI				3.14159265359
 
 # define RED	0x00FF0000
 # define GREEN	0x0000FF00
@@ -55,6 +56,8 @@
 #  define KEY_S 115
 #  define KEY_D 100
 #  define KEY_W 119
+#  define KEY_ENTER 65293
+
 # else
 #  define KEY_UP 126
 #  define KEY_LEFT 123
@@ -64,6 +67,8 @@
 #  define KEY_S 1
 #  define KEY_D 2
 #  define KEY_W 13
+#  define KEY_Q	12
+#  define KEY_ENTER 65293
 #  define ESC 53
 # endif
 
@@ -130,6 +135,7 @@ typedef struct s_map
 	char	*f;
 	int		ceiling_col;
 	int		floor_col;
+	bool	render_map;
 }			t_map;
 
 /**
