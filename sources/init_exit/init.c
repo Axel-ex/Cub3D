@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 13:50:28 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/03 12:39:14 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ void	init_game(void)
 	game()->map->ea = NULL;
 	game()->map->c = NULL;
 	game()->map->f = NULL;
+	game()->map->render_map = false;
 }
 
-void	init_mlx(void)
+static void	init_mlx(void)
 {
 	game()->mlx = mlx_init();
 	if (!game()->mlx)
@@ -42,29 +43,12 @@ void	init_mlx(void)
 			&game()->screen_buff.endian);
 }
 
-void	set_player_pos(void)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while(game()->map->arr[++i])
-	{
-		j = -1;
-		while (game()->map->arr[i][++j])
-		{
-			if (is_player(game()->map->arr[i][j]))
-				game()->player.pos = (t_point){j, i};
-		}
-	}
-}
-
 void	start_game(void)
 {
 	init_mlx();
 	mlx_hook(game()->mlx_win, ON_KEYPRESS, KEYPRESS_MASK, key_listener, NULL);
 	mlx_hook(game()->mlx_win, ON_DESTROY, DESTROY_MASK, quit_window, NULL);
 	mlx_loop_hook(game()->mlx, render_frame, NULL);
-	set_player_pos();
+	init_player();
 	mlx_loop(game()->mlx);
 }

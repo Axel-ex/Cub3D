@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/01 14:51:39 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/02 23:17:57 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <math.h>
 
 /**
  * @brief Return a static instance of the game struct.
@@ -31,11 +32,12 @@ t_game	*game(void);
 // =============================================================================
 //                               INIT_EXIT
 // =============================================================================
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ INIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ INIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief Initialize the game structure. allocate memory for the data contained 
  * in the file to parse.
  */
+
 void	init_game(void);
 
 /**
@@ -43,7 +45,10 @@ void	init_game(void);
  */
 void	start_game(void);
 
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ EXIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ INIT_PLAYER.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+void	init_player(void);
+
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ EXIT.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief destroy the game structure. destroy window pointer and screen buffer
  */
@@ -63,7 +68,7 @@ void	exit_error(char *err_msg, char *var);
  */
 int		quit_window(void);
 
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ FREE.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ FREE.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief frees the map.
  */
@@ -72,11 +77,26 @@ void	free_map(void);
 // =============================================================================
 //                                 RENDER
 // =============================================================================
-//
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ FRAME.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ FRAME.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+/**
+ * @brief renders on the screen buffer and send it to screen. Minimap, player
+ * and 3D scene will be rendered on screen.
+ *
+ * @return 
+ */
 int		render_frame(void);
 
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ BASIC_RENDERING.C \_/=\_/=\_/=\_/=\_/=\_
+int		shader(double wall_dist, int color);
+
+void	render_v_line(t_ray *ray, int x);
+int	shader_ceiling(int dist, int color);
+int	shader_floor(int dist, int color);
+
+
+
+
+
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ BASIC_RENDERING.C \_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief Combines the RGB color values into a single integer representation.
  *
@@ -99,7 +119,7 @@ int		create_trgb(int t, int r, int g, int b);
  * @param y
  * @param color
  */
-void	render_pixel(t_img *img, int x, int y, int color);
+void	render_pixel(t_pos	pos, int color);
 
 /**
  * @brief Write a square to the img buffer. the [x,y] position of the square
@@ -108,13 +128,25 @@ void	render_pixel(t_img *img, int x, int y, int color);
  * @param img
  * @param square
  */
-void	render_square(t_img *img, t_square square);
+void	render_square(t_square square);
 
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MINIMAP.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+/**
+ * @brief Write a line to the img buffer.
+ *
+ * @param start 
+ * @param dir 
+ * @param length 
+ * @param color 
+ */
+void	render_line(t_pos start, t_pos dir, int length, int color);
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MINIMAP.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief renders minimap on the screen buffer.
  */
 void	render_minimap(void);
+
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ RAYCASTING.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+void	raycaster(void);
 
 // =============================================================================
 //                                  EVENTS
@@ -150,7 +182,60 @@ void		matrix_append(char ***matrix_ptr, char *to_append);
  *
  * @param err_pos position at which error occured.
  */
-void	print_map(t_point err_pos);
+void	print_map(t_pos err_pos);
+
+/**
+ * @brief print player direction, position on the map and on the screen.
+ */
+void	print_player_pos(void);
+
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ POSITION_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+/**
+ * @brief converts the pos on the map to real pos on screen.
+ *
+ * @param pos 
+ * @return 
+ */
+t_pos	to_screen_pos(t_pos pos);
+
+/**
+ * @brief converts the pos on screen to the corresponding one in the map.
+ *
+ * @param pos	position to convert.
+ * @return		converted position.
+ */
+t_pos	to_map_pos(t_pos pos);
+
+/**
+ * @brief reverse a direction vector / returns opposite of a point.
+ *
+ * @param dir 
+ * @return 
+ */
+t_pos	reverse_dir(t_pos dir);
+
+/**
+ * @brief add two positions and return the result.
+ *
+ * @param p1
+ * @param p2
+ * @return
+ */
+t_pos	add_pos(t_pos p1, t_pos p2);
+
+
+/**
+ * @brief Centers a given position on the screen by offsetting it.This function
+ * aims to adjust the position to ensure that the center of an object aligns with
+ * the specified position.
+ *
+ * @param pos  The original position to be centered.
+ * @param size The size of the object to be centered, used to compute the offset.
+ * @return     The centered position.
+ */
+
+t_pos center_position(t_pos pos, int size);
+
 
 // =============================================================================
 //                                  PARSER
@@ -161,7 +246,12 @@ void		parse_file(char	*file);
 
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ CHECK_MAP.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+/**
+ * @brief performs check on maps. check if the map is closed by walls, if it has
+ * invalid chars, and it has empty lines.
+ *
+ * @param map 
+ */
 void		check_map(char	**map);
-//TODO: divide parse_file into checks.c
 
 #endif

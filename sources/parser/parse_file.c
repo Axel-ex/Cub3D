@@ -6,17 +6,12 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/01 11:32:35 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:49:31 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-//NOTE: I refactored the code using the exit_error(). It's handier since we 
-//don't have to deal with return value, the function simply exit with the
-//appropriated message (define in cub3D_utils.h)
-
-//file extension checker
 void	check_file(char *str, char *ext, char *alt)
 {
 	int		fd;
@@ -43,7 +38,6 @@ static void	check_color(char *str)
 	char **color;
 	char *trimmed;
 	int	i;
-	char *trimmed;
 
 	color = ft_split(str, ',');
 	if (!color || !color[0] || !color[1] || !color[2] || color[3])
@@ -85,6 +79,7 @@ static void	check_elements()
 //Store the paths of the textures and the RGB values in our struct
 static void	parse_elements(char *str)
 {
+	
 	char *chars[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
 	str = trim_elements(str, chars);
 	if (str[0] == 'N' && str[1] == 'O')
@@ -104,7 +99,26 @@ static void	parse_elements(char *str)
 	order_check(str);
 }
 
-//NOTE: Renamed the function 
+void	parse_color(char *str, char type)
+{
+	int		red;
+	int		green;
+	int		blue;
+	int		*color;
+	char	**colors;
+
+	if (type == 'c')
+		color = &game()->map->ceiling_col;
+	else
+		color = &game()->map->floor_col;
+	colors = ft_split(str, ',');
+	red = ft_atoi(colors[0]);
+	green = ft_atoi(colors[1]);
+	blue = ft_atoi(colors[2]);
+	*color = create_trgb(0, red, green, blue);
+	free_matrix(colors);
+}
+
 void	parse_file(char	*file)
 {
 	char	*line;
@@ -123,4 +137,6 @@ void	parse_file(char	*file)
 	}
 	check_elements();
 	check_map(game()->map->arr);
+	parse_color(game()->map->c, 'c');
+	parse_color(game()->map->f, 'f');
 }

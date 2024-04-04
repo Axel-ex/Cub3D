@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:30:10 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 11:35:46 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/03 14:37:32 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,27 @@ t_game	*game(void)
 	return (&game);
 }
 
+void	print_commands(void)
+{
+	printf("\n");
+	printf(" ██████╗██╗   ██╗██████╗ ██████╗ ██████╗\n");
+	printf("██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗\n");
+	printf("██║     ██║   ██║██████╔╝ █████╔╝██║  ██║\n");
+	printf("██║     ██║   ██║██╔══██╗ ╚═══██╗██║  ██║\n");
+	printf("╚██████╗╚██████╔╝██████╔╝██████╔╝██████╔╝\n");
+	printf(" ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ \n");
+
+	printf("forward: w | ↑\t\tbackward: s | ↓\n");
+	printf("left: a\t\t\tright: d\n");
+	printf("rotate left: ←\t\trotate right: →\n");
+	printf("print map: ↵\n");
+}
+
 int	main(int argc, char *argv[])
 {
 	if (argc != 2)
 		exit_error(USAGE, NULL);
+	print_commands();
 	init_game();
 	parse_file(argv[1]);
 	start_game();
