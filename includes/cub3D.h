@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 23:17:57 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/09 16:12:58 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,14 @@ void	raycaster(void);
 // =============================================================================
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ EVENTS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 int		key_listener(int keycode);
+int		key_press(int keycode);
+int 	key_release(int keycode);
+int		validate_move(double new_x, double new_y);
+int		move_player();
+int	rotate_camera(t_rotation direction);
+
+
+
 
 // =============================================================================
 //                                   UTILS
