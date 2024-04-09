@@ -3,79 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/03 14:21:07 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:24:09 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static bool	validate_position(t_pos curr, t_pos delta_pos)
-{
-	t_pos	next_pos;
-
-	next_pos = to_map_pos(add_pos(curr, delta_pos));
-	if ((next_pos.x < 0 || next_pos.x > SCREEN_W) || next_pos.y < 0
-		|| next_pos.y > SCREEN_H)
-		return (false);
-	if (is_wall(game()->map->arr[(int)next_pos.y][(int)next_pos.x]))
-		return (false);
-	return (true);
-}
-
-void	move_player(t_pos delta_pos)
-{
-	t_pos	curr;
-
-	curr = game()->player.pos;
-	if (!validate_position(curr, delta_pos))
-		return ;
-	game()->player.prev_pos = curr;
-	game()->player.pos = add_pos(curr, delta_pos);
-	game()->player.has_moved = true;
-}
-
-void	rotate_camera(t_rotation direction)
+int	rotate_camera(t_rotation direction)
 {
 	double		angle;
 	t_player	*p;
 	
 	p = &game()->player;
-	angle = S_ROTATION * PI / 180.0;
+	angle = ROTSPEED;
 	if (direction == LEFT)
 		angle = -angle;
 	p->dir.x = p->dir.x * cos(angle) - p->dir.y * sin(angle);
 	p->dir.y = p->dir.x * sin(angle) + p->dir.y * cos(angle);
 	p->camera.x = p->camera.x * cos(angle) - p->camera.y * sin(angle);
 	p->camera.y = p->camera.x * sin(angle) + p->camera.y * cos(angle);
-	game()->player.has_moved = true;
+	game()->player.has_moved = 0;
+	return (EXIT_SUCCESS);
 }
 
-int	key_listener(int keycode)
+int	key_press(int keycode)
 {	
 	t_player	p;
 
 	p = game()->player;
-	if (keycode == KEY_W || keycode == KEY_UP)
-		move_player(p.dir);
-	else if (keycode == KEY_S || keycode == KEY_DOWN)
-		move_player(reverse_dir(p.dir));
+	if (keycode == KEY_W)
+		game()->player.move_y += 1;
+	else if (keycode == KEY_S)
+		game()->player.move_y += -1;
 	else if (keycode == KEY_D)
-		move_player((t_pos){-p.dir.y, p.dir.x});
+		game()->player.move_x += 1;
 	else if (keycode == KEY_A)
-		move_player((t_pos){p.dir.y, -p.dir.x});
+		game()->player.move_x += -1;
 	else if (keycode == KEY_RIGHT)
-		rotate_camera(RIGHT);
+		game()->player.rotate += 1;
 	else if (keycode == KEY_LEFT)
-		rotate_camera(LEFT);
+		game()->player.rotate += -1;
 	else if (keycode == KEY_ENTER)
 	{
 		game()->map->render_map = true;
-		game()->player.has_moved = true;
+		game()->player.has_moved = 0;
 	}
 	else if (keycode == ESC)
 		exit_game(EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
+}
+
+int	key_release(int keycode)
+{
+	if (keycode == ESC)
+		exit_game(EXIT_SUCCESS);
+	if (keycode == KEY_W && game()->player.move_y == 1)
+		game()->player.move_y = 0;
+	if (keycode == KEY_S && game()->player.move_y == -1)
+		game()->player.move_y = 0;
+	if (keycode == KEY_A && game()->player.move_x == -1)
+		game()->player.move_x += 1;
+	if (keycode == KEY_D && game()->player.move_x == 1)
+		game()->player.move_x -= 1;
+	if (keycode == KEY_LEFT && game()->player.rotate <= 1)
+		game()->player.rotate = 0;
+	if (keycode == KEY_RIGHT && game()->player.rotate >= -1)
+		game()->player.rotate = 0;
 	return (EXIT_SUCCESS);
 }

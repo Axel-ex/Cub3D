@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frame.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:49:34 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/03 12:38:37 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:37:29 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ static void	render_floor(void)
 
 int	render_frame(void)
 {
-	if (game()->player.has_moved == false)
-		return (EXIT_SUCCESS);
+	game()->player.has_moved += move_player();
+	/*if (game()->player.has_moved == 0)
+		return (EXIT_SUCCESS);*/
 	clear_screen_buffer();
 	render_ceiling();
 	render_floor();
@@ -67,7 +68,6 @@ int	render_frame(void)
 		render_minimap();
 	mlx_put_image_to_window(game()->mlx, game()->mlx_win,
 		game()->screen_buff.img, 0, 0);
-	game()->player.has_moved = false;
 	game()->map->render_map = false;
 	return (EXIT_SUCCESS);
 }

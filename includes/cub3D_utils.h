@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/03 13:32:37 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:36:50 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define EMPTY_LINE		"Map contains empty line"
 # define INVALID_CHAR	"Map contains invalid char"
 # define MAP_FIRST		"Map at the beginning of file"
+# define MOVESPEED 0.125
+# define ROTSPEED 0.015
 
 # ifdef LINUX
 #  define KEY_UP 65362
@@ -79,12 +81,14 @@
 typedef enum e_keys
 {
 	ON_KEYPRESS = 2,
+	ON_KEYRELEASE = 3,
 	ON_DESTROY = 17,
 }				t_keys;
 
 typedef enum e_mask
 {
 	KEYPRESS_MASK = (1L << 0),
+	KEYRELEASE_MASK = (1L << 1),
 	DESTROY_MASK = (1L << 17),
 }				t_mask;
 
@@ -152,7 +156,14 @@ typedef struct s_player
 	t_pos		prev_pos;
 	t_pos		dir;
 	t_pos		camera;
-	bool		has_moved;
+	int			has_moved;
+	bool		is_moving_up;
+	bool		is_moving_down;
+	bool		is_moving_left;
+	bool		is_moving_right;
+	int			move_x;
+	int			move_y;
+	int			rotate;
 }				t_player;
 
 typedef struct s_ray
