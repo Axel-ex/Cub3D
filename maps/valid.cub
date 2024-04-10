@@ -1,7 +1,7 @@
-SO ./assets/textures/south_texture.png
-NO ./assets/textures/north_texture.png
-WE ./assets/textures/west_texture.png
-EA ./assets/textures/east_texture.png
+SO ./assets/textures/wood.xpm
+NO ./assets/textures/red_brick.xpm
+WE ./assets/textures/wood.xpm
+EA ./assets/textures/wood.xpm
 
 F 10,10,10
 C 100,100,100

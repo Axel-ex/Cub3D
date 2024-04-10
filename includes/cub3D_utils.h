@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/10 08:59:24 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/10 14:28:03 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 # define MAP_POS		50
 # define TILE_SIZE		10
 # define PLAYER_SIZE	5
-# define S_ROTATION		5
+# define TEXT_SIZE		64
 # define RENDER_DIST	10
+# define MOVESPEED		0.125
+# define ROTSPEED		0.015
 # define PI				3.14159265359
 
 # define RED	0x00FF0000
@@ -45,8 +47,6 @@
 # define EMPTY_LINE		"Map contains empty line"
 # define INVALID_CHAR	"Map contains invalid char"
 # define MAP_FIRST		"Map at the beginning of file"
-# define MOVESPEED 0.125
-# define ROTSPEED 0.015
 
 # ifdef LINUX
 #  define KEY_UP 65362
@@ -96,8 +96,15 @@ typedef enum e_rotation
 {
 	RIGHT,
 	LEFT,
-
 }	t_rotation;
+
+typedef enum e_text_index
+{
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST,
+}	t_text_index;
 
 typedef struct s_point
 {
@@ -137,6 +144,7 @@ typedef struct s_map_info
 	char	*ea;
 	char	*c;
 	char	*f;
+	int		size;
 }			t_map_info;
 
 typedef struct s_map
@@ -148,14 +156,6 @@ typedef struct s_map
 	bool	render_map;
 }			t_map;
 
-/**
-* @struct t_player
-*
-* @map_pos	int position ont 2D map.
-* @dir		direction vector
-* @camera	camera plane
-*
-*/
 typedef struct s_player
 {
 	t_pos		pos;
