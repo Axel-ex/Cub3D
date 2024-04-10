@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:44:02 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/03 12:35:56 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/10 16:53:48 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static void	get_line_height(t_ray *ray)
 		ray->start = 0;
 	ray->end = ray->line_height / 2 + SCREEN_W / 2;
 	if (ray->end >= SCREEN_W)
-		ray->end = SCREEN_W -1;
+		ray->end = SCREEN_W - 1;
 }
 
 void	raycaster(void)
@@ -117,6 +117,6 @@ void	raycaster(void)
 		set_side_dist(&ray);
 		perform_dda(&ray);
 		get_line_height(&ray);
-		render_v_line(&ray, x);
+		update_texture_pixel(&ray, x);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 08:44:32 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/10 15:44:40 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/10 17:12:29 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	load_color(char *str, char type)
 
 static void	init_text_img(t_img *img, char *path)
 {
-	img->img = mlx_xpm_file_to_image(game()->mlx, path, &(game()->map_info->size), &(game()->map_info->size));
+	img->img = mlx_xpm_file_to_image(game()->mlx, path, &(game()->text_info->size), &(game()->text_info->size));
 	if (!img->img)
 		exit_error(ALLOC_ERROR, "xpm_file_to_img");
 	img->addr = mlx_get_data_addr(img, &img->bbp, &img->line_length, &img->endian);
@@ -51,15 +51,15 @@ static int	*load_texture(char *path)
 	int		y;
 	
 	init_text_img(&img, path);
-	buff = ft_calloc(game()->map_info->size * game()->map_info->size, sizeof(int));
+	buff = ft_calloc(game()->text_info->size * game()->text_info->size, sizeof(int));
 	if (!buff)
 		exit_error(ALLOC_ERROR, "load textures");
 	y = -1;
-	while (++y < game()->map_info->size)
+	while (++y < game()->text_info->size)
 	{
 		x = -1;
-		while (++x < game()->map_info->size)
-			buff[y * game()->map_info->size + x] = img.addr[y * game()->map_info->size + x];
+		while (++x < game()->text_info->size)
+			buff[y * game()->text_info->size + x] = img.addr[y * game()->text_info->size + x];
 	}
 	mlx_destroy_image(game()->mlx, img.img);
 	return (buff);

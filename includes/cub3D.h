@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/10 13:43:21 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/10 16:42:41 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,6 @@ void	render_v_line(t_ray *ray, int x);
 int	shader_ceiling(int dist, int color);
 int	shader_floor(int dist, int color);
 
-
-
-
-
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ BASIC_RENDERING.C \_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief Combines the RGB color values into a single integer representation.
@@ -145,6 +141,10 @@ void	render_line(t_pos start, t_pos dir, int length, int color);
  * @brief renders minimap on the screen buffer.
  */
 void	render_minimap(void);
+
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ TEXTURES.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+void	update_texture_pixel(t_ray *ray, int curr_x);
+
 
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ RAYCASTING.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 void	raycaster(void);
