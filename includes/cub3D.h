@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/09 16:12:58 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/10 09:28:38 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int		quit_window(void);
 /**
  * @brief frees the map.
  */
-void	free_map(void);
+void	free_map_info(void);
+void	free_textures(void);
 
 // =============================================================================
 //                                 RENDER
@@ -261,5 +262,9 @@ void		parse_file(char	*file);
  * @param map 
  */
 void		check_map(char	**map);
+
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ LOAD_TEXTURES.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+void	load_textures(void);
+
 
 #endif

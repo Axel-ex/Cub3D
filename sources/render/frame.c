@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:49:34 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/09 16:37:29 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/10 09:16:22 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	render_ceiling(void)
 	{
 		j = -1;
 		while (++j < SCREEN_W)
-			render_pixel((t_pos){j, i}, shader_ceiling(i, game()->map->ceiling_col));
+			render_pixel((t_pos){j, i}, shader_ceiling(i, game()->map->c));
 	}
 }
 
@@ -51,7 +51,7 @@ static void	render_floor(void)
 	{
 		j = -1;
 		while (++j < SCREEN_W)
-			render_pixel((t_pos){j, i}, shader_floor(i, game()->map->floor_col));
+			render_pixel((t_pos){j, i}, shader_floor(i, game()->map->f));
 	}
 }
 

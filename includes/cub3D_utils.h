@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/09 16:36:50 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/10 08:59:24 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ typedef struct s_img
 	int			endian;
 }				t_img;
 
-typedef struct s_map
+typedef struct s_map_info
 {
 	char	**arr;
 	char	*no;
@@ -137,8 +137,14 @@ typedef struct s_map
 	char	*ea;
 	char	*c;
 	char	*f;
-	int		ceiling_col;
-	int		floor_col;
+}			t_map_info;
+
+typedef struct s_map
+{
+	char	**arr;
+	int		**textures;
+	int		c;
+	int		f;
 	bool	render_map;
 }			t_map;
 
@@ -184,6 +190,7 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*mlx_win;
+	t_map_info	*map_info;
 	t_map		*map;
 	t_img		screen_buff;
 	t_player	player;

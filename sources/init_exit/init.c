@@ -6,27 +6,38 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/09 15:06:23 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/10 09:26:30 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void	init_game(void)
+static void	init_map(void)
 {
 	game()->map = ft_calloc(sizeof(t_map), 1);
 	if (!game()->map)
 		exit_error(ALLOC_ERROR, "map");
-	game()->map->arr= ft_calloc(sizeof(char *), 1);
-	if (!game()->map->arr)
-		exit_error(ALLOC_ERROR, "map array");
-	game()->map->no = NULL;
-	game()->map->so = NULL;
-	game()->map->we = NULL;
-	game()->map->ea = NULL;
-	game()->map->c = NULL;
-	game()->map->f = NULL;
-	game()->map->render_map = false;
+	game()->map->arr = NULL;
+	game()->map->textures = ft_calloc(5, sizeof(int *));
+	if (!game()->map->textures)
+		exit_error(ALLOC_ERROR, "textures");
+}
+
+void	init_game(void)
+{
+	game()->map_info = ft_calloc(1, sizeof(t_map_info));
+	if (!game()->map_info)
+		exit_error(ALLOC_ERROR, "map_info");
+	game()->map_info->arr= ft_calloc(1, sizeof(char *));
+	if (!game()->map_info->arr)
+		exit_error(ALLOC_ERROR, "map_info array");
+	game()->map_info->no = NULL;
+	game()->map_info->so = NULL;
+	game()->map_info->we = NULL;
+	game()->map_info->ea = NULL;
+	game()->map_info->c = NULL;
+	game()->map_info->f = NULL;
+	init_map();
 }
 
 static void	init_mlx(void)
