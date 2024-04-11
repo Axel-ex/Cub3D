@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:55:18 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 10:39:19 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 14:32:22 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	get_texture_index(t_ray *ray)
 	}
 }
 
-void	update_texture_pixel(t_ray *ray, int curr_x)
+void	render_texture(t_ray *ray, int curr_x)
 {
 	t_text_info	*text;
 	int			y;
@@ -38,8 +38,8 @@ void	update_texture_pixel(t_ray *ray, int curr_x)
 
 	text = game()->text_info;
 	get_texture_index(ray);
-	text->x = (int)(ray->wall_dist * text->size);
-	text->step = text->size - text->x - 1;
+	text->x = (int)(ray->wall_x * text->size);
+	text->step = (double)text->size / ray->line_height;
 	text->pos = (ray->start - (double)SCREEN_W / 2 + (double)ray->line_height / 2) * text->step;
 	y = ray->start;
 	while (y < ray->end)
@@ -47,6 +47,11 @@ void	update_texture_pixel(t_ray *ray, int curr_x)
 		text->y = (int)text->pos & (text->size - 1);
 		text->pos += text->step;
 		color = game()->textures[text->index][text->size * text->y + text->x];
+		if (text->index == WEST || text->index == EAST)
+			color = (color >> 1) & 8355711;
+		color = shader(ray->wall_dist, color);
+		if (color < 0)
+			color = 0xFF000000;
 		render_pixel((t_pos){curr_x, y}, color);
 		y++;
 	}

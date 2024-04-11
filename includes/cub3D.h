@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 11:30:16 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 12:55:05 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	render_line(t_pos start, t_pos dir, int length, int color);
 void	render_minimap(void);
 
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ TEXTURES.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-void	update_texture_pixel(t_ray *ray, int curr_x);
+void	render_texture(t_ray *ray, int curr_x);
 
 
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ RAYCASTING.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_

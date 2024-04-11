@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 11:52:55 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 12:31:00 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ typedef struct s_ray
 	t_pos		side_dist;
 	int			side;
 	double		wall_dist;
+	double		wall_x;
 	int			line_height;
 	int			start;
 	int			end;

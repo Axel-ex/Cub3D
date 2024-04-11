@@ -6,11 +6,12 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:44:02 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 11:14:09 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 14:22:50 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+#include <math.h>
 
 // The ray start at player pos (minimap coordinate). delta_dist is the distance
 // ray as to travel to move of 1 unit in x or y axis. x_cam is a rotation factor
@@ -103,6 +104,11 @@ static void	get_line_height(t_ray *ray)
 	ray->end = ray->line_height / 2 + SCREEN_W / 2;
 	if (ray->end >= SCREEN_W)
 		ray->end = SCREEN_W - 1;
+	if (!ray->side)
+		ray->wall_x = game()->player.pos.y + ray->wall_dist * ray->dir.y;
+	else
+		ray->wall_x = game()->player.pos.x + ray->wall_dist * ray->dir.x;
+	ray->wall_x -= floor(ray->wall_x);
 }
 
 void	raycaster(void)
@@ -110,13 +116,13 @@ void	raycaster(void)
 	t_ray	ray;
 	int	x;
 
-	x = 0;
+	x = -1;
 	while (++x < SCREEN_W)
 	{
 		init_ray(&ray, x);
 		set_side_dist(&ray);
 		perform_dda(&ray);
 		get_line_height(&ray);
-		update_texture_pixel(&ray, x);
+		render_texture(&ray, x);
 	}
 }
