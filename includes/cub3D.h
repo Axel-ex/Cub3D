@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/10 16:42:41 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 11:30:16 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,6 +264,6 @@ void		parse_file(char	*file);
 void		check_map(char	**map);
 
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ LOAD_MAP.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-void	load_map(void);
+void	load_textures(void);
 
 #endif
