@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:44:02 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 14:22:50 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:48:02 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,14 @@ void	raycaster(void)
 	t_ray	ray;
 	int	x;
 
-	x = -1;
-	while (++x < SCREEN_W)
+	x = 0;
+	while (x < SCREEN_W)
 	{
 		init_ray(&ray, x);
 		set_side_dist(&ray);
 		perform_dda(&ray);
 		get_line_height(&ray);
 		render_texture(&ray, x);
+		x++;
 	}
 }
