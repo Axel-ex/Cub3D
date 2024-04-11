@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/10 16:31:34 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 11:11:14 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,13 @@ typedef struct s_map_info
 	char	*ea;
 	char	*c;
 	char	*f;
+	bool	render_map;
 }			t_map_info;
 
 typedef struct s_text_info
 {
+	int		c;
+	int		f;
 	int		size;
 	int		index;
 	double	step;
@@ -155,15 +158,6 @@ typedef struct s_text_info
 	int		x;
 	int		y;
 }	t_text_info;
-
-typedef struct s_map
-{
-	char	**arr;
-	int		**textures;
-	int		c;
-	int		f;
-	bool	render_map;
-}			t_map;
 
 typedef struct s_player
 {
@@ -200,8 +194,9 @@ typedef struct s_game
 	void		*mlx;
 	void		*mlx_win;
 	t_map_info	*map_info;
-	t_map		*map;
+	char		**map;
 	t_text_info *text_info;
+	int			**textures;
 	t_img		screen_buff;
 	t_player	player;
 }				t_game;

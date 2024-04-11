@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:44:02 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/10 16:53:48 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 11:14:09 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	perform_dda(t_ray *ray)
 			ray->pos.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (is_wall(game()->map->arr[(int)ray->pos.y][(int)ray->pos.x]))
+		if (is_wall(game()->map[(int)ray->pos.y][(int)ray->pos.x]))
 			hit = 1;
 	}
 }

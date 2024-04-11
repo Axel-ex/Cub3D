@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:34:25 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/10 15:08:55 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 10:39:40 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	free_textures(void)
 	
 	i = -1;
 	while (++i < 5)
-		free(game()->map->textures[i]);
-	free(game()->map->textures);
+		free(game()->textures[i]);
+	free(game()->textures);
 }

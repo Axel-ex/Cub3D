@@ -6,22 +6,11 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/10 16:05:16 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 11:09:59 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-
-static void	init_map(void)
-{
-	game()->map = ft_calloc(sizeof(t_map), 1);
-	if (!game()->map)
-		exit_error(ALLOC_ERROR, "map");
-	game()->map->arr = NULL;
-	game()->map->textures = ft_calloc(5, sizeof(int *));
-	if (!game()->map->textures)
-		exit_error(ALLOC_ERROR, "textures");
-}
 
 void	init_game(void)
 {
@@ -34,7 +23,10 @@ void	init_game(void)
 	game()->text_info = ft_calloc(1, sizeof(t_text_info));
 	if (!game()->text_info)
 		exit_error(ALLOC_ERROR, "texture info");
-	init_map();
+	game()->map = NULL;
+	game()->textures = ft_calloc(5, sizeof(int *));
+	if (!game()->textures)
+		exit_error(ALLOC_ERROR, "textures");
 }
 
 static void	init_mlx(void)

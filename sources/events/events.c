@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/10 09:35:12 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 11:11:43 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	key_press(int keycode)
 		game()->player.rotate += -1;
 	else if (keycode == KEY_ENTER)
 	{
-		game()->map->render_map = true;
+		game()->map_info->render_map = true;
 		game()->player.has_moved = 0;
 	}
 	else if (keycode == ESC)

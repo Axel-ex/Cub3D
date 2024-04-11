@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:55:18 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/10 16:52:18 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 10:39:19 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	update_texture_pixel(t_ray *ray, int curr_x)
 	{
 		text->y = (int)text->pos & (text->size - 1);
 		text->pos += text->step;
-		color = game()->map->textures[text->index][text->size * text->y + text->x];
+		color = game()->textures[text->index][text->size * text->y + text->x];
 		render_pixel((t_pos){curr_x, y}, color);
 		y++;
 	}

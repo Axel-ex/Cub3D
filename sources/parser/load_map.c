@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 08:44:32 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/10 17:12:29 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 11:10:17 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	load_color(char *str, char type)
 	char	**colors;
 
 	if (type == 'c')
-		color = &game()->map->c;
+		color = &game()->text_info->c;
 	else
-		color = &game()->map->f;
+		color = &game()->text_info->f;
 	colors = ft_split(str, ',');
 	red = ft_atoi(colors[0]);
 	green = ft_atoi(colors[1]);
@@ -51,7 +51,7 @@ static int	*load_texture(char *path)
 	int		y;
 	
 	init_text_img(&img, path);
-	buff = ft_calloc(game()->text_info->size * game()->text_info->size, sizeof(int));
+	buff = ft_calloc(1, game()->text_info->size * game()->text_info->size * sizeof(int));
 	if (!buff)
 		exit_error(ALLOC_ERROR, "load textures");
 	y = -1;
@@ -67,11 +67,11 @@ static int	*load_texture(char *path)
 
 void	load_map(void)
 {
-	game()->map->arr = game()->map_info->arr;
+	game()->map = game()->map_info->arr;
 	load_color(game()->map_info->f, 'f');
 	load_color(game()->map_info->c, 'c');
-	game()->map->textures[NORTH] = load_texture(game()->map_info->no);
-	game()->map->textures[SOUTH] = load_texture(game()->map_info->so);
-	game()->map->textures[WEST] = load_texture(game()->map_info->we);
-	game()->map->textures[EAST] = load_texture(game()->map_info->ea);
+	game()->textures[NORTH] = load_texture(game()->map_info->no);
+	game()->textures[SOUTH] = load_texture(game()->map_info->so);
+	game()->textures[WEST] = load_texture(game()->map_info->we);
+	game()->textures[EAST] = load_texture(game()->map_info->ea);
 }
