@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 11:42:24 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 11:53:19 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	init_mlx(void)
 	if (!game()->mlx_win)
 		exit_error("mlx_win init", NULL);
 	game()->screen_buff.img = mlx_new_image(game()->mlx, SCREEN_H, SCREEN_W);
-	game()->screen_buff.addr = mlx_get_data_addr(game()->screen_buff.img,
+	game()->screen_buff.addr = (int *)mlx_get_data_addr(game()->screen_buff.img,
 			&game()->screen_buff.bbp, &game()->screen_buff.line_length,
 			&game()->screen_buff.endian);
 }

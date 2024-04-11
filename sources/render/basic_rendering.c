@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:43:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/02 22:55:18 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 11:55:41 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	render_pixel(t_pos pos, int color)
 	t_img	img;
 
 	img = game()->screen_buff;
-	dst = img.addr + ((int)pos.y * img.line_length + (int)pos.x * (img.bbp / 8));
+	dst = (char *)img.addr + ((int)pos.y * img.line_length + (int)pos.x * (img.bbp / 8));
 	*(unsigned int *)dst = color;
 }
 

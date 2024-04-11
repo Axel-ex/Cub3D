@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 11:11:14 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 11:52:55 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ typedef struct	s_circle
 typedef struct s_img
 {
 	void		*img;
-	char		*addr;
+	int			*addr;
 	int			bbp;
 	int			line_length;
 	int			endian;

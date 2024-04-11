@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 08:44:32 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 11:42:02 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/11 11:53:36 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	init_text_img(t_img *img, char *path)
 	img->img = mlx_xpm_file_to_image(game()->mlx, path, &(game()->text_info->size), &(game()->text_info->size));
 	if (!img->img)
 		exit_error(ALLOC_ERROR, "xpm_file_to_img");
-	img->addr = mlx_get_data_addr(img, &img->bbp, &img->line_length, &img->endian);
+	img->addr = (int *)mlx_get_data_addr(img->img, &img->bbp, &img->line_length, &img->endian);
 }
 
 /*
