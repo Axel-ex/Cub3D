@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/09 16:36:50 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:31:00 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 # define MAP_POS		50
 # define TILE_SIZE		10
 # define PLAYER_SIZE	5
-# define S_ROTATION		5
+# define TEXT_SIZE		64
 # define RENDER_DIST	10
+# define MOVESPEED		0.125
+# define ROTSPEED		0.015
 # define PI				3.14159265359
 
 # define RED	0x00FF0000
@@ -45,8 +47,6 @@
 # define EMPTY_LINE		"Map contains empty line"
 # define INVALID_CHAR	"Map contains invalid char"
 # define MAP_FIRST		"Map at the beginning of file"
-# define MOVESPEED 0.125
-# define ROTSPEED 0.015
 
 # ifdef LINUX
 #  define KEY_UP 65362
@@ -96,8 +96,15 @@ typedef enum e_rotation
 {
 	RIGHT,
 	LEFT,
-
 }	t_rotation;
+
+typedef enum e_text_index
+{
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST,
+}	t_text_index;
 
 typedef struct s_point
 {
@@ -122,13 +129,13 @@ typedef struct	s_circle
 typedef struct s_img
 {
 	void		*img;
-	char		*addr;
+	int			*addr;
 	int			bbp;
 	int			line_length;
 	int			endian;
 }				t_img;
 
-typedef struct s_map
+typedef struct s_map_info
 {
 	char	**arr;
 	char	*no;
@@ -137,19 +144,21 @@ typedef struct s_map
 	char	*ea;
 	char	*c;
 	char	*f;
-	int		ceiling_col;
-	int		floor_col;
 	bool	render_map;
-}			t_map;
+}			t_map_info;
 
-/**
-* @struct t_player
-*
-* @map_pos	int position ont 2D map.
-* @dir		direction vector
-* @camera	camera plane
-*
-*/
+typedef struct s_text_info
+{
+	int		c;
+	int		f;
+	int		size;
+	int		index;
+	double	step;
+	double	pos;
+	int		x;
+	int		y;
+}	t_text_info;
+
 typedef struct s_player
 {
 	t_pos		pos;
@@ -175,6 +184,7 @@ typedef struct s_ray
 	t_pos		side_dist;
 	int			side;
 	double		wall_dist;
+	double		wall_x;
 	int			line_height;
 	int			start;
 	int			end;
@@ -184,7 +194,10 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*mlx_win;
-	t_map		*map;
+	t_map_info	*map_info;
+	char		**map;
+	t_text_info *text_info;
+	int			**textures;
 	t_img		screen_buff;
 	t_player	player;
 }				t_game;

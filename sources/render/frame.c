@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:49:34 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/09 16:37:29 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:11:22 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	render_ceiling(void)
 	{
 		j = -1;
 		while (++j < SCREEN_W)
-			render_pixel((t_pos){j, i}, shader_ceiling(i, game()->map->ceiling_col));
+			render_pixel((t_pos){j, i}, shader_ceiling(i, game()->text_info->c));
 	}
 }
 
@@ -51,7 +51,7 @@ static void	render_floor(void)
 	{
 		j = -1;
 		while (++j < SCREEN_W)
-			render_pixel((t_pos){j, i}, shader_floor(i, game()->map->floor_col));
+			render_pixel((t_pos){j, i}, shader_floor(i, game()->text_info->f));
 	}
 }
 
@@ -64,10 +64,10 @@ int	render_frame(void)
 	render_ceiling();
 	render_floor();
 	raycaster();
-	if (game()->map->render_map)
+	if (game()->map_info->render_map)
 		render_minimap();
 	mlx_put_image_to_window(game()->mlx, game()->mlx_win,
 		game()->screen_buff.img, 0, 0);
-	game()->map->render_map = false;
+	game()->map_info->render_map = false;
 	return (EXIT_SUCCESS);
 }

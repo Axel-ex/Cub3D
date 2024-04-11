@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:17:46 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/03 10:30:25 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:13:49 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,18 @@ static void	render_fov(void)
 
 void	render_minimap(void)
 {
-	char	**map;
 	int		i;
 	int		j;
 
 	i = -1;
-	map = game()->map->arr;
-	while (map[++i])
+	while (game()->map[++i])
 	{
 		j = -1;
-		while (map[i][++j])
+		while (game()->map[i][++j])
 		{
-			if (is_wall(map[i][j]))
+			if (is_wall(game()->map[i][j]))
 				render_square((t_square){to_screen_pos((t_pos){j,i}), TILE_SIZE, BLUE});
-			else if (is_floor(map[i][j]))
+			else if (is_floor(game()->map[i][j]))
 				render_square((t_square){to_screen_pos((t_pos){j,i}), TILE_SIZE, CYAN});
 		}
 	}

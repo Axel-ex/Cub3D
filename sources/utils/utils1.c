@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:19:39 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/01 15:33:28 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/10 09:18:27 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ char *cleaner(char *str)
 
 void order_check(char *str)
 {
-    if (game()->map->arr[0] != NULL) {
-        if ((game()->map->no == NULL || game()->map->no[0] == '\0') &&
-            (game()->map->so == NULL || game()->map->so[0] == '\0') &&
-            (game()->map->we == NULL || game()->map->we[0] == '\0') &&
-            (game()->map->ea == NULL || game()->map->ea[0] == '\0') &&
-            (game()->map->f == NULL || game()->map->f[0] == '\0') &&
-            (game()->map->c == NULL || game()->map->c[0] == '\0')) {
+    if (game()->map_info->arr[0] != NULL) {
+        if ((game()->map_info->no == NULL || game()->map_info->no[0] == '\0') &&
+            (game()->map_info->so == NULL || game()->map_info->so[0] == '\0') &&
+            (game()->map_info->we == NULL || game()->map_info->we[0] == '\0') &&
+            (game()->map_info->ea == NULL || game()->map_info->ea[0] == '\0') &&
+            (game()->map_info->f == NULL || game()->map_info->f[0] == '\0') &&
+            (game()->map_info->c == NULL || game()->map_info->c[0] == '\0')) {
             exit_error(MAP_FIRST, str);
         }
     }

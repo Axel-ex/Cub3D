@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/03 14:49:31 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:02:35 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,15 @@ static void	check_color(char *str)
 //Check if the textures end with .xpm or .png and if the RGB values of C and F are valid
 static void	check_elements()
 {
-	if (!game()->map->no || !game()->map->so || !game()->map->we 
-		|| !game()->map->ea || !game()->map->c || !game()->map->f)
+	if (!game()->map_info->no || !game()->map_info->so || !game()->map_info->we 
+		|| !game()->map_info->ea || !game()->map_info->c || !game()->map_info->f)
 		exit_error(MISS_TEXTURE, NULL);
-	check_file(game()->map->no, ".xpm", ".png");
-	check_file(game()->map->so, ".xpm", ".png");
-	check_file(game()->map->we, ".xpm", ".png");
-	check_file(game()->map->ea, ".xpm", ".png");
-	check_color(game()->map->c);
-	check_color(game()->map->f);
+	check_file(game()->map_info->no, ".xpm", ".png");
+	check_file(game()->map_info->so, ".xpm", ".png");
+	check_file(game()->map_info->we, ".xpm", ".png");
+	check_file(game()->map_info->ea, ".xpm", ".png");
+	check_color(game()->map_info->c);
+	check_color(game()->map_info->f);
 }
 
 //Store the paths of the textures and the RGB values in our struct
@@ -83,40 +83,20 @@ static void	parse_elements(char *str)
 	char *chars[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
 	str = trim_elements(str, chars);
 	if (str[0] == 'N' && str[1] == 'O')
-		game()->map->no = cleaner(&str[2]);
+		game()->map_info->no = cleaner(&str[2]);
 	else if (str[0] == 'S' && str[1] == 'O')
-		game()->map->so = cleaner(&str[2]);
+		game()->map_info->so = cleaner(&str[2]);
 	else if (str[0] == 'W' && str[1] == 'E')
-		game()->map->we = cleaner(&str[2]);
+		game()->map_info->we = cleaner(&str[2]);
 	else if (str[0] == 'E' && str[1] == 'A')
-		game()->map->ea = cleaner(&str[2]);
+		game()->map_info->ea = cleaner(&str[2]);
 	else if (str[0] == 'C' && str[1] == ' ')
-		game()->map->c = cleaner(&str[1]);
+		game()->map_info->c = cleaner(&str[1]);
 	else if (str[0] == 'F' && str[1] == ' ')
-		game()->map->f = cleaner(&str[1]);
-	else if (is_map_row(str) || (str[0] == '\n' && game()->map->arr[0]))
-		matrix_append(&game()->map->arr, str);
+		game()->map_info->f = cleaner(&str[1]);
+	else if (is_map_row(str) || (str[0] == '\n' && game()->map_info->arr[0]))
+		matrix_append(&game()->map_info->arr, str);
 	order_check(str);
-}
-
-void	parse_color(char *str, char type)
-{
-	int		red;
-	int		green;
-	int		blue;
-	int		*color;
-	char	**colors;
-
-	if (type == 'c')
-		color = &game()->map->ceiling_col;
-	else
-		color = &game()->map->floor_col;
-	colors = ft_split(str, ',');
-	red = ft_atoi(colors[0]);
-	green = ft_atoi(colors[1]);
-	blue = ft_atoi(colors[2]);
-	*color = create_trgb(0, red, green, blue);
-	free_matrix(colors);
 }
 
 void	parse_file(char	*file)
@@ -136,7 +116,5 @@ void	parse_file(char	*file)
 		line = get_next_line(fd);
 	}
 	check_elements();
-	check_map(game()->map->arr);
-	parse_color(game()->map->c, 'c');
-	parse_color(game()->map->f, 'f');
+	check_map(game()->map_info->arr);
 }

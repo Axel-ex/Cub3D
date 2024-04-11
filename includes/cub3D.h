@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/09 16:12:58 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:55:05 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int		quit_window(void);
 /**
  * @brief frees the map.
  */
-void	free_map(void);
+void	free_map_info(void);
+void	free_textures(void);
 
 // =============================================================================
 //                                 RENDER
@@ -91,10 +92,6 @@ int		shader(double wall_dist, int color);
 void	render_v_line(t_ray *ray, int x);
 int	shader_ceiling(int dist, int color);
 int	shader_floor(int dist, int color);
-
-
-
-
 
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ BASIC_RENDERING.C \_/=\_/=\_/=\_/=\_/=\_
 /**
@@ -144,6 +141,10 @@ void	render_line(t_pos start, t_pos dir, int length, int color);
  * @brief renders minimap on the screen buffer.
  */
 void	render_minimap(void);
+
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ TEXTURES.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+void	render_texture(t_ray *ray, int curr_x);
+
 
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ RAYCASTING.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 void	raycaster(void);
@@ -261,5 +262,8 @@ void		parse_file(char	*file);
  * @param map 
  */
 void		check_map(char	**map);
+
+// _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ LOAD_MAP.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+void	load_textures(void);
 
 #endif

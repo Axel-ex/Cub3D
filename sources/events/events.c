@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/09 17:24:09 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:11:43 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ int	rotate_camera(t_rotation direction)
 
 int	key_press(int keycode)
 {	
-	t_player	p;
-
-	p = game()->player;
 	if (keycode == KEY_W)
 		game()->player.move_y += 1;
 	else if (keycode == KEY_S)
@@ -48,7 +45,7 @@ int	key_press(int keycode)
 		game()->player.rotate += -1;
 	else if (keycode == KEY_ENTER)
 	{
-		game()->map->render_map = true;
+		game()->map_info->render_map = true;
 		game()->player.has_moved = 0;
 	}
 	else if (keycode == ESC)
@@ -60,14 +57,14 @@ int	key_release(int keycode)
 {
 	if (keycode == ESC)
 		exit_game(EXIT_SUCCESS);
-	if (keycode == KEY_W && game()->player.move_y == 1)
+	if (keycode == KEY_W && game()->player.move_y >= 1)
 		game()->player.move_y = 0;
-	if (keycode == KEY_S && game()->player.move_y == -1)
+	if (keycode == KEY_S && game()->player.move_y <= -1)
 		game()->player.move_y = 0;
-	if (keycode == KEY_A && game()->player.move_x == -1)
-		game()->player.move_x += 1;
-	if (keycode == KEY_D && game()->player.move_x == 1)
-		game()->player.move_x -= 1;
+	if (keycode == KEY_A && game()->player.move_x <= -1)
+		game()->player.move_x = 0;
+	if (keycode == KEY_D && game()->player.move_x >= 1)
+		game()->player.move_x = 0;
 	if (keycode == KEY_LEFT && game()->player.rotate <= 1)
 		game()->player.rotate = 0;
 	if (keycode == KEY_RIGHT && game()->player.rotate >= -1)
