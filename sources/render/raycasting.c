@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:44:02 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 22:56:41 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/13 13:30:30 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	raycaster(void)
 		perform_dda(&ray);
 		get_line_height(&ray);
 		render_texture(&ray, x);
+		print_ray_info(&ray, x);
 		x++;
 	}
 }

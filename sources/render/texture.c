@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:55:18 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/13 11:43:32 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/13 13:27:04 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	render_texture(t_ray *ray, int curr_x)
 	text->step = (double)text->size / ray->line_height;
 	text->pos = (ray->start - (double)SCREEN_W / 2 + (double)ray->line_height / 2) * text->step;
 	y = ray->start;
-	print_text_info(text, ray, curr_x);
 	while (y < ray->end)
 	{
 		text->y = (int)text->pos & (text->size - 1);

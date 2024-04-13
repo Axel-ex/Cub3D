@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/12 12:33:32 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/13 13:28:29 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,8 @@ void	print_map(t_pos err_pos);
  */
 void	print_player_pos(void);
 void	print_text_info(t_text_info *info, t_ray *ray, int curr_x);
+void	print_ray_info(t_ray *ray, int x);
+
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ POSITION_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
