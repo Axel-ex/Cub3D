@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:55:18 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 14:32:22 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/13 11:43:32 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ void	render_texture(t_ray *ray, int curr_x)
 
 	text = game()->text_info;
 	get_texture_index(ray);
-	text->x = (int)(ray->wall_x * text->size);
+	text->x = (int)(ray->wall_x * (double)text->size);
 	text->step = (double)text->size / ray->line_height;
 	text->pos = (ray->start - (double)SCREEN_W / 2 + (double)ray->line_height / 2) * text->step;
 	y = ray->start;
+	print_text_info(text, ray, curr_x);
 	while (y < ray->end)
 	{
 		text->y = (int)text->pos & (text->size - 1);
@@ -50,8 +51,6 @@ void	render_texture(t_ray *ray, int curr_x)
 		if (text->index == WEST || text->index == EAST)
 			color = (color >> 1) & 8355711;
 		color = shader(ray->wall_dist, color);
-		if (color < 0)
-			color = 0xFF000000;
 		render_pixel((t_pos){curr_x, y}, color);
 		y++;
 	}

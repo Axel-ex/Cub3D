@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 08:44:32 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 12:13:03 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/12 10:54:48 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,8 @@ static int	*load_texture(char *path)
 	{
 		x = -1;
 		while (++x < game()->text_info->size)
-		{
 			buff[y * game()->text_info->size + x] = img.addr[y * game()->text_info->size + x];
-			printf("%d", buff[y * game()->text_info->size + x]);
-		}
-		printf("\n");
 	}
-	printf("\n\n\n");
 	mlx_destroy_image(game()->mlx, img.img);
 	return (buff);
 }

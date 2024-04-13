@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 11:11:43 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/12 12:48:28 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	rotate_camera(t_rotation direction)
 	p->dir.y = p->dir.x * sin(angle) + p->dir.y * cos(angle);
 	p->camera.x = p->camera.x * cos(angle) - p->camera.y * sin(angle);
 	p->camera.y = p->camera.x * sin(angle) + p->camera.y * cos(angle);
-	game()->player.has_moved = 0;
+	game()->player.has_moved = 1;
 	return (EXIT_SUCCESS);
 }
 
@@ -69,5 +69,6 @@ int	key_release(int keycode)
 		game()->player.rotate = 0;
 	if (keycode == KEY_RIGHT && game()->player.rotate >= -1)
 		game()->player.rotate = 0;
+	game()->player.has_moved = 0;
 	return (EXIT_SUCCESS);
 }

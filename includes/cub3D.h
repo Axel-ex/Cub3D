@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 12:55:05 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:33:32 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ void	print_map(t_pos err_pos);
  * @brief print player direction, position on the map and on the screen.
  */
 void	print_player_pos(void);
+void	print_text_info(t_text_info *info, t_ray *ray, int curr_x);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ POSITION_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**

@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:49:34 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 11:11:22 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/12 13:18:36 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static void	render_floor(void)
 int	render_frame(void)
 {
 	game()->player.has_moved += move_player();
-	/*if (game()->player.has_moved == 0)
-		return (EXIT_SUCCESS);*/
+	if (game()->player.has_moved == 0)
+		return (EXIT_SUCCESS);
 	clear_screen_buffer();
 	render_ceiling();
 	render_floor();
@@ -69,5 +69,7 @@ int	render_frame(void)
 	mlx_put_image_to_window(game()->mlx, game()->mlx_win,
 		game()->screen_buff.img, 0, 0);
 	game()->map_info->render_map = false;
+	game()->player.has_moved = 0;
+	printf("\n\n%sRENDERED%s\n\n", ANSIRED, RESET);
 	return (EXIT_SUCCESS);
 }

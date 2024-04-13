@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 22:53:48 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/03 11:10:46 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/12 11:04:55 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 int	shader(double wall_dist, int color)
 {
     double	attenuation_coef;
-
+	
+	if (wall_dist > RENDER_DIST)
+		return (BLACK);
 	attenuation_coef = (RENDER_DIST - wall_dist) / RENDER_DIST;
 	return (create_trgb(0, (int)(attenuation_coef * ((color >> 16) & 0xFF)),
 					 (int)(attenuation_coef * ((color >> 8) & 0xFF)),
