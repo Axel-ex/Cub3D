@@ -25,7 +25,7 @@ static void	render_fov(void)
 {
 	t_pos	centered_pos;
 	t_pos	cam_start_pos;
-	
+
 	centered_pos = center_position(game()->player.pos, TILE_SIZE);
 	cam_start_pos.x = centered_pos.x + game()->player.dir.x * TILE_SIZE;
 	cam_start_pos.y = centered_pos.y + game()->player.dir.y * TILE_SIZE;
@@ -36,8 +36,8 @@ static void	render_fov(void)
 
 void	render_minimap(void)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (game()->map[++i])
@@ -46,9 +46,11 @@ void	render_minimap(void)
 		while (game()->map[i][++j])
 		{
 			if (is_wall(game()->map[i][j]))
-				render_square((t_square){to_screen_pos((t_pos){j,i}), TILE_SIZE, BLUE});
+				render_square((t_square){to_screen_pos((t_pos){j, i}),
+					TILE_SIZE, BLUE});
 			else if (is_floor(game()->map[i][j]))
-				render_square((t_square){to_screen_pos((t_pos){j,i}), TILE_SIZE, CYAN});
+				render_square((t_square){to_screen_pos((t_pos){j, i}),
+					TILE_SIZE, CYAN});
 		}
 	}
 	render_player();

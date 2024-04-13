@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/10 15:02:35 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/13 20:19:53 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	check_file(char *str, char *ext, char *alt)
 	exit_error(INVALID_EXT, str);
 }
 
-//Split the string by the ',' and check if it is a valid value
+// Split the string by the ',' and check if it is a valid value
 static void	check_color(char *str)
 {
-	char **color;
-	char *trimmed;
-	int	i;
+	char	**color;
+	char	*trimmed;
+	int		i;
 
 	color = ft_split(str, ',');
 	if (!color || !color[0] || !color[1] || !color[2] || color[3])
@@ -49,8 +49,8 @@ static void	check_color(char *str)
 	while (color[++i])
 	{
 		trimmed = ft_strtrim(color[i], " \t\n\r\v\f");
-		if (!ft_is_digit(trimmed) || ft_atoi(trimmed) < 0 || ft_atoi(trimmed) > 255
-				|| ft_strlen(trimmed) > 3)
+		if (!ft_is_digit(trimmed) || ft_atoi(trimmed) < 0
+			|| ft_atoi(trimmed) > 255 || ft_strlen(trimmed) > 3)
 		{
 			free_matrix(color);
 			free(trimmed);
@@ -62,11 +62,11 @@ static void	check_color(char *str)
 	free_matrix(color);
 }
 
-//Check if the textures end with .xpm or .png and if the RGB values of C and F are valid
-static void	check_elements()
+static void	check_elements(void)
 {
-	if (!game()->map_info->no || !game()->map_info->so || !game()->map_info->we 
-		|| !game()->map_info->ea || !game()->map_info->c || !game()->map_info->f)
+	if (!game()->map_info->no || !game()->map_info->so || !game()->map_info->we
+		|| !game()->map_info->ea || !game()->map_info->c
+		|| !game()->map_info->f)
 		exit_error(MISS_TEXTURE, NULL);
 	check_file(game()->map_info->no, ".xpm", ".png");
 	check_file(game()->map_info->so, ".xpm", ".png");
@@ -76,11 +76,10 @@ static void	check_elements()
 	check_color(game()->map_info->f);
 }
 
-//Store the paths of the textures and the RGB values in our struct
 static void	parse_elements(char *str)
 {
-	
-	char *chars[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
+	char	*chars[7] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
+
 	str = trim_elements(str, chars);
 	if (str[0] == 'N' && str[1] == 'O')
 		game()->map_info->no = cleaner(&str[2]);
@@ -99,11 +98,11 @@ static void	parse_elements(char *str)
 	order_check(str);
 }
 
-void	parse_file(char	*file)
+void	parse_file(char *file)
 {
 	char	*line;
 	int		fd;
-	
+
 	check_file(file, ".cub", ".cub");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)

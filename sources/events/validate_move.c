@@ -12,19 +12,16 @@
 
 #include "../../includes/cub3D.h"
 
-
 int	validate_move(double new_x, double new_y)
 {
 	int	moved;
 
 	moved = 0;
-	
 	game()->player.pos.x = new_x;
 	game()->player.pos.y = new_y;
 	moved = 1;
 	return (moved);
 }
-
 
 /*static bool	validate_position(t_pos curr, t_pos delta_pos)
 {
@@ -44,7 +41,7 @@ int	validate_move(double new_x, double new_y)
 	int	moved;
 	t_pos	curr;
 	t_pos 	delta_pos;
-	
+
 	curr = game()->player.pos;
 	delta_pos.x = new_x;
 	delta_pos.y = new_y;

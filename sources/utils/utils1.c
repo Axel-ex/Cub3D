@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:19:39 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/10 09:18:27 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/13 20:17:15 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strstr(char *str, char *to_find)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	if (to_find[0] == '\0')
@@ -36,48 +36,45 @@ char	*ft_strstr(char *str, char *to_find)
 
 bool	ft_isspace(char c)
 {
-	if (c == '\t' || c == '\n' || c == '\v' 
-		|| c == '\f' || c == '\r' || c == ' ')
+	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
+		|| c == ' ')
 		return (true);
 	return (false);
 }
 
-
-//Removes all leading whitespaces
-char *trim_elements(char *str, char **chars)
+char	*trim_elements(char *str, char **chars)
 {
-    char 	*substring;
-    char 	*new;
-    int 	i;
+	char	*substring;
+	char	*new;
+	int		i;
 
 	i = 0;
-    while (chars[i])
-    {
-        substring = ft_strstr(str, chars[i]);
-        if (substring)
-        {
-            new = ft_substr(substring, 0, ft_strlen(substring));
-            return (new);
-        }
-        i++;
-    }
-    return (str);
+	while (chars[i])
+	{
+		substring = ft_strstr(str, chars[i]);
+		if (substring)
+		{
+			new = ft_substr(substring, 0, ft_strlen(substring));
+			return (new);
+		}
+		i++;
+	}
+	return (str);
 }
 
-//cleans the string that will be stored in the array
-char *cleaner(char *str)
+char	*cleaner(char *str)
 {
 	int		i;
 	int		j;
 	char	*new;
-	
+
 	if (!str && !*str)
 		return (NULL);
 	i = 0;
-	while(ft_isspace(str[i]))
+	while (ft_isspace(str[i]))
 		i++;
 	j = ft_strlen(str) - 1;
-	while(ft_isspace(str[j]))
+	while (ft_isspace(str[j]))
 		j--;
 	if (str[j] == '\n')
 		j--;
@@ -85,17 +82,23 @@ char *cleaner(char *str)
 	return (new);
 }
 
-void order_check(char *str)
+void	order_check(char *str)
 {
-    if (game()->map_info->arr[0] != NULL) {
-        if ((game()->map_info->no == NULL || game()->map_info->no[0] == '\0') &&
-            (game()->map_info->so == NULL || game()->map_info->so[0] == '\0') &&
-            (game()->map_info->we == NULL || game()->map_info->we[0] == '\0') &&
-            (game()->map_info->ea == NULL || game()->map_info->ea[0] == '\0') &&
-            (game()->map_info->f == NULL || game()->map_info->f[0] == '\0') &&
-            (game()->map_info->c == NULL || game()->map_info->c[0] == '\0')) {
-            exit_error(MAP_FIRST, str);
-        }
-    }
-	return ;
+	if (game()->map_info->arr[0] != NULL)
+	{
+		if ((game()->map_info->no == NULL || game()->map_info->no[0] == '\0')
+			&& (game()->map_info->so == NULL
+				|| game()->map_info->so[0] == '\0')
+			&& (game()->map_info->we == NULL
+				|| game()->map_info->we[0] == '\0')
+			&& (game()->map_info->ea == NULL
+				|| game()->map_info->ea[0] == '\0')
+			&& (game()->map_info->f == NULL
+				|| game()->map_info->f[0] == '\0')
+			&& (game()->map_info->c == NULL
+				|| game()->map_info->c[0] == '\0'))
+		{
+			exit_error(MAP_FIRST, str);
+		}
+	}
 }

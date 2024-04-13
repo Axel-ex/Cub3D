@@ -26,7 +26,7 @@ static void	set_player_pos(void)
 			if (is_player(game()->map[i][j]))
 			{
 				game()->player.pos = to_screen_pos((t_pos){j, i});
-				game()->player.prev_pos = game()->player.pos ;
+				game()->player.prev_pos = game()->player.pos;
 			}
 		}
 	}
@@ -61,8 +61,8 @@ static void	set_camera_plane(t_pos pos)
 void	init_player(void)
 {
 	t_pos	map_pos;
-	
-	game()->player.pos = (t_pos){0,0};
+
+	game()->player.pos = (t_pos){0, 0};
 	set_player_pos();
 	map_pos = to_map_pos(game()->player.pos);
 	set_player_dir(map_pos);

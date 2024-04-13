@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:28:58 by Axel              #+#    #+#             */
-/*   Updated: 2024/03/28 11:37:50 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/13 20:17:55 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ size_t	get_matrix_len(char **matrix)
 
 void	free_matrix(char **matrix)
 {
-	int	i = -1;
+	int	i;
 
+	i = -1;
 	while (matrix[++i])
 		free(matrix[i]);
 	free(matrix);
@@ -40,8 +41,7 @@ void	matrix_append(char ***matrix_ptr, char *to_append)
 	matrix = *matrix_ptr;
 	new_matrix = ft_calloc(sizeof(char *), get_matrix_len(matrix) + 2);
 	if (!new_matrix)
-		return ;
-		// exit_error("matrix append", MALLOC_ERROR);
+		exit_error("matrix append", ALLOC_ERROR);
 	i = 0;
 	while (matrix[i])
 	{

@@ -23,7 +23,8 @@ void	render_pixel(t_pos pos, int color)
 	t_img	img;
 
 	img = game()->screen_buff;
-	dst = (char *)img.addr + ((int)pos.y * img.line_length + (int)pos.x * (img.bbp / 8));
+	dst = (char *)img.addr + ((int)pos.y * img.line_length + (int)pos.x
+			* (img.bbp / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -33,8 +34,8 @@ void	render_square(t_square square)
 	int	j;
 
 	i = square.pos.y;
-	if ((square.pos.x + square.width > SCREEN_W || square.pos.x < 0) && (square.pos.y
-			+ square.width > SCREEN_H || square.pos.y < 0))
+	if ((square.pos.x + square.width > SCREEN_W || square.pos.x < 0)
+		&& (square.pos.y + square.width > SCREEN_H || square.pos.y < 0))
 		return ;
 	while (i < square.pos.y + square.width)
 	{
@@ -62,9 +63,9 @@ void	render_v_line(t_ray *ray, int x)
 {
 	int	i;
 	int	color;
-	
+
 	if (ray->wall_dist > RENDER_DIST)
-		return;
+		return ;
 	if (ray->side)
 		color = create_trgb(0, 200, 200, 0);
 	else

@@ -37,7 +37,8 @@ static void	render_ceiling(void)
 	{
 		j = -1;
 		while (++j < SCREEN_W)
-			render_pixel((t_pos){j, i}, shader_ceiling(i, game()->text_info->c));
+			render_pixel((t_pos){j, i}, shader_ceiling(i,
+					game()->text_info->c));
 	}
 }
 

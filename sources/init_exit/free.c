@@ -27,7 +27,7 @@ void	free_map_info(void)
 void	free_textures(void)
 {
 	int	i;
-	
+
 	i = -1;
 	while (++i < 5)
 		free(game()->textures[i]);

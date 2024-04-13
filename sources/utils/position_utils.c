@@ -21,13 +21,13 @@ t_pos	to_screen_pos(t_pos pos)
 	return (screen_pos);
 }
 
-t_pos to_map_pos(t_pos screen_pos)
+t_pos	to_map_pos(t_pos screen_pos)
 {
-    t_pos map_pos;
+	t_pos	map_pos;
 
-    map_pos.x = (screen_pos.x - MAP_POS) / TILE_SIZE;
-    map_pos.y = (screen_pos.y - MAP_POS) / TILE_SIZE;
-    return (map_pos);
+	map_pos.x = (screen_pos.x - MAP_POS) / TILE_SIZE;
+	map_pos.y = (screen_pos.y - MAP_POS) / TILE_SIZE;
+	return (map_pos);
 }
 
 t_pos	reverse_dir(t_pos dir)
@@ -48,10 +48,10 @@ t_pos	add_pos(t_pos p1, t_pos p2)
 	return (added);
 }
 
-t_pos center_position(t_pos pos, int size)
+t_pos	center_position(t_pos pos, int size)
 {
-    double offset;
+	double	offset;
 
 	offset = (double)size / 2.0;
-    return (add_pos(pos, (t_pos){offset, offset}));
+	return (add_pos(pos, (t_pos){offset, offset}));
 }

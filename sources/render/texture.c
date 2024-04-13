@@ -40,7 +40,8 @@ void	render_texture(t_ray *ray, int curr_x)
 	get_texture_index(ray);
 	text->x = (int)(ray->wall_x * (double)text->size);
 	text->step = (double)text->size / ray->line_height;
-	text->pos = (ray->start - (double)SCREEN_W / 2 + (double)ray->line_height / 2) * text->step;
+	text->pos = (ray->start - (double)SCREEN_W / 2 + (double)ray->line_height
+			/ 2) * text->step;
 	y = ray->start;
 	while (y < ray->end)
 	{

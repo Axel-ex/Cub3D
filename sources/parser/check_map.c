@@ -12,13 +12,13 @@
 
 #include "../../includes/cub3D.h"
 
-//checks if only ones (ignoring the last new line char)
+// checks if only ones (ignoring the last new line char)
 static bool	only_ones(char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = -1;
-	while(str[++i])
+	while (str[++i])
 	{
 		if (str[i] != '1')
 			return (false);
@@ -26,7 +26,8 @@ static bool	only_ones(char *str)
 	return (true);
 }
 
-static bool	closed_map_algo(char *curr_row, char *top_row, char *bott_row, int i)
+static bool	closed_map_algo(char *curr_row, char *top_row, char *bott_row,
+		int i)
 {
 	size_t	j;
 
@@ -54,7 +55,7 @@ static bool	is_closed_map(char **map, size_t i)
 	char	*curr_row;
 	char	*top_row;
 	char	*bott_row;
-	
+
 	top_row = NULL;
 	bott_row = NULL;
 	curr_row = map[i];
@@ -67,7 +68,7 @@ static bool	is_closed_map(char **map, size_t i)
 	return (closed_map_algo(curr_row, top_row, bott_row, i));
 }
 
-static bool has_invalid_char(char *str)
+static bool	has_invalid_char(char *str)
 {
 	int	i;
 
@@ -83,7 +84,7 @@ static bool has_invalid_char(char *str)
 	return (false);
 }
 
-void	check_map(char	**map)
+void	check_map(char **map)
 {
 	size_t	i;
 

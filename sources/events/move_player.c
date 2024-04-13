@@ -12,8 +12,7 @@
 
 #include "../../includes/cub3D.h"
 
-
-static int	move_player_forward()
+static int	move_player_forward(void)
 {
 	double	new_x;
 	double	new_y;
@@ -23,7 +22,7 @@ static int	move_player_forward()
 	return (validate_move(new_x, new_y));
 }
 
-static int	move_player_backward()
+static int	move_player_backward(void)
 {
 	double	new_x;
 	double	new_y;
@@ -33,7 +32,7 @@ static int	move_player_backward()
 	return (validate_move(new_x, new_y));
 }
 
-static int	move_player_left()
+static int	move_player_left(void)
 {
 	double	new_x;
 	double	new_y;
@@ -43,7 +42,7 @@ static int	move_player_left()
 	return (validate_move(new_x, new_y));
 }
 
-static int	move_player_right()
+static int	move_player_right(void)
 {
 	double	new_x;
 	double	new_y;
@@ -53,7 +52,7 @@ static int	move_player_right()
 	return (validate_move(new_x, new_y));
 }
 
-int	move_player()
+int	move_player(void)
 {
 	int	moved;
 

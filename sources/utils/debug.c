@@ -14,8 +14,8 @@
 
 void	print_map(t_pos err_pos)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (game()->map_info->arr[++i])
@@ -57,7 +57,7 @@ void	print_ray_info(t_ray *ray, int x)
 	printf("\n\n");
 }
 
-void	print_text_info(t_text_info	*info, t_ray *ray, int	curr_x)
+void	print_text_info(t_text_info *info, t_ray *ray, int curr_x)
 {
 	if (ray->wall_dist > RENDER_DIST)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/13 19:44:08 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/13 20:21:45 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_game(void)
 	game()->map_info = ft_calloc(1, sizeof(t_map_info));
 	if (!game()->map_info)
 		exit_error(ALLOC_ERROR, "map_info");
-	game()->map_info->arr= ft_calloc(1, sizeof(char *));
+	game()->map_info->arr = ft_calloc(1, sizeof(char *));
 	if (!game()->map_info->arr)
 		exit_error(ALLOC_ERROR, "map_info array");
 	game()->text_info = ft_calloc(1, sizeof(t_text_info));
@@ -48,7 +48,8 @@ void	start_game(void)
 	init_mlx();
 	load_textures();
 	mlx_hook(game()->mlx_win, ON_KEYPRESS, KEYPRESS_MASK, key_press, NULL);
-	mlx_hook(game()->mlx_win, ON_KEYRELEASE, KEYRELEASE_MASK, key_release, NULL);
+	mlx_hook(game()->mlx_win, ON_KEYRELEASE, KEYRELEASE_MASK, key_release,
+		NULL);
 	mlx_hook(game()->mlx_win, ON_DESTROY, DESTROY_MASK, quit_window, NULL);
 	mlx_loop_hook(game()->mlx, render_frame, NULL);
 	init_player();

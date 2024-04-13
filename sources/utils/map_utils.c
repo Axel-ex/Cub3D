@@ -30,13 +30,12 @@ bool	is_wall(char c)
 bool	ft_is_digit(char *str)
 {
 	int	i;
-	
+
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-		
-				return (false);
+			return (false);
 		i++;
 	}
 	return (true);

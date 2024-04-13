@@ -16,7 +16,7 @@ int	rotate_camera(t_rotation direction)
 {
 	double		angle;
 	t_player	*p;
-	
+
 	p = &game()->player;
 	angle = ROTSPEED;
 	if (direction == LEFT)
@@ -30,7 +30,7 @@ int	rotate_camera(t_rotation direction)
 }
 
 int	key_press(int keycode)
-{	
+{
 	if (keycode == KEY_W)
 		game()->player.move_y += 1;
 	else if (keycode == KEY_S)

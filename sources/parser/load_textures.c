@@ -34,10 +34,12 @@ static void	load_color(char *str, char type)
 
 static void	init_text_img(t_img *img, char *path)
 {
-	img->img = mlx_xpm_file_to_image(game()->mlx, path, &(game()->text_info->size), &(game()->text_info->size));
+	img->img = mlx_xpm_file_to_image(game()->mlx, path,
+			&(game()->text_info->size), &(game()->text_info->size));
 	if (!img->img)
 		exit_error(ALLOC_ERROR, "xpm_file_to_img");
-	img->addr = (int *)mlx_get_data_addr(img->img, &img->bbp, &img->line_length, &img->endian);
+	img->addr = (int *)mlx_get_data_addr(img->img, &img->bbp, &img->line_length,
+			&img->endian);
 }
 
 /*
@@ -49,9 +51,10 @@ static int	*load_texture(char *path)
 	int		*buff;
 	int		x;
 	int		y;
-	
+
 	init_text_img(&img, path);
-	buff = ft_calloc(1, game()->text_info->size * game()->text_info->size * sizeof(int));
+	buff = ft_calloc(1, game()->text_info->size * game()->text_info->size
+			* sizeof(int));
 	if (!buff)
 		exit_error(ALLOC_ERROR, "load textures");
 	y = -1;
@@ -59,7 +62,8 @@ static int	*load_texture(char *path)
 	{
 		x = -1;
 		while (++x < game()->text_info->size)
-			buff[y * game()->text_info->size + x] = img.addr[y * game()->text_info->size + x];
+			buff[y * game()->text_info->size + x] = img.addr[y
+				* game()->text_info->size + x];
 	}
 	mlx_destroy_image(game()->mlx, img.img);
 	return (buff);
