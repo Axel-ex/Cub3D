@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:49:34 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/12 13:18:36 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/13 14:56:13 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,5 @@ int	render_frame(void)
 		game()->screen_buff.img, 0, 0);
 	game()->map_info->render_map = false;
 	game()->player.has_moved = 0;
-	printf("\n\n%sRENDERED%s\n\n", ANSIRED, RESET);
 	return (EXIT_SUCCESS);
 }

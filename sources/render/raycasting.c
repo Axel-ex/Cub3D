@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:44:02 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/13 13:30:30 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/13 14:55:46 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ static void	perform_dda(t_ray *ray)
 // (ray->line_height = SCREEN_W)
 static void	get_line_height(t_ray *ray)
 {
+	t_pos	curr;
+
+	curr = to_map_pos(game()->player.pos);
 	if (!ray->side)
 		ray->wall_dist = ray->side_dist.x - ray->delta_dist.x;
 	else
@@ -105,9 +108,9 @@ static void	get_line_height(t_ray *ray)
 	if (ray->end >= SCREEN_W)
 		ray->end = SCREEN_W - 1;
 	if (!ray->side)
-		ray->wall_x = game()->player.pos.y + ray->wall_dist * ray->dir.y;
+		ray->wall_x = curr.y + ray->wall_dist * ray->dir.y;
 	else
-		ray->wall_x = game()->player.pos.x + ray->wall_dist * ray->dir.x;
+		ray->wall_x = curr.x + ray->wall_dist * ray->dir.x;
 	ray->wall_x -= floor(ray->wall_x);
 }
 
@@ -124,7 +127,6 @@ void	raycaster(void)
 		perform_dda(&ray);
 		get_line_height(&ray);
 		render_texture(&ray, x);
-		print_ray_info(&ray, x);
 		x++;
 	}
 }
