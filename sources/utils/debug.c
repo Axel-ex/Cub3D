@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:44:09 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/13 13:29:39 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/13 20:08:11 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ void	print_map(t_pos err_pos)
 	int		j;
 
 	i = -1;
-	while (game()->map[++i])
+	while (game()->map_info->arr[++i])
 	{
 		j = -1;
-		while (game()->map[i][++j])
+		while (game()->map_info->arr[i][++j])
 		{
 			if (i == err_pos.x && j == err_pos.y)
-				printf("%s%c%s", ANSIRED, game()->map[i][j], RESET);
+				printf("%s%c%s", ANSIRED, game()->map_info->arr[i][j], RESET);
 			else
-				printf("%c", game()->map[i][j]);
+				printf("%c", game()->map_info->arr[i][j]);
 		}
 		printf("\n");
 	}

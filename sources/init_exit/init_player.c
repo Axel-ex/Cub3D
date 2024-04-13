@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 08:29:00 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/12 12:49:52 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/13 19:40:37 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ static void	set_player_pos(void)
 			}
 		}
 	}
+	if (game()->player.pos.x == 0 && game()->player.pos.y == 0)
+		exit_error("No player found on the map", NULL);
 }
 
-//TODO: check if player is on the map
 static void	set_player_dir(t_pos pos)
 {
 	if (game()->map[(int)pos.y][(int)pos.x] == 'N')
@@ -60,7 +61,8 @@ static void	set_camera_plane(t_pos pos)
 void	init_player(void)
 {
 	t_pos	map_pos;
-
+	
+	game()->player.pos = (t_pos){0,0};
 	set_player_pos();
 	map_pos = to_map_pos(game()->player.pos);
 	set_player_dir(map_pos);

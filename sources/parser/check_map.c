@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 23:50:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/10 08:47:46 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/13 19:59:53 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,11 @@ static bool	only_ones(char *str)
 	return (true);
 }
 
-//checks if: 
-//- first and last line are only 1
-//- curr row is bigger then the top one and if we passed the edge of the top_row (should be 1)
-//- same but with the bottom row
-static bool	is_closed_map(char **map, size_t i)
+static bool	closed_map_algo(char *curr_row, char *top_row, char *bott_row, int i)
 {
-	char	*curr_row;
-	char	*top_row;
-	char	*bott_row;
 	size_t	j;
-	
-	// if (!map)
-	// return (true);
-	curr_row = map[i];
-	top_row = map[i - 1];
-	bott_row = map[i + 1];
-	if (only_ones(curr_row) && (i == 0 || i == get_matrix_len(map) - 1))
-		return (true);
+
 	j = -1;
-	//put this in a separated function
 	while (curr_row[++j])
 	{
 		if (top_row && ft_strlen(curr_row) > ft_strlen(top_row)
@@ -62,6 +47,24 @@ static bool	is_closed_map(char **map, size_t i)
 		}
 	}
 	return (true);
+}
+
+static bool	is_closed_map(char **map, size_t i)
+{
+	char	*curr_row;
+	char	*top_row;
+	char	*bott_row;
+	
+	top_row = NULL;
+	bott_row = NULL;
+	curr_row = map[i];
+	if (i > 0)
+		top_row = map[i - 1];
+	if (i < get_matrix_len(map))
+		bott_row = map[i + 1];
+	if (only_ones(curr_row) && (i == 0 || i == get_matrix_len(map) - 1))
+		return (true);
+	return (closed_map_algo(curr_row, top_row, bott_row, i));
 }
 
 static bool has_invalid_char(char *str)
