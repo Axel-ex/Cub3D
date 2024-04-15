@@ -6,18 +6,12 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 22:53:48 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/13 20:14:23 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/15 10:57:29 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-// The idea behind these shaders is to attenuate the color passed by argument
-// proprtionnally to the distance the object stands from the player. it is done
-// linear interpolation (ex: if RENDER_DIST = 10, if the wall is 10 tiles away,
-// the coef is equal to 0 so the resulting color is 0x00000000 (black)). each
-// part that compose the color is attenuated by shifting with appropriate value
-// and multiplying by the coef
 int	shader(double wall_dist, int color)
 {
 	double	attenuation_coef;

@@ -6,12 +6,11 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:30:10 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/15 13:45:48 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/15 16:31:26 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-#include <stdlib.h>
 
 t_game	*game(void)
 {

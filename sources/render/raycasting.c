@@ -6,12 +6,11 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:44:02 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/15 15:44:16 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/15 16:32:05 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-#include <math.h>
 
 static void	init_ray(t_ray *ray, int curr_x)
 {
