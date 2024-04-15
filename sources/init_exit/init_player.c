@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 08:29:00 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/13 19:40:37 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:45:14 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	init_player(void)
 {
 	t_pos	map_pos;
 
-	game()->player.pos = (t_pos){0, 0};
+	game()->player.pos = (t_pos){0.0, 0.0};
 	set_player_pos();
 	map_pos = to_map_pos(game()->player.pos);
 	set_player_dir(map_pos);

@@ -2,20 +2,20 @@
 
 
 
-SO ./assets/textures/south_texture.png
+SO ./assets/textures/purple_stone.xpm
 
-					NO      		./assets/textures/north_texture.png
-
-
+					NO      		./assets/textures/red_brick.xpm
 
 
 
 
 
-WE ./assets/textures/west_texture.png
 
 
-		EA ./assets/textures/east_texture.png
+WE ./assets/textures/blue_stone.xpm
+
+
+		EA ./assets/textures/grey_stone.xpm
 
 						F 							220,      100, 0
 C 225,30,			0

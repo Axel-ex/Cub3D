@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:19:39 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/13 20:17:15 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/15 15:57:42 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*trim_elements(char *str, char **chars)
 		if (substring)
 		{
 			new = ft_substr(substring, 0, ft_strlen(substring));
-			return (new);
+			return(new);
 		}
 		i++;
 	}
