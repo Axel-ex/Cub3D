@@ -6,13 +6,12 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 23:50:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/13 19:59:53 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:58:03 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-// checks if only ones (ignoring the last new line char)
 static bool	only_ones(char *str)
 {
 	size_t	i;
