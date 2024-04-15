@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_map.c                                         :+:      :+:    :+:   */
+/*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 08:44:32 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/12 10:54:48 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/15 10:56:34 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ static void	init_text_img(t_img *img, char *path)
 			&img->endian);
 }
 
-/*
- * texture is stored as an array of int (color value)
- */
 static int	*load_texture(char *path)
 {
 	t_img	img;

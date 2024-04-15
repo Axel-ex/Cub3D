@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:43:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/11 11:55:41 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/15 10:05:28 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,4 @@ void	render_line(t_pos start, t_pos dir, int length, int color)
 		start.x += dir.x;
 		start.y += dir.y;
 	}
-}
-
-void	render_v_line(t_ray *ray, int x)
-{
-	int	i;
-	int	color;
-
-	if (ray->wall_dist > RENDER_DIST)
-		return ;
-	if (ray->side)
-		color = create_trgb(0, 200, 200, 0);
-	else
-		color = create_trgb(0, 100, 150, 0);
-	color = shader(ray->wall_dist, color);
-	i = ray->start - 1;
-	while (++i < ray->end)
-		render_pixel((t_pos){x, i}, color);
 }
