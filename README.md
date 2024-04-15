@@ -6,7 +6,9 @@ Cub3D is an implementation of raycasting to render a 2D map in 3D. Raycasting is
 `git clone` this project `cd` into it. If your OS is macOS, simply `make`. if your running on linux, `make re OS=linux`.
 the program is executed as so:
 
+```shell
 ./Cub3D <map.cub>
+```
 
 you will find maps and textures in the assets directory. feel free to customize maps or add you own textures. The program will open a window and display the controls on your terminal. the player is moved with the W,A,S,D key and point the camera is rotated with the left and right arrows.
 
