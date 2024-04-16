@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martimpinto <martimpinto@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/15 16:31:46 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/16 13:58:45 by martimpinto      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	init_player(void);
  *
  * @param exit_status 
  */
-void		exit_game(int exit_status);
+void	exit_game(int exit_status);
 
 /**
  * @brief prints the error message and the variable passed as arguments.
@@ -122,7 +122,7 @@ int		shader(double wall_dist, int color);
  * @param color 
  * @return 
  */
-int	shader_ceiling(int dist, int color);
+int		shader_ceiling(int dist, int color);
 
 /**
  * @brief performs the same computations as shader function. this time, pixels 
@@ -132,7 +132,7 @@ int	shader_ceiling(int dist, int color);
  * @param color 
  * @return 
  */
-int	shader_floor(int dist, int color);
+int		shader_floor(int dist, int color);
 
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ BASIC_RENDERING.C \_/=\_/=\_/=\_/=\_/=\_
 /**
@@ -194,7 +194,6 @@ void	render_minimap(void);
  */
 void	render_texture(t_ray *ray, int curr_x);
 
-
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ RAYCASTING.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief performs the digital differential analyzer algorithm. The algo 
@@ -228,7 +227,7 @@ int		key_press(int keycode);
  * @param keycode 
  * @return 
  */
-int 	key_release(int keycode);
+int		key_release(int keycode);
 
 /**
  * @brief check if the new position is a valid one (if it is a walkable tile)
@@ -244,7 +243,7 @@ int		validate_move(double new_x, double new_y);
  *
  * @return 
  */
-int		move_player();
+int		move_player(void);
 
 /**
  * @brief rotate the camera plane an player direction by applying trigonometric
@@ -255,27 +254,34 @@ int		move_player();
  */
 int		rotate_camera(t_rotation direction);
 
+/**
+ * @brief listen for mouse movement and rotate the camera and plane accordingly 
+ *
+ * @param x
+ * @param y
+ * @return 
+ */
+int		mouse_handler(int x, int y);
 
 // =============================================================================
 //                                   UTILS
 // =============================================================================
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MAP_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-bool		is_player(char c);
-bool		is_floor(char c);
-bool		is_wall(char c);
-bool		ft_is_digit(char *str);
-bool		is_map_row(char *line);
-char		*ft_strstr(char *str, char *to_find);
-bool		ft_isspace(char c);
-char		*trim_elements(char *str, char **chars);
-char 		*cleaner(char *str);
-void		order_check(char *str);
-
+bool	is_player(char c);
+bool	is_floor(char c);
+bool	is_wall(char c);
+bool	ft_is_digit(char *str);
+bool	is_map_row(char *line);
+char	*ft_strstr(char *str, char *to_find);
+bool	ft_isspace(char c);
+char	*trim_elements(char *str, char **chars);
+char	*cleaner(char *str);
+void	order_check(char *str);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MATRIX_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-size_t		get_matrix_len(char **matrix);
-void		free_matrix(char **matrix);
-void		matrix_append(char ***matrix_ptr, char *to_append);
+size_t	get_matrix_len(char **matrix);
+void	free_matrix(char **matrix);
+void	matrix_append(char ***matrix_ptr, char *to_append);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ DEBUG.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
@@ -322,7 +328,6 @@ t_pos	reverse_dir(t_pos dir);
  */
 t_pos	add_pos(t_pos p1, t_pos p2);
 
-
 /**
  * @brief Centers a given position on the screen by offsetting it.This function
  * aims to adjust the position to ensure that the center of an object aligns with
@@ -333,8 +338,7 @@ t_pos	add_pos(t_pos p1, t_pos p2);
  * @return     The centered position.
  */
 
-t_pos center_position(t_pos pos, int size);
-
+t_pos	center_position(t_pos pos, int size);
 
 // =============================================================================
 //                                  PARSER
@@ -347,7 +351,7 @@ t_pos center_position(t_pos pos, int size);
  * @param ext 
  * @param alt 
  */
-void		check_file(char *str, char *ext, char *alt);
+void	check_file(char *str, char *ext, char *alt);
 
 /**
  * @brief parses each elements of the file and stores it appropriately in the 
@@ -357,8 +361,7 @@ void		check_file(char *str, char *ext, char *alt);
  *
  * @param file 
  */
-void		parse_file(char	*file);
-
+void	parse_file(char	*file);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ CHECK_MAP.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
@@ -367,7 +370,7 @@ void		parse_file(char	*file);
  *
  * @param map 
  */
-void		check_map(char	**map);
+void	check_map(char	**map);
 
 // _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ LOAD_TEXTURES.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**

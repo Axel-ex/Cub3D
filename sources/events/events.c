@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martimpinto <martimpinto@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/13 16:34:30 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:16:12 by martimpinto      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,36 @@ int	key_release(int keycode)
 	if (keycode == KEY_RIGHT && game()->player.rotate >= -1)
 		game()->player.rotate = 0;
 	game()->player.has_moved = 0;
+	return (EXIT_SUCCESS);
+}
+
+/*static void	wrap_mouse_position(int x, int y)
+{
+	if (x > SCREEN_W - DIST_EDGE_MOUSE_WRAP)
+	{
+		x = DIST_EDGE_MOUSE_WRAP;
+		mlx_mouse_move(game()->mlx, game()->mlx_win, x, y);
+	}
+	if (x < DIST_EDGE_MOUSE_WRAP)
+	{
+		x = SCREEN_W - DIST_EDGE_MOUSE_WRAP;
+		mlx_mouse_move(game()->mlx, game()->mlx_win, x, y);
+	}
+}*/
+
+int	mouse_handler(int x, int y)
+{
+	static int	old_x;
+
+	(void)y;
+	old_x = SCREEN_W / 2;
+	//wrap_mouse_position(x, y);
+	if (x == old_x)
+		return (0);
+	else if (x < old_x)
+		game()->player.has_moved += rotate_camera(LEFT);
+	else if (x > old_x)
+		game()->player.has_moved += rotate_camera(RIGHT);
+	old_x = x;
 	return (EXIT_SUCCESS);
 }
