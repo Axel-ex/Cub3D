@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_utils.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martimpinto <martimpinto@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/15 11:21:37 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/16 13:56:04 by martimpinto      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define MOVESPEED		0.125
 # define ROTSPEED		0.015
 # define PI				3.14159265359
+# define DIST_EDGE_MOUSE_WRAP 10
 
 # define RED	0x00FF0000
 # define GREEN	0x0000FF00
@@ -86,6 +87,8 @@ typedef enum e_keys
 	ON_KEYPRESS = 2,
 	ON_KEYRELEASE = 3,
 	ON_DESTROY = 17,
+	ON_MOTIONOTIFY = 16, //to use on Linux
+	ON_MOUSEMOVE = 6, //to use on MAC OS
 }				t_keys;
 
 typedef enum e_mask
@@ -93,6 +96,7 @@ typedef enum e_mask
 	KEYPRESS_MASK = (1L << 0),
 	KEYRELEASE_MASK = (1L << 1),
 	DESTROY_MASK = (1L << 17),
+	POINTERMOTION_MASK = (1L << 6),
 }				t_mask;
 
 typedef enum e_rotation
@@ -122,7 +126,7 @@ typedef struct s_square
 	int			color;
 }				t_square;
 
-typedef struct	s_circle
+typedef struct s_circle
 {
 	t_pos	pos;
 	int		radius;
@@ -199,7 +203,7 @@ typedef struct s_game
 	void		*mlx_win;
 	t_map_info	*map_info;
 	char		**map;
-	t_text_info *text_info;
+	t_text_info	*text_info;
 	int			**textures;
 	t_img		screen_buff;
 	t_player	player;
