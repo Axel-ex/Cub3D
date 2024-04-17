@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martimpinto <martimpinto@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/16 13:46:59 by martimpinto      ###   ########.fr       */
+/*   Updated: 2024/04/17 11:10:49 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	start_game(void)
 	mlx_hook(game()->mlx_win, ON_KEYRELEASE, KEYRELEASE_MASK, key_release,
 		NULL);
 	mlx_hook(game()->mlx_win, ON_DESTROY, DESTROY_MASK, quit_window, NULL);
-	mlx_hook(game()->mlx_win, ON_MOUSEMOVE, 0, mouse_handler, NULL); //MAC OS
-	//mlx_hook(game()->mlx_win, ON_MOTIONOTIFY, POINTERMOTION_MASK,mouse_handler, NULL); Linux OS
+	//mlx_hook(game()->mlx_win, ON_MOUSEMOVE, 0, mouse_handler, NULL); //MAC OS
+	mlx_hook(game()->mlx_win, ON_MOTIONOTIFY, POINTERMOTION_MASK, mouse_handler, NULL); //Linux OS
 	mlx_loop_hook(game()->mlx, render_frame, NULL);
 	init_player();
 	mlx_loop(game()->mlx);

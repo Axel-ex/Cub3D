@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martimpinto <martimpinto@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:19:39 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/16 14:12:02 by martimpinto      ###   ########.fr       */
+/*   Updated: 2024/04/17 16:02:24 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,13 @@ char	*trim_elements(char *str, char **chars)
 		if (substring)
 		{
 			new = ft_substr(substring, 0, ft_strlen(substring));
+			if (!new)
+				return (NULL);
 			return (new);
 		}
 		i++;
 	}
-	return (str);
+	return (ft_strdup(str));
 }
 
 char	*cleaner(char *str)

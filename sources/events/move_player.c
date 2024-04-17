@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:30:38 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/15 15:31:49 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:28:43 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	move_player_backward(void)
 {
 	double	new_x;
 	double	new_y;
-	
+
 	new_x = game()->player.pos.x - game()->player.dir.x * MOVESPEED;
 	new_y = game()->player.pos.y - game()->player.dir.y * MOVESPEED;
 	return (validate_move(new_x, new_y));

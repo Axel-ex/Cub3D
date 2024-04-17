@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martimpinto <martimpinto@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/16 14:16:12 by martimpinto      ###   ########.fr       */
+/*   Updated: 2024/04/17 16:04:44 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,27 +73,26 @@ int	key_release(int keycode)
 	return (EXIT_SUCCESS);
 }
 
-/*static void	wrap_mouse_position(int x, int y)
+static void	wrap_mouse_position(int x, int y)
 {
-	if (x > SCREEN_W - DIST_EDGE_MOUSE_WRAP)
+	if (x > SCREEN_W - MOUSE_WRAP)
 	{
-		x = DIST_EDGE_MOUSE_WRAP;
+		x = SCREEN_W - MOUSE_WRAP;
 		mlx_mouse_move(game()->mlx, game()->mlx_win, x, y);
 	}
-	if (x < DIST_EDGE_MOUSE_WRAP)
+	if (x < MOUSE_WRAP)
 	{
-		x = SCREEN_W - DIST_EDGE_MOUSE_WRAP;
+		x = MOUSE_WRAP;
 		mlx_mouse_move(game()->mlx, game()->mlx_win, x, y);
 	}
-}*/
+}
 
 int	mouse_handler(int x, int y)
 {
 	static int	old_x;
 
-	(void)y;
 	old_x = SCREEN_W / 2;
-	//wrap_mouse_position(x, y);
+	wrap_mouse_position(x, y);
 	if (x == old_x)
 		return (0);
 	else if (x < old_x)
