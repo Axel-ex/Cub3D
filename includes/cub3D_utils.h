@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_utils.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martimpinto <martimpinto@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/16 13:56:04 by martimpinto      ###   ########.fr       */
+/*   Updated: 2024/04/17 16:08:17 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define MOVESPEED		0.125
 # define ROTSPEED		0.015
 # define PI				3.14159265359
-# define DIST_EDGE_MOUSE_WRAP 10
+# define MOUSE_WRAP 	25
 
 # define RED	0x00FF0000
 # define GREEN	0x0000FF00
@@ -87,8 +87,8 @@ typedef enum e_keys
 	ON_KEYPRESS = 2,
 	ON_KEYRELEASE = 3,
 	ON_DESTROY = 17,
-	ON_MOTIONOTIFY = 16, //to use on Linux
-	ON_MOUSEMOVE = 6, //to use on MAC OS
+	ON_MOTIONOTIFY = 6, //to use on Linux
+	//ON_MOUSEMOVE = 6, //to use on MAC OS
 }				t_keys;
 
 typedef enum e_mask

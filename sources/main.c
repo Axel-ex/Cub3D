@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:30:10 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/15 16:31:26 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/17 15:39:08 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_commands(void)
 	printf("██║     ██║   ██║██╔══██╗ ╚═══██╗██║  ██║\n");
 	printf("╚██████╗╚██████╔╝██████╔╝██████╔╝██████╔╝\n");
 	printf(" ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ \n");
-	printf("forward: w | ↑\t\tbackward: s | ↓\n");
+	printf("forward: w\t\tbackward: s\n");
 	printf("left: a\t\t\tright: d\n");
 	printf("rotate left: ←\t\trotate right: →\n");
 	printf("print map: ↵\n");

@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/15 15:50:56 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:59:53 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,28 @@ static void	check_elements(void)
 
 static void	parse_elements(char *str)
 {
-	char	*chars[7] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
+	char	*trimmed;
+	char	*chars[7];
 
-	str = trim_elements(str, chars);
-	if (str[0] == 'N' && str[1] == 'O')
-		game()->map_info->no = cleaner(&str[2]);
-	else if (str[0] == 'S' && str[1] == 'O')
-		game()->map_info->so = cleaner(&str[2]);
-	else if (str[0] == 'W' && str[1] == 'E')
-		game()->map_info->we = cleaner(&str[2]);
-	else if (str[0] == 'E' && str[1] == 'A')
-		game()->map_info->ea = cleaner(&str[2]);
-	else if (str[0] == 'C' && str[1] == ' ')
-		game()->map_info->c = cleaner(&str[1]);
-	else if (str[0] == 'F' && str[1] == ' ')
-		game()->map_info->f = cleaner(&str[1]);
-	else if (is_map_row(str) || (str[0] == '\n' && game()->map_info->arr[0]))
-		matrix_append(&game()->map_info->arr, str);
-	order_check(str);
+	initialize_chars(chars);
+	trimmed = trim_elements(str, chars);
+	if (trimmed[0] == 'N' && trimmed[1] == 'O')
+		game()->map_info->no = cleaner(&trimmed[2]);
+	else if (trimmed[0] == 'S' && trimmed[1] == 'O')
+		game()->map_info->so = cleaner(&trimmed[2]);
+	else if (trimmed[0] == 'W' && trimmed[1] == 'E')
+		game()->map_info->we = cleaner(&trimmed[2]);
+	else if (trimmed[0] == 'E' && trimmed[1] == 'A')
+		game()->map_info->ea = cleaner(&trimmed[2]);
+	else if (trimmed[0] == 'C' && trimmed[1] == ' ')
+		game()->map_info->c = cleaner(&trimmed[1]);
+	else if (trimmed[0] == 'F' && trimmed[1] == ' ')
+		game()->map_info->f = cleaner(&trimmed[1]);
+	else if (is_map_row(trimmed) || (trimmed[0] == '\n'
+			&& game()->map_info->arr[0]))
+		matrix_append(&game()->map_info->arr, trimmed);
+	order_check(trimmed);
+	free(trimmed);
 }
 
 void	parse_file(char *file)
@@ -111,7 +115,8 @@ void	parse_file(char *file)
 	while (line)
 	{
 		parse_elements(line);
-		free(line);
+		if (line)
+			free(line);
 		line = get_next_line(fd);
 	}
 	check_elements();

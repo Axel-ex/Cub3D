@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martimpinto <martimpinto@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/16 13:58:45 by martimpinto      ###   ########.fr       */
+/*   Updated: 2024/04/17 15:36:19 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,6 +277,7 @@ bool	ft_isspace(char c);
 char	*trim_elements(char *str, char **chars);
 char	*cleaner(char *str);
 void	order_check(char *str);
+void	initialize_chars(char **chars);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MATRIX_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 size_t	get_matrix_len(char **matrix);
@@ -294,7 +295,7 @@ void	print_player_pos(void);
 void	print_text_info(t_text_info *info, t_ray *ray, int curr_x);
 void	print_ray_info(t_ray *ray, int x);
 
-//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ POSITION_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+//! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ POSITION_UTILS.C \_/=\_/=\_/=\_/=\_/=\_
 /**
  * @brief converts the pos on the map to real pos on screen.
  *

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_move.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martimpinto <martimpinto@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:48:47 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/16 14:11:13 by martimpinto      ###   ########.fr       */
+/*   Updated: 2024/04/17 15:10:05 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,3 @@ int	validate_move(double new_x, double new_y)
 	moved = 1;
 	return (moved);
 }
-
-/*int	validate_move(double new_x, double new_y)
-{
-	int	moved;
-
-	moved = 0;
-	game()->player.pos.x = new_x;
-	game()->player.pos.y = new_y;
-	moved = 1;
-	return(moved);
-}*/
