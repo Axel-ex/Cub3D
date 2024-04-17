@@ -10,7 +10,7 @@ the program is executed as so:
 ./Cub3D <map.cub>
 ```
 
-you will find maps and textures in the assets directory. feel free to customize maps or add you own textures. The program will open a window and display the controls on your terminal. the player is moved with the W,A,S,D key and point the camera is rotated with the left and right arrows.
+you will find maps and textures in the assets directory. feel free to customize maps or add you own textures. The program will open a window and display the controls on your terminal. the player is moved with the W,A,S,D key and point the camera is rotated with the left and right arrows as well as with mousse movements.
 
 <img src="demo.gif" width="100%"/>
 
@@ -18,19 +18,19 @@ you will find maps and textures in the assets directory. feel free to customize 
 The raycasting algorithm in Cub3D can be broken down into several key steps:
 
 1. Ray Initialization:
-   - The init_ray function initializes a ray with the appropriate starting position and direction based on the player's position and camera settings.
+   - The `init_ray()` function initializes a ray with the appropriate starting position and direction based on the player's position and camera settings.
 
 2. Side Distances Calculation:
-   - The set_side_dist function calculates the side distances to determine the next intersection with a grid boundary in the map.
+   - The `set_side_dist()` function calculates the side distances to determine the next intersection with a grid boundary in the map.
 
 3. Digital Differential Analyzer (DDA):
-   - The perform_dda function implements the DDA algorithm to trace the path of the ray through the map, checking for intersections with walls.
+   - The `perform_dda()` function implements the DDA algorithm to trace the path of the ray through the map, checking for intersections with walls.
 
 4. Line Height Calculation:
-   - The get_line_height function calculates the height of the wall that the ray hits, which determines how much of the wall will be displayed on the screen.
+   - The `get_line_height()` function calculates the height of the wall that the ray hits, which determines how much of the wall will be displayed on the screen.
 
 5. Rendering:
-   - The raycaster function iterates through each column of the screen, casting rays and rendering the corresponding wall segments using the calculated line heights.
+   - The `raycaster()` function iterates through each column of the screen, casting rays and rendering the corresponding wall segments using the calculated line heights.
 
-This process is repeated for each frame to continuously update the displayed scene as the player moves through the map.
+This process is repeated for each frame to continuously update the displayed scene as the player moves through the map. 
 
