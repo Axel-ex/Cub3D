@@ -4,3 +4,4 @@ Libft/obj/
 */*.a
 */*.o
 .DS_Strore/
+.vscode/
