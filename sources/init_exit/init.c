@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:09:24 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/17 11:10:49 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:56:31 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_game(void)
 	if (!game()->text_info)
 		exit_error(ALLOC_ERROR, "texture info");
 	game()->map = NULL;
+	game()->error = false;
 	game()->textures = ft_calloc(5, sizeof(int *));
 	if (!game()->textures)
 		exit_error(ALLOC_ERROR, "textures");

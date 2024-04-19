@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/17 15:59:53 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:00:22 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static void	check_elements(void)
 		|| !game()->map_info->ea || !game()->map_info->c
 		|| !game()->map_info->f)
 		exit_error(MISS_TEXTURE, NULL);
+	if (game()->error == true)
+		exit_error(DUP_TEXTURE, INVALID_MAP);
 	check_file(game()->map_info->no, ".xpm", ".png");
 	check_file(game()->map_info->so, ".xpm", ".png");
 	check_file(game()->map_info->we, ".xpm", ".png");
@@ -84,21 +86,20 @@ static void	parse_elements(char *str)
 	initialize_chars(chars);
 	trimmed = trim_elements(str, chars);
 	if (trimmed[0] == 'N' && trimmed[1] == 'O')
-		game()->map_info->no = cleaner(&trimmed[2]);
+		cleaner(&trimmed[2], &game()->map_info->no);
 	else if (trimmed[0] == 'S' && trimmed[1] == 'O')
-		game()->map_info->so = cleaner(&trimmed[2]);
+		cleaner(&trimmed[2], &game()->map_info->so);
 	else if (trimmed[0] == 'W' && trimmed[1] == 'E')
-		game()->map_info->we = cleaner(&trimmed[2]);
+		cleaner(&trimmed[2], &game()->map_info->we);
 	else if (trimmed[0] == 'E' && trimmed[1] == 'A')
-		game()->map_info->ea = cleaner(&trimmed[2]);
+		cleaner(&trimmed[2], &game()->map_info->ea);
 	else if (trimmed[0] == 'C' && trimmed[1] == ' ')
-		game()->map_info->c = cleaner(&trimmed[1]);
+		cleaner(&trimmed[2], &game()->map_info->c);
 	else if (trimmed[0] == 'F' && trimmed[1] == ' ')
-		game()->map_info->f = cleaner(&trimmed[1]);
+		cleaner(&trimmed[2], &game()->map_info->f);
 	else if (is_map_row(trimmed) || (trimmed[0] == '\n'
 			&& game()->map_info->arr[0]))
 		matrix_append(&game()->map_info->arr, trimmed);
-	order_check(trimmed);
 	free(trimmed);
 }
 
@@ -106,7 +107,9 @@ void	parse_file(char *file)
 {
 	char	*line;
 	int		fd;
+	int		i;
 
+	i = 0;
 	check_file(file, ".cub", ".cub");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -117,8 +120,12 @@ void	parse_file(char *file)
 		parse_elements(line);
 		if (line)
 			free(line);
+		if (!order_check())
+			i++;
 		line = get_next_line(fd);
 	}
+	if (i != 0)
+		exit_error(MAP_FIRST, INVALID_MAP);
 	check_elements();
 	check_map(game()->map_info->arr);
 }
