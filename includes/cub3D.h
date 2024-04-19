@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/17 15:36:19 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:09:09 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,9 +275,10 @@ bool	is_map_row(char *line);
 char	*ft_strstr(char *str, char *to_find);
 bool	ft_isspace(char c);
 char	*trim_elements(char *str, char **chars);
-char	*cleaner(char *str);
-void	order_check(char *str);
+void	cleaner(char *str, char **var);
+bool	order_check(void);
 void	initialize_chars(char **chars);
+bool	check_player(char **map);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MATRIX_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 size_t	get_matrix_len(char **matrix);

@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:19:39 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/17 16:02:24 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:08:41 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,18 @@ char	*trim_elements(char *str, char **chars)
 	return (ft_strdup(str));
 }
 
-char	*cleaner(char *str)
+void	cleaner(char *str, char **var)
 {
 	int		i;
 	int		j;
-	char	*new;
 
 	if (!str && !*str)
-		return (NULL);
+		return ;
+	if (*var)
+	{
+		game()->error = true;
+		return ;
+	}
 	i = 0;
 	while (ft_isspace(str[i]))
 		i++;
@@ -80,11 +84,10 @@ char	*cleaner(char *str)
 		j--;
 	if (str[j] == '\n')
 		j--;
-	new = ft_substr(str, i, j - i + 1);
-	return (new);
+	*var = ft_substr(str, i, j - i + 1);
 }
 
-void	order_check(char *str)
+bool	order_check(void)
 {
 	if (game()->map_info->arr[0] != NULL)
 	{
@@ -100,7 +103,10 @@ void	order_check(char *str)
 			&& (game()->map_info->c == NULL
 				|| game()->map_info->c[0] == '\0'))
 		{
-			exit_error(MAP_FIRST, str);
+			return (false);
 		}
+		else
+			return (true);
 	}
+	return (true);
 }

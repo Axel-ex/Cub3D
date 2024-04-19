@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/17 16:08:17 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:59:37 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@
 # define INVALID_COLOR	"Invalid color code"
 # define FILE_NT_FOUND	"File not found"
 # define MISS_TEXTURE	"Missing texture"
+# define DUP_TEXTURE	"Duplicate texture coordinates"
 
 # define INVALID_MAP	"Invalid map"
 # define INVALID_WALLS	"Not surrounded by walls"
 # define EMPTY_LINE		"Map contains empty line"
 # define INVALID_CHAR	"Map contains invalid char"
 # define MAP_FIRST		"Map at the beginning of file"
+# define INVALID_PLAYER	"Map contains incorrect number of players"
 
 # ifdef LINUX
 #  define KEY_UP 65362
@@ -207,6 +209,7 @@ typedef struct s_game
 	int			**textures;
 	t_img		screen_buff;
 	t_player	player;
+	bool		error;
 }				t_game;
 
 #endif

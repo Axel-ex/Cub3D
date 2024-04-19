@@ -1,0 +1,21 @@
+SO ./assets/textures/wood.xpm
+NO ./assets/textures/wood.xpm
+WE ./assets/textures/wood.xpm
+EA ./assets/textures/wood.xpm
+
+F 20,20
+C 200,200,200
+
+11111
+10001
+10S01
+10001
+10001
+10001
+11001
+10001
+10001
+10001
+10001
+10001
+11111

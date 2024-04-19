@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:46:56 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/17 12:31:39 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:37:38 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,13 @@ void	exit_game(int exit_status)
 	}
 	if (game()->map_info)
 		free_map_info();
-	if (game()->map)
-		free_textures();
+	/*if (game()->map)
+		free_textures();*/
 	if (game()->text_info)
 		free(game()->text_info);
+	if (game()->textures)
+		free_textures();
+		
 	exit(exit_status);
 }
 
