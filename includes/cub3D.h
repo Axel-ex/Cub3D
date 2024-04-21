@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/19 16:09:09 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/21 11:48:34 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,6 +279,7 @@ void	cleaner(char *str, char **var);
 bool	order_check(void);
 void	initialize_chars(char **chars);
 bool	check_player(char **map);
+void	replace_map_space(void);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MATRIX_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 size_t	get_matrix_len(char **matrix);
@@ -353,7 +354,7 @@ t_pos	center_position(t_pos pos, int size);
  * @param ext 
  * @param alt 
  */
-void	check_file(char *str, char *ext, char *alt);
+void	check_file(char *str, char *ext);
 
 /**
  * @brief parses each elements of the file and stores it appropriately in the 

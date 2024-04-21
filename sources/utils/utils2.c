@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:35:24 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/19 16:08:01 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/21 11:47:36 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,21 @@ bool	check_player(char **map)
 		return (true);
 }
 
+void	replace_map_space(void)
+{
+	int		i;
+	int		j;
+	char	**map;
+
+	map = game()->map_info->arr;
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while(map[i][++j])
+		{
+			if (ft_isspace(map[i][j]))
+				map[i][j] = WALL;
+		}
+	}
+}

@@ -6,13 +6,13 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/19 16:00:22 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/21 11:51:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void	check_file(char *str, char *ext, char *alt)
+void	check_file(char *str, char *ext)
 {
 	int		fd;
 	char	*substr;
@@ -26,13 +26,12 @@ void	check_file(char *str, char *ext, char *alt)
 	substr = ft_strrchr(str, '.');
 	if (!substr)
 		exit_error(INVALID_EXT, str);
-	if (!ft_strncmp(substr, ext, 4) || !ft_strncmp(substr, alt, 4))
+	if (!ft_strncmp(substr, ext, 4))
 		return ;
 	close(fd);
 	exit_error(INVALID_EXT, str);
 }
 
-// Split the string by the ',' and check if it is a valid value
 static void	check_color(char *str)
 {
 	char	**color;
@@ -70,10 +69,10 @@ static void	check_elements(void)
 		exit_error(MISS_TEXTURE, NULL);
 	if (game()->error == true)
 		exit_error(DUP_TEXTURE, INVALID_MAP);
-	check_file(game()->map_info->no, ".xpm", ".png");
-	check_file(game()->map_info->so, ".xpm", ".png");
-	check_file(game()->map_info->we, ".xpm", ".png");
-	check_file(game()->map_info->ea, ".xpm", ".png");
+	check_file(game()->map_info->no, ".xpm");
+	check_file(game()->map_info->so, ".xpm");
+	check_file(game()->map_info->we, ".xpm");
+	check_file(game()->map_info->ea, ".xpm");
 	check_color(game()->map_info->c);
 	check_color(game()->map_info->f);
 }
@@ -110,7 +109,7 @@ void	parse_file(char *file)
 	int		i;
 
 	i = 0;
-	check_file(file, ".cub", ".cub");
+	check_file(file, ".cub");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		exit_error(FILE_NT_FOUND, file);
@@ -127,5 +126,6 @@ void	parse_file(char *file)
 	if (i != 0)
 		exit_error(MAP_FIRST, INVALID_MAP);
 	check_elements();
+	replace_map_space();
 	check_map(game()->map_info->arr);
 }
