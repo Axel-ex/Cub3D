@@ -6,7 +6,7 @@
 /*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:55:18 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/21 11:29:17 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:34:35 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	get_texture_index(t_ray *ray)
 {
-	if (ray->side)
+	if (!ray->side)
 	{
 		if (ray->dir.x < 0)
 			game()->text_info->index = WEST;

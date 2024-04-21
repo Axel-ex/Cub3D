@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 08:29:00 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/21 12:06:49 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:35:29 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ static void	set_player_pos(void)
 static void	set_player_dir(t_pos pos)
 {
 	if (game()->map[(int)pos.y][(int)pos.x] == 'N')
-		game()->player.dir = (t_pos){0, -1};
+		game()->player.dir = (t_pos){0, -1.01};
 	if (game()->map[(int)pos.y][(int)pos.x] == 'S')
-		game()->player.dir = (t_pos){0, 1};
+		game()->player.dir = (t_pos){0, 1.01};
 	if (game()->map[(int)pos.y][(int)pos.x] == 'W')
-		game()->player.dir = (t_pos){-1, 0};
+		game()->player.dir = (t_pos){-1.01, 0};
 	if (game()->map[(int)pos.y][(int)pos.x] == 'E')
-		game()->player.dir = (t_pos){1, 0};
+		game()->player.dir = (t_pos){1.01, 0};
 }
 
 static void	set_camera_plane(t_pos pos)
