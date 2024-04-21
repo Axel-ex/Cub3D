@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 08:29:00 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/17 12:33:38 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/21 12:06:38 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static void	set_player_pos(void)
 			}
 		}
 	}
-	if (game()->player.pos.x == 0 && game()->player.pos.y == 0)
-		exit_error("No player found on the map", NULL);
 }
 
 static void	set_player_dir(t_pos pos)
