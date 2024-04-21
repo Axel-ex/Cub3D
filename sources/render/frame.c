@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:49:34 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/13 14:56:13 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/21 11:04:38 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ int	render_frame(void)
 	render_ceiling();
 	render_floor();
 	raycaster();
-	if (game()->map_info->render_map)
-		render_minimap();
 	mlx_put_image_to_window(game()->mlx, game()->mlx_win,
 		game()->screen_buff.img, 0, 0);
 	game()->map_info->render_map = false;
