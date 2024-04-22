@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:35:24 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/22 11:43:06 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/22 15:19:42 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,21 @@ void	replace_map_space(void)
 				map[i][j] = WALL;
 		}
 	}
+}
+
+int	get_row_size(int y)
+{
+	if (!game()->map[y])
+		return (0);
+	return (ft_strlen(game()->map[y]));
+}
+
+int	get_col_size(void)
+{
+	int	size;
+
+	size = 0;
+	while (game()->map[size])
+		size++;
+	return (size);
 }
