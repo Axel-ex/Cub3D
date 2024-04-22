@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:30:38 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/21 14:56:43 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:55:26 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,38 @@
 
 static int	move_player_forward(void)
 {
-	double	new_x;
-	double	new_y;
+	t_pos	new;
 
-	new_x = game()->player.pos.x + game()->player.dir.x * MOVESPEED;
-	new_y = game()->player.pos.y + game()->player.dir.y * MOVESPEED;
-	return (validate_move(new_x, new_y));
+	new.x = game()->player.pos.x + game()->player.dir.x * MOVESPEED;
+	new.y = game()->player.pos.y + game()->player.dir.y * MOVESPEED;
+	return (validate_move(new));
 }
 
 static int	move_player_backward(void)
 {
-	double	new_x;
-	double	new_y;
+	t_pos	new;
 
-	new_x = game()->player.pos.x - game()->player.dir.x * MOVESPEED;
-	new_y = game()->player.pos.y - game()->player.dir.y * MOVESPEED;
-	return (validate_move(new_x, new_y));
+	new.x = game()->player.pos.x - game()->player.dir.x * MOVESPEED;
+	new.y = game()->player.pos.y - game()->player.dir.y * MOVESPEED;
+	return (validate_move(new));
 }
 
 static int	move_player_left(void)
 {
-	double	new_x;
-	double	new_y;
+	t_pos	new;
 
-	new_x = game()->player.pos.x + game()->player.dir.y * MOVESPEED;
-	new_y = game()->player.pos.y - game()->player.dir.x * MOVESPEED;
-	return (validate_move(new_x, new_y));
+	new.x = game()->player.pos.x + game()->player.dir.y * MOVESPEED;
+	new.y = game()->player.pos.y - game()->player.dir.x * MOVESPEED;
+	return (validate_move(new));
 }
 
 static int	move_player_right(void)
 {
-	double	new_x;
-	double	new_y;
+	t_pos	new;
 
-	new_x = game()->player.pos.x - game()->player.dir.y * MOVESPEED;
-	new_y = game()->player.pos.y + game()->player.dir.x * MOVESPEED;
-	return (validate_move(new_x, new_y));
+	new.x = game()->player.pos.x - game()->player.dir.y * MOVESPEED;
+	new.y = game()->player.pos.y + game()->player.dir.x * MOVESPEED;
+	return (validate_move(new));
 }
 
 int	move_player(void)

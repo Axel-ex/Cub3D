@@ -1,5 +1,6 @@
 cub3D
 bin/
+bin_bonus/
 Libft/obj/
 */*.a
 */*.o

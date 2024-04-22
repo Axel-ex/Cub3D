@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/21 11:48:34 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:45:26 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@ int		key_release(int keycode);
  * @param new_y 
  * @return 
  */
-int		validate_move(double new_x, double new_y);
+int		validate_move(t_pos next_pos);
 
 /**
  * @brief move the player according to player information.

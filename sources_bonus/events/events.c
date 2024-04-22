@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/17 16:04:44 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:38:36 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	key_press(int keycode)
 	{
 		game()->map_info->render_map = true;
 		game()->player.has_moved = 1;
+		printf("PRESSED");
 	}
 	else if (keycode == ESC)
 		exit_game(EXIT_SUCCESS);

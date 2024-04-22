@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/19 15:59:37 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:41:22 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@
 #  define KEY_D 2
 #  define KEY_W 13
 #  define KEY_Q	12
-#  define KEY_ENTER 65293
+#  define KEY_ENTER 36
 #  define ESC 53
 #  define DESTROY_DISPLAY 
 
