@@ -6,12 +6,11 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:30:38 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/22 12:24:51 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/22 14:53:15 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-
 
 static int	move_player_forward(void)
 {

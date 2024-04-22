@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:35:24 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/22 14:31:21 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/22 14:52:59 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	replace_map_space(void)
 	while (map[++i])
 	{
 		j = -1;
-		while(map[i][++j])
+		while (map[i][++j])
 		{
 			if (ft_isspace(map[i][j]))
 				map[i][j] = WALL;
@@ -74,10 +74,9 @@ int	get_row_size(int y)
 int	get_col_size(void)
 {
 	int	size;
-	
+
 	size = 0;
 	while (game()->map[size])
 		size++;
 	return (size);
 }
-

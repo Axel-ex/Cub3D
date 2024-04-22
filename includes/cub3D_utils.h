@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/22 11:47:41 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/22 14:51:59 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@
 #  define KEY_D 100
 #  define KEY_W 119
 #  define KEY_ENTER 65293
-#  define DESTROY_DISPLAY mlx_destroy_display(game()->mlx);
 
 # else
 #  define KEY_UP 126
