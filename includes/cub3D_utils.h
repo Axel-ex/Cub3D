@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/22 10:41:22 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/22 11:47:41 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ typedef struct s_text_info
 typedef struct s_player
 {
 	t_pos		pos;
-	t_pos		prev_pos;
 	t_pos		dir;
 	t_pos		camera;
 	int			has_moved;

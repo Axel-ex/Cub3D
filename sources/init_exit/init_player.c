@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 08:29:00 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/21 14:21:03 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:48:12 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ static void	set_player_pos(void)
 		while (game()->map[i][++j])
 		{
 			if (is_player(game()->map[i][j]))
-			{
 				game()->player.pos = to_screen_pos((t_pos){j, i});
-				game()->player.prev_pos = game()->player.pos;
-			}
 		}
 	}
 }

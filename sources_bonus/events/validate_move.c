@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:48:47 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/22 11:05:53 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/22 11:48:56 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,16 @@ static bool	is_corner(t_pos p)
 	double	i;
 
 	wall_dist = (t_pos){modf(p.x, &i), modf(p.y, &i)};
-	printf("%lf, %lf\n", wall_dist.x, wall_dist.y);
+	printf("%lf, %lf, %d\n", wall_dist.x, wall_dist.y, get_adjacents_walls());
 	if (get_adjacents_walls() >= 2
-		&& ( fabs(wall_dist.x) <= 0.01
-		&& fabs(wall_dist.y) <= 0.01))
+		&& ((fabs(wall_dist.x) <= 0.1
+		&& fabs(wall_dist.y) <= 0.1)
+		|| (fabs(wall_dist.x) >= 0.9
+		&& fabs(wall_dist.y) >= 0.9)
+		|| (fabs(wall_dist.x) >= 0.9
+		&& fabs(wall_dist.y) <= 0.1)
+		|| (fabs(wall_dist.x) <= 0.1
+		&& fabs(wall_dist.y) >= 0.9)))
 		return (true);
 	return (false);
 }
@@ -66,7 +72,6 @@ int	validate_move(t_pos next_pos)
 		return (moved);
 	if (is_wall(game()->map_info->arr[(int)next.y][(int)next.x]))
 		return (moved);
-	game()->player.prev_pos = game()->player.pos;
 	game()->player.pos = next_pos;
 	return (++moved);
 }

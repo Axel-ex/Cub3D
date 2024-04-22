@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:35:24 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/21 11:47:36 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:43:06 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	replace_map_space(void)
 	while (map[++i])
 	{
 		j = -1;
-		while(map[i][++j])
+		while (map[i][++j])
 		{
 			if (ft_isspace(map[i][j]))
 				map[i][j] = WALL;
