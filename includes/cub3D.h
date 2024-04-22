@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/22 10:45:26 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/22 14:33:14 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,6 +280,8 @@ bool	order_check(void);
 void	initialize_chars(char **chars);
 bool	check_player(char **map);
 void	replace_map_space(void);
+int		get_col_size(void);
+int		get_row_size(int y);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MATRIX_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 size_t	get_matrix_len(char **matrix);
