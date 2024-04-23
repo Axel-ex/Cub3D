@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/19 16:09:09 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:33:14 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@ int		key_release(int keycode);
  * @param new_y 
  * @return 
  */
-int		validate_move(double new_x, double new_y);
+int		validate_move(t_pos next_pos);
 
 /**
  * @brief move the player according to player information.
@@ -279,6 +279,9 @@ void	cleaner(char *str, char **var);
 bool	order_check(void);
 void	initialize_chars(char **chars);
 bool	check_player(char **map);
+void	replace_map_space(void);
+int		get_col_size(void);
+int		get_row_size(int y);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ MATRIX_UTILS.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 size_t	get_matrix_len(char **matrix);
@@ -353,7 +356,7 @@ t_pos	center_position(t_pos pos, int size);
  * @param ext 
  * @param alt 
  */
-void	check_file(char *str, char *ext, char *alt);
+void	check_file(char *str, char *ext);
 
 /**
  * @brief parses each elements of the file and stores it appropriately in the 

@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_move.c                                    :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 15:48:47 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/22 14:35:34 by Axel             ###   ########.fr       */
+/*   Created: 2024/03/27 09:34:25 by Axel              #+#    #+#             */
+/*   Updated: 2024/04/18 14:54:07 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static bool	is_map_cell(t_pos next_pos)
+void	free_map_info(void)
 {
-	if (next_pos.x < 0 || next_pos.y < 0
-		||next_pos.x > get_row_size(next_pos.y)
-		|| next_pos.y > get_col_size())
-		return (false);
-	return (true);
+	free_matrix(game()->map_info->arr);
+	free(game()->map_info->no);
+	free(game()->map_info->so);
+	free(game()->map_info->we);
+	free(game()->map_info->ea);
+	free(game()->map_info->c);
+	free(game()->map_info->f);
+	free(game()->map_info);
 }
 
-int	validate_move(t_pos next_pos)
+void	free_textures(void)
 {
-	t_pos	next;
-	int		moved;
+	int	i;
 
-	next = to_map_pos(next_pos);
-	moved = 0;
-	if (!is_map_cell(next)
-		|| is_wall(game()->map_info->arr[(int)next.y][(int)next.x]))
-		return (moved);
-	game()->player.pos = next_pos;
-	return (++moved);
+	i = -1;
+	while (++i < 5)
+		free(game()->textures[i]);
+	free(game()->textures);
 }

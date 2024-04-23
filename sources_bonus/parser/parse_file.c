@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/22 13:45:11 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/21 11:51:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	check_color(char *str)
 			free_matrix(color);
 			free(trimmed);
 			exit_error(INVALID_COLOR, str);
+			free(trimmed);
 		}
 		free(trimmed);
 	}
