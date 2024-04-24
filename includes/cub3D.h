@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:51:53 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/22 14:33:14 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/24 15:25:34 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,6 +287,7 @@ int		get_row_size(int y);
 size_t	get_matrix_len(char **matrix);
 void	free_matrix(char **matrix);
 void	matrix_append(char ***matrix_ptr, char *to_append);
+void	trim_matrix(char **map);
 
 //! _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/ DEBUG.C \_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 /**
