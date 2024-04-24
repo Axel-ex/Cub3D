@@ -1,7 +1,7 @@
-SO ./assets/textures/south_texture.png
-NO ./assets/textures/dont_exist.png
-WE ./assets/textures/west_texture.png
-EA ./assets/textures/east_texture.png
+SO ./assets/textures/mossy.xpm
+NO ./assets/textures/dont_exist.xpm
+WE ./assets/textures/mossy.xpm
+EA ./assets/textures/mossy.png
 
 F 220,100,0
 C 225,30,0
