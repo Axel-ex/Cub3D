@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Axel <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:28:58 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/13 20:17:55 by Axel             ###   ########.fr       */
+/*   Updated: 2024/04/24 15:27:45 by mcarneir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,27 @@ void	matrix_append(char ***matrix_ptr, char *to_append)
 	new_matrix[i] = NULL;
 	free_matrix(matrix);
 	*matrix_ptr = new_matrix;
+}
+
+void	trim_matrix(char **map)
+{
+	int		i;
+	int		j;
+	char	**new_matrix;
+
+	i = get_col_size();
+	j = 0;
+	while (map[i] == NULL)
+		i--;
+	new_matrix = ft_calloc(get_col_size() - i, sizeof(char *));
+	if (!new_matrix)
+		exit_error(ALLOC_ERROR, INVALID_MAP);
+	while(j < i)
+	{
+		matrix_append(&new_matrix, map[j]);
+		j++;
+	}
+	new_matrix[j] = NULL;
+	free_matrix(map);
+	game()->map_info->arr = new_matrix;
 }
