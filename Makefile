@@ -13,7 +13,7 @@ OBJS        = $(patsubst $(SRCS_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 OBJS_BON	= $(patsubst $(SRCS_DIR_BON)/%.c,$(OBJ_DIR_BON)/%.o,$(SRCS_BON))
 CCFLAGS     = -Wall -Wextra -Werror -g -I includes -std=c99
 INC         = includes
-OS			= mac
+OS			= linux
 
 GREEN       = \033[38;5;47m
 YELLOW      = \033[38;5;226m
@@ -25,15 +25,14 @@ ifeq ($(MODE), debug)
     FLAGS += -fsanitize=address
 endif
 
-ifeq ($(OS), linux)
+ifeq ($(OS), mac)
+	MLX_DIR = mlx
+	MLXFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+else
 	MLX_DIR = mlx_linux
 	MLXFLAGS = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
 	CCFLAGS += -I/usr/include -I$(MLX_DIR) -O3 -D LINUX
-else
-	MLX_DIR = mlx
-	MLXFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 endif
-
 
 
 $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJ_DIR)
