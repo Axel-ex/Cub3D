@@ -1,8 +1,19 @@
+# Cub3D
+>Perspective and Raycasting
 
-# About
+</p>
+<p align="center">
+	<a href="#about">About</a> •
+	<a href="#usage">Usage</a> •
+   <a href="#implementation">Implementation</a> •
+	<a href="#norme">Norme</a>
+</p>
+
+
+## About
 Cub3D is an implementation of raycasting to render a 2D map in 3D. Raycasting is a rendering technique used to create a 3D perspective in a 2D map. More information on subjects requirements here: [subject.pdf](https://github.com/Axel-ex/Cub3D/blob/main/subject.pdf).
 
-# Usage
+## Usage
 `git clone` this project `cd` into it. If your OS is macOS, simply `make`. if your running on linux, `make re OS=linux`.
 the program is executed as so:
 
@@ -14,7 +25,7 @@ you will find maps and textures in the assets directory. feel free to customize 
 
 <img src="demo.gif" width="100%"/>
 
-# Implementation
+## Implementation
 The raycasting algorithm in Cub3D can be broken down into several key steps:
 
 1. Ray Initialization:
@@ -33,4 +44,15 @@ The raycasting algorithm in Cub3D can be broken down into several key steps:
    - The `raycaster()` function iterates through each column of the screen, casting rays and rendering the corresponding wall segments using the calculated line heights.
 
 This process is repeated for each frame to continuously update the displayed scene as the player moves through the map. 
+
+## Norme
+
+All 42 projects must be written following the **Norme**.
+
+	- No for, do while, switch, case or goto are allowed
+	- No more than 25 lines per function and 5 functions per file
+	- No assigns and declarations in the same line (unless static)
+ 	- Each line must be at most 80 columns wide, comments included
+	- A function can take 4 named parameters maximum
+	- No more than 5 variables in 1 function
 
