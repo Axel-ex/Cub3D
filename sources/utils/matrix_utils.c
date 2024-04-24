@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:28:58 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/24 15:27:45 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:01:51 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,28 @@ void	trim_matrix(char **map)
 {
 	int		i;
 	int		j;
+	int		k;
 	char	**new_matrix;
 
-	i = get_col_size();
+	i = 0;
 	j = 0;
-	while (map[i] == NULL)
+	
+	while (map[i])
+		i++;
+	i--;
+	k = i;
+	while (!ft_strncmp(map[i], "", 1))
 		i--;
-	new_matrix = ft_calloc(get_col_size() - i, sizeof(char *));
+	new_matrix = ft_calloc(k - i, sizeof(char *));
 	if (!new_matrix)
 		exit_error(ALLOC_ERROR, INVALID_MAP);
-	while(j < i)
+	while(j <= i)
 	{
 		matrix_append(&new_matrix, map[j]);
 		j++;
 	}
-	new_matrix[j] = NULL;
+	new_matrix[++j] = NULL;
 	free_matrix(map);
 	game()->map_info->arr = new_matrix;
+	print_map((t_pos){0, 0});
 }
