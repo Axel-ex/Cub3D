@@ -6,7 +6,7 @@
 /*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:05:41 by mcarneir          #+#    #+#             */
-/*   Updated: 2024/04/24 15:21:52 by mcarneir         ###   ########.fr       */
+/*   Updated: 2024/04/21 11:51:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	check_color(char *str)
 			free_matrix(color);
 			free(trimmed);
 			exit_error(INVALID_COLOR, str);
+			free(trimmed);
 		}
 		free(trimmed);
 	}
@@ -126,6 +127,5 @@ void	parse_file(char *file)
 		exit_error(MAP_FIRST, INVALID_MAP);
 	check_elements();
 	replace_map_space();
-	trim_matrix(game()->map_info->arr);
 	check_map(game()->map_info->arr);
 }
