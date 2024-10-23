@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarneir <mcarneir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:07:01 by Axel              #+#    #+#             */
-/*   Updated: 2024/04/22 14:37:59 by Axel             ###   ########.fr       */
+/*   Updated: 2024/10/23 11:11:54 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,20 @@
 int	rotate_camera(t_rotation direction)
 {
 	double		angle;
+	double		old_dirx;
+	double		old_camerax;
 	t_player	*p;
 
 	p = &game()->player;
+	old_dirx = p->dir.x;
+	old_camerax = p->camera.x;
 	angle = ROTSPEED;
 	if (direction == LEFT)
 		angle = -angle;
 	p->dir.x = p->dir.x * cos(angle) - p->dir.y * sin(angle);
-	p->dir.y = p->dir.x * sin(angle) + p->dir.y * cos(angle);
+	p->dir.y = old_dirx * sin(angle) + p->dir.y * cos(angle);
 	p->camera.x = p->camera.x * cos(angle) - p->camera.y * sin(angle);
-	p->camera.y = p->camera.x * sin(angle) + p->camera.y * cos(angle);
+	p->camera.y = old_camerax * sin(angle) + p->camera.y * cos(angle);
 	game()->player.has_moved = 1;
 	return (EXIT_SUCCESS);
 }
